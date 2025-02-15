@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Roboto
+- Font Author: undefined
+- Font Source: https://fonts.gstatic.com/s/roboto/v32/KFOkCnqEu92Fr1Mu52xPKTM1K9nz.ttf
+- Font License: undefined)

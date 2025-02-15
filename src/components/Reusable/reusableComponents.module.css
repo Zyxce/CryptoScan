@@ -1,0 +1,33 @@
+.Button {
+  width: 100px;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.Button:hover {
+  background-color: #0056b3;
+}
+
+.LinkButton {
+  width: 100px;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-decoration: none;
+  text-align: center;
+}
+.LinkButton:hover {
+  background-color: #0056b3;
+}/*# sourceMappingURL=reusableComponents.module.css.map */
