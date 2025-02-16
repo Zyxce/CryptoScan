@@ -1,0 +1,38 @@
+.marketContainer
+    border-bottom: 1px solid #ddd
+    padding: 10px 0
+    transition: background-color 0.3s, box-shadow 0.3s
+    margin: 20px auto
+    max-width: 500px
+    background-color: #ffffff
+    border-radius: 8px
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
+
+    &:hover
+        cursor: pointer
+        background-color: #f1f1f1
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15)
+
+    .marketTopContainer
+        display: flex
+        justify-content: space-between
+        margin-bottom: 5px
+        color: #333
+
+        p
+            margin: 0
+
+    .marketBottomContainer
+        display: flex
+        flex-direction: column
+
+        p
+            margin: 5px 0
+            color: #555
+
+            &:first-child
+                font-weight: bold
+                font-size: 1.1em
+
+            &:last-child
+                font-weight: normal

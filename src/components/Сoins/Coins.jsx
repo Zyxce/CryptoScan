@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import Coin from './Coin'
 
-const Coins = () => {
+const Coins = (props) => {
+  const { toggleSelectedCoinId } = props
   const COINS_API_URL = 'https://api.coinlore.net/api/tickers/'
   const [coins, setCoins] = useState([])
   const [error, setError] = useState('')
@@ -41,7 +42,13 @@ const Coins = () => {
         <h1>No coins available</h1> // Показать альтернативное сообщение, если нет данных
       ) : (
         coins.map((coin) => {
-          return <Coin key={coin.id} {...coin}></Coin>
+          return (
+            <Coin
+              key={coin.id}
+              {...coin}
+              toggleSelectedCoinId={toggleSelectedCoinId}
+            ></Coin>
+          )
         })
       )}
     </div>
