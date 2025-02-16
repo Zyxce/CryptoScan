@@ -1,15 +1,17 @@
 .menuContainer {
-  background-color: #282c34;
+  background-color: #1E1F25;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  padding: 10px 20px;
-  padding-right: 190px;
+  padding: 10px 200px;
 }
 .menuContainer .menuLogo {
   color: white;
   font-size: 1.5em;
   margin-right: auto;
+}
+.menuContainer .menuLogo span:first-child {
+  color: #1B70F1;
 }
 .menuContainer .logoImage {
   width: 50px;
@@ -30,6 +32,23 @@
   transition: background-color 0.3s, color 0.3s;
 }
 .menuContainer .navContainer .navItem:hover {
-  background-color: #007bff;
+  background-color: #1B70F1;
   color: white;
+}
+.menuContainer .languageContainer {
+  display: flex;
+  flex-direction: row;
+  padding-left: 145px;
+}
+.menuContainer .languageContainer img {
+  padding-top: 3px;
+  margin: 0 auto;
+  width: 20px;
+  height: 13px;
+  margin-left: 5px;
+}
+.menuContainer .languageContainer .textLanguage {
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
 }/*# sourceMappingURL=Menu.module.css.map */

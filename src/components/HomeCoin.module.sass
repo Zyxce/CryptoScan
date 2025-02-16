@@ -1,0 +1,34 @@
+.coinContainer
+    display: flex
+    flex-direction: column
+    padding: 5px 15px
+    border-left: 1px solid #ADB3BF
+    width: 200px
+    z-index: 10
+    .coinTopContainer
+        display: flex
+        .coinSymbol, .coinRank
+            font-size: 1.1rem
+            color: #ADB3BF
+        .coinRank
+            margin-left: auto   
+
+    .coinBottomContainer
+        display: flex
+        .coinPrice
+            margin-top: 10px
+            font-size: 1.2rem
+            color: #fff 
+            margin-left: auto 
+        .coinPercentContainer
+            display: flex
+            flex-direction: row
+            margin-top: auto
+            img
+                width: 15px
+                height: 15px 
+            .coinPercent
+                margin-left: 5px                      
+    
+.coinContainer:last-child    
+    border-right: 1px solid #ADB3BF        

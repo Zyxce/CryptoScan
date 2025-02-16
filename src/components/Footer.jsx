@@ -6,16 +6,16 @@ const Footer = () => {
     <footer className={style.footerContainer}>
       <div className={style.linksContainer}>
         <a href="/about" className={style.footerLink}>
-          About Us
+          Home
         </a>
         <a href="/contact" className={style.footerLink}>
-          Contact
+          Coins
         </a>
         <a href="/privacy" className={style.footerLink}>
-          Privacy Policy
+          Markets
         </a>
         <a href="/terms" className={style.footerLink}>
-          Terms of Service
+          Settings
         </a>
       </div>
       <div className={style.copyRight}>

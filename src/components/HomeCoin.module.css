@@ -1,0 +1,43 @@
+.coinContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 5px 15px;
+  border-left: 1px solid #ADB3BF;
+  width: 200px;
+  z-index: 10;
+}
+.coinContainer .coinTopContainer {
+  display: flex;
+}
+.coinContainer .coinTopContainer .coinSymbol, .coinContainer .coinTopContainer .coinRank {
+  font-size: 1.1rem;
+  color: #ADB3BF;
+}
+.coinContainer .coinTopContainer .coinRank {
+  margin-left: auto;
+}
+.coinContainer .coinBottomContainer {
+  display: flex;
+}
+.coinContainer .coinBottomContainer .coinPrice {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-left: auto;
+}
+.coinContainer .coinBottomContainer .coinPercentContainer {
+  display: flex;
+  flex-direction: row;
+  margin-top: auto;
+}
+.coinContainer .coinBottomContainer .coinPercentContainer img {
+  width: 15px;
+  height: 15px;
+}
+.coinContainer .coinBottomContainer .coinPercentContainer .coinPercent {
+  margin-left: 5px;
+}
+
+.coinContainer:last-child {
+  border-right: 1px solid #ADB3BF;
+}/*# sourceMappingURL=HomeCoin.module.css.map */

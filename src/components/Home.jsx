@@ -1,58 +1,74 @@
-import React from 'react'
-import style from './Home.module.css' // Предполагаем, что у вас есть отдельные стили
+import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import style from './Home.module.css'
+import heroImage from '../Images/HeroImage.png'
+import Button from './Reusable/Button'
+import btnArrow from '../Images/btnArrow.png'
+import HomeCoin from './HomeCoin'
 
 const Home = () => {
+  const navigate = useNavigate()
+  const COINS_API_URL = 'https://api.coinlore.net/api/tickers/'
+  const [coins, setCoins] = useState([])
+  const [error, setError] = useState('')
+
+  const fetchData = async () => {
+    try {
+      const res = await fetch(COINS_API_URL)
+      const data = await res.json()
+      setCoins(data.data)
+    } catch (error) {
+      setError(error.message)
+    }
+  }
+
+  useEffect(() => {
+    fetchData()
+
+    const intervalId = setInterval(() => {
+      fetchData()
+    }, 10000)
+
+    return () => clearInterval(intervalId)
+  })
+
+  if (error) {
+    return <h1 style={{ color: 'red' }}>Error: {error}</h1>
+  }
+
   return (
     <div className={style.homeContainer}>
-      <div className={style.heroContainer}>
-        <h1 className={style.heroHeader}>Crypto Scan V 0.0.1</h1>
-        <p className={style.heroDescription}>
-          Добро пожаловать в Crypto Scan - приложение для отслеживания цен на
-          криптовалюты, анализа рынка и поиска лучшей разницы цен монет между
-          биржами!
-        </p>
+      <div className={style.heroSection}>
+        <div className={style.heroTopContent}>
+          <div className={style.heroTextContainer}>
+            <p className={style.appVersion}> — Crypto Scan V 0.1.2</p>
+            <h1 className={style.mainHeading}>
+              Buy & Sell Crypto Easy <br />
+              With CryptoScan
+            </h1>
+            <div className={style.heroDottedLine}></div>
+            <p className={style.heroDescription}>
+              It is a long established fact that a reader will be distracted by
+              the readable content <br /> of a page when looking at its layout.
+            </p>
+            <Button
+              className={style.heroButton}
+              onClick={() => navigate('/coins')}
+            >
+              Start now
+              <img src={btnArrow} alt="Arrow" />
+            </Button>
+          </div>
+          <div className={style.heroImageContainer}>
+            <img src={heroImage} alt="Hero illustration" />
+          </div>
+        </div>
+        <div className={style.heroBottomContent}>
+          {coins.slice(0, 6).map((coin) => {
+            return <HomeCoin key={coin.id} {...coin}></HomeCoin>
+          })}
+        </div>
       </div>
-
-      <h3>Что мы предлагаем:</h3>
-      <ul>
-        <li>🏦 Поддержка всех популярных криптовалют</li>
-        <li>📈 Поиск лучшей разницы цен</li>
-        <li>🔔 Уведомления о значительных изменениях цен</li>
-        <li>📊 Аналитика и прогнозирование трендов</li>
-        <li>📚 Образовательные материалы по криптовалютам</li>
-      </ul>
-
-      <h3>Актуальные новости криптовалют:</h3>
-      <div className={style.newsSection}>
-        <p>🚀 Bitcoin поднялся до рекордных уровней!</p>
-        <p>
-          💡 Ethereum запускает обновление, которое увеличит производительность
-          сети.
-        </p>
-        <p>
-          🔍 Эксперты прогнозируют рост рынка криптовалют в следующем квартале.
-        </p>
-      </div>
-
-      <h3>Зарегистрируйтесь и начните использовать!</h3>
-      <p>
-        Присоединяйтесь к нам, чтобы получить лучший опыт в мире криптовалют.
-        Нажмите на кнопку ниже, чтобы зарегистрироваться!
-      </p>
-      <button className={style.ctaButton}>Зарегистрироваться</button>
-
-      <h3>Учебные материалы</h3>
-      <p>
-        Не знаете, с чего начать? Ознакомьтесь с нашими учебными материалами о
-        криптовалютах!
-      </p>
-      <button className={style.learnMoreButton}>Узнать больше</button>
-
-      <h3>Следите за нами!</h3>
-      <p>
-        Подписывайтесь на наши социальные сети, чтобы быть в курсе последних
-        новостей и обновлений!
-      </p>
     </div>
   )
 }
