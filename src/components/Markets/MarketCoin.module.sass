@@ -1,0 +1,76 @@
+.coinContainer
+    position: relative
+    border: 3px solid #1E1F25
+    border-radius: 24px
+    display: flex
+    flex-direction: column
+    padding: 25px
+    width: 700px
+    margin: 0 auto
+    box-shadow: 7px 5px 5px #101013
+    margin-top: 70px
+    .coinTopContainer
+        display: flex
+        align-items: center
+        p:not(:last-child)
+            color: white
+            font-size: 1.5rem
+        .coinHeroSymbol
+            margin-left: 10px
+            padding-right: 5px
+            border-right: 2px solid white
+        .coinHeroName
+            margin-left: 5px
+        .coinHeroCap
+            margin-left: auto
+            font-size: 0.85rem
+            color: white
+    .coinBottomContainer
+        display: flex
+        margin-top: 20px
+        justify-content: space-between
+
+        .coinImgContainer
+            width: 252px
+            height: 252px
+            display: flex
+            align-items: center
+            justify-content: center
+            background: radial-gradient(rgba(85, 113, 254, 0.180), rgba(85, 113, 254, 0.150), rgba(85, 113, 254, 0.120) , rgba(85, 113, 254, 0.090), rgba(85, 113, 254, 0) 72%)
+            .coinImage
+                width: 126px
+                height: 126px
+        .coinMetricsLeftContainer, .coinMetricsRightContainer
+            display: grid
+            grid-auto-rows: 1fr 1fr
+            .coinMetricsContainer
+                text-align: left
+                margin-top: 10px
+                .coinMetricsHeader
+                    margin-bottom: 10px
+                    color: white
+                .coinMetricsText
+                    margin-top: 5px
+                    color: #acb8ca
+                    font-size: 0.8rem
+                    line-height: 1.2rem
+                    img
+                        height: 14px
+                        width: 14px
+                        margin-left: 5px
+                    span
+                        margin-left: 5px
+
+.coinContainer::before
+    content: ""
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    background-image: url("../../Images/BackGroundHero.png")
+    background-size: cover
+    background-position: center
+    opacity: 0.1
+    z-index: -1
+    border-radius: 24px

@@ -1,1 +1,47 @@
-/*# sourceMappingURL=FeaturedCoins.module.css.map */
+.featuredContainer {
+  border: 2px solid #1E1F25;
+  border-radius: 12px;
+  padding: 30px;
+  width: 150px;
+}
+.featuredContainer:hover {
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: #1E1F25;
+}
+.featuredContainer .featuredCoinIcon {
+  height: 48px;
+  width: 48px;
+}
+.featuredContainer .featuredNameContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.featuredContainer .featuredNameContainer .featuredSymbol, .featuredContainer .featuredNameContainer .featuredName {
+  color: white;
+  line-height: 1.2rem;
+}
+.featuredContainer .featuredNameContainer .featuredSymbol {
+  border-right: 2px solid #fff;
+  padding-right: 10px;
+  font-size: 1.2rem;
+}
+.featuredContainer .featuredNameContainer .featuredName {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+.featuredContainer .featuredPercentContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.featuredContainer .featuredPercentContainer .featuredPercent {
+  margin-left: 5px;
+}
+.featuredContainer .featuredPrice {
+  margin-top: 10px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.5rem;
+}/*# sourceMappingURL=FeaturedCoins.module.css.map */

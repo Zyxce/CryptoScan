@@ -5,7 +5,9 @@ import style from './NotFound.module.css'
 const NotFound = () => {
   return (
     <div className={style.pageContainer}>
-      <h1 className={style.pageHeader}>Ooops... Not Found </h1>
+      <h1 className={style.pageHeader}>
+        Ooops... <span>404</span> Not Found{' '}
+      </h1>
       <img className={style.pageImg} src={sadnessKitty} alt="kitty"></img>
     </div>
   )

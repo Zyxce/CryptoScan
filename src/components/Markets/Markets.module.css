@@ -1,7 +1,5 @@
-@charset "UTF-8";
 .marketsContainer {
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -24,38 +22,46 @@
 }
 .marketsContainer .topMarkets {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-around;
   margin-bottom: 30px;
-}
-.marketsContainer .topMarkets .marketCard {
-  background-color: white;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  flex: 1;
-  margin: 0 10px;
+  border: 3px solid #1E1F25;
+  border-radius: 24px;
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 25px;
   position: relative;
+  box-shadow: 7px 5px 5px #101013;
 }
-.marketsContainer .topMarkets .marketCard h2 {
-  color: #333;
-  margin-bottom: 10px;
+.marketsContainer .topMarkets .topMarketsContainer {
+  display: flex;
+  flex-direction: co;
+  justify-content: space-around;
+  padding-bottom: 10px;
 }
-.marketsContainer .topMarkets .arrow {
-  width: 30px;
-  height: 30px;
-  background-color: transparent;
-  position: relative;
-  margin: 0 10px;
+.marketsContainer .topMarkets .differencePriceContainer {
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: auto;
 }
-.marketsContainer .topMarkets .arrow:before {
-  content: "→";
-  font-size: 1.5rem;
-  color: #333;
+.marketsContainer .topMarkets .differencePriceContainer .differencePrice {
+  color: #06B470;
+}
+.marketsContainer .topMarkets::before {
+  content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../Images/BackGroundHero.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1;
+  border-radius: 24px;
 }
 .marketsContainer .differencePriceContainer {
   text-align: center;
@@ -80,4 +86,14 @@
 }
 .marketsContainer .otherMarkets Market:last-child {
   margin-bottom: 0;
+}
+
+.coinsMidLine::before {
+  margin: 10px 0;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #1E1F25, transparent);
 }/*# sourceMappingURL=Markets.module.css.map */

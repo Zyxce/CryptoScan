@@ -1,67 +1,31 @@
 .coinContainer
-    border-bottom: 1px solid #ddd
-    width: 500px
-    margin: 0 auto
-    transition: background-color 0.3s, box-shadow 0.3s
-    padding: 10px
-    border-radius: 8px
-    background-color: #ffffff
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)
-
-    &:hover
-        cursor: pointer
-        background-color: #f1f1f1
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15)
-
-    .coinTopContainer
+    display: grid
+    grid-template-columns: repeat(8, 1fr)
+    align-items: center
+    margin: 15px 0px
+    .coinIcon
+        width: 32px
+        height: 32px
+        margin: 0 auto
+    .coinNameContainer
         display: flex
-        margin-top: 5px
-        align-items: center
-
-        .coinNameContainer
-            display: flex
-            align-items: center
-
-            .coinSymbolName
-                margin: 0
-                border-right: 2px solid #007bff
-                padding-right: 8px
-                margin-right: 8px
-                color: #007bff
-                font-weight: bold
-
-            .coinFullName
-                margin: auto 0
-                font-weight: normal
-
-        .coinPrice
-            margin: auto 0
-            margin-left: auto
-            font-weight: bold
-            font-size: 1.2em
-
-    .coinBottomContainer
+        justify-content: center
+        .coinSymbol
+            color: #fff
+            font-size: 1.2rem
+            line-height: 10px
+            border-right: solid 1px #fff
+            padding: 5px
+    .coinPercentContainer
         display: flex
-        justify-content: space-between
-        margin-top: 5px
-        padding-bottom: 5px
+        justify-content: center
+        .coinPercentImg
+            margin-right: 5px
 
-        .coinPercentContaner
-            display: flex
-            align-items: center
-            
-            span
-                font-weight: bold
-                margin-right: 5px
-                color: #555
-
-            .coinPercentChange
-                margin-left: 5px
-                font-weight: bold
-                transition: color 0.3s
-
-        .coinPercentContaner:last-child
-            margin-left: auto
+.coinTableText
+    margin: auto 0
+    color: #fff
+    margin-left: 5px
 
 .coinOpenContainer
     display: flex
@@ -85,9 +49,26 @@
 
         .coinOpenParagraph
             margin-top: 3px
-            color: #666 
-    .coinBtnContainer 
+            color: #666
+    .coinBtnContainer
         display: flex
         .coinMarketBtn
             width: 200px
-            margin-left: auto       
+            margin-left: auto
+
+.coinTableBtn
+    background-color: #131517
+    padding: 0px
+    border: 1px solid #1E1F25
+    color: white
+    font-size: 0.9rem
+    line-height: 2rem
+    border-radius: 5px
+    cursor: pointer
+    transition: background-color 0.3s
+    z-index: 10
+    margin: auto 0
+    span
+        margin-right: 7px
+        color: #1B70F1
+        font-size: 1.1rem

@@ -7,6 +7,7 @@ import Coins from './components/Сoins/Coins'
 import Markets from './components/Markets/Markets'
 import MainLayout from './Layouts/MainLayout'
 import Home from './components/Home'
+import Exchanges from './components/Exchanges/Exchanges'
 import NotFound from './components/NotFound'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/exchanges" element={<Exchanges />}></Route>
             <Route
               path="/coins"
               element={<Coins toggleSelectedCoinId={handleSelectedCoindId} />}

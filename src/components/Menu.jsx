@@ -19,8 +19,8 @@ const Menu = () => {
         <Link className={style.navItem} to="/coins">
           Coins
         </Link>
-        <Link className={style.navItem} to="/Markets">
-          Markets
+        <Link className={style.navItem} to="/exchanges">
+          Exchanges
         </Link>
         <Link className={style.navItem} to="/settings">
           Settings
