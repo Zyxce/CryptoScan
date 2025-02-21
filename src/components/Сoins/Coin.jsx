@@ -89,7 +89,7 @@ const Coin = (props) => {
           className={style.coinTableBtn}
           onClick={() => {
             handleNewId()
-            navigate('/markets')
+            navigate('/CryptoScan/markets')
           }}
         >
           <span>{symbol}</span> Market statistics

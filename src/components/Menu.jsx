@@ -13,16 +13,16 @@ const Menu = () => {
         <span>Scan</span>
       </h2>
       <nav className={style.navContainer}>
-        <Link className={style.navItem} to="/">
+        <Link className={style.navItem} to="/CryptoScan">
           Home
         </Link>
-        <Link className={style.navItem} to="/coins">
+        <Link className={style.navItem} to="/CryptoScan/coins">
           Coins
         </Link>
-        <Link className={style.navItem} to="/exchanges">
+        <Link className={style.navItem} to="/CryptoScan/exchanges">
           Exchanges
         </Link>
-        <Link className={style.navItem} to="/settings">
+        <Link className={style.navItem} to="/CryptoScan/settings">
           Settings
         </Link>
       </nav>

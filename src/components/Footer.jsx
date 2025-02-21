@@ -1,22 +1,23 @@
 import React from 'react'
 import style from './Footer.module.css' // Исходите из того, что вы используете CSS-модули
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
     <footer className={style.footerContainer}>
       <div className={style.linksContainer}>
-        <a href="/about" className={style.footerLink}>
+        <Link className={style.footerLink} to="/CryptoScan">
           Home
-        </a>
-        <a href="/contact" className={style.footerLink}>
+        </Link>
+        <Link className={style.footerLink} to="/CryptoScan/coins">
           Coins
-        </a>
-        <a href="/privacy" className={style.footerLink}>
-          Markets
-        </a>
-        <a href="/terms" className={style.footerLink}>
+        </Link>
+        <Link className={style.footerLink} to="/CryptoScan/exchanges">
+          Exchanges
+        </Link>
+        <Link className={style.footerLink} to="/CryptoScan/settings">
           Settings
-        </a>
+        </Link>
       </div>
       <div className={style.copyRight}>
         © 2025 Developed by Vitaly Sokolov. All rights reserved.

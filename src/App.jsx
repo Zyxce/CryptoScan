@@ -24,25 +24,25 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<MainLayout />}>
+          <Route path="/CryptoScan" element={<MainLayout />}>
             <Route index element={<Home />} />
             <Route path="*" element={<NotFound />} />
-            <Route path="/exchanges" element={<Exchanges />}></Route>
+            <Route path="/CryptoScan/exchanges" element={<Exchanges />}></Route>
             <Route
-              path="/coins"
+              path="/CryptoScan/coins"
               element={<Coins toggleSelectedCoinId={handleSelectedCoindId} />}
             />
             <Route
-              path="/markets"
+              path="/CryptoScan/markets"
               element={<Markets selectedCoinId={selectedCoinId} />}
             />
             {/* test events */}
             <Route
-              path="/event/loading"
+              path="/CryptoScan/event/loading"
               element={<Loading type={'TestEvent'} />}
             ></Route>
             <Route
-              path="/event/error"
+              path="/CryptoScan/event/error"
               element={<Error error={'YARIK PIZDEC BACHOK POTIK'} />}
             ></Route>
           </Route>

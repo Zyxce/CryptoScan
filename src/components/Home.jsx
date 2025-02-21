@@ -46,9 +46,10 @@ const Home = () => {
       ) : (
         <div className={style.homeContainer}>
           <div className={style.heroSection}>
+            s
             <div className={style.heroTopContent}>
               <div className={style.heroTextContainer}>
-                <p className={style.appVersion}> — Crypto Scan V 0.1.2</p>
+                <p className={style.appVersion}> — Crypto Scan V 0.2.2</p>
                 <h1 className={style.mainHeading}>
                   Buy & Sell Crypto Easy <br />
                   With CryptoScan
@@ -61,7 +62,7 @@ const Home = () => {
                 </p>
                 <Button
                   className={style.heroButton}
-                  onClick={() => navigate('/coins')}
+                  onClick={() => navigate('/CryptoScan/coins')}
                 >
                   Start now
                   <img src={btnArrow} alt="Arrow" />

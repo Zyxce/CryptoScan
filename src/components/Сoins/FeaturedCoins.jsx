@@ -33,7 +33,7 @@ const FeaturedCoins = (props) => {
       className={style.featuredContainer}
       onClick={() => {
         handleNewId()
-        navigate('/markets')
+        navigate('/CryptoScan/markets')
       }}
     >
       <img
