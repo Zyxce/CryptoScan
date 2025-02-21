@@ -5,12 +5,14 @@ import heroImage from '../Images/HeroImage.png'
 import Button from './Reusable/Button'
 import btnArrow from '../Images/btnArrow.png'
 import HomeCoin from './HomeCoin'
+import Loading from './Events/Loading'
 
 const Home = () => {
   const navigate = useNavigate()
   const COINS_API_URL = 'https://api.coinlore.net/api/tickers/'
   const [coins, setCoins] = useState([])
   const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(true)
 
   const fetchData = async () => {
     try {
@@ -20,6 +22,7 @@ const Home = () => {
     } catch (error) {
       setError(error.message)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -37,39 +40,46 @@ const Home = () => {
   }
 
   return (
-    <div className={style.homeContainer}>
-      <div className={style.heroSection}>
-        <div className={style.heroTopContent}>
-          <div className={style.heroTextContainer}>
-            <p className={style.appVersion}> — Crypto Scan V 0.1.2</p>
-            <h1 className={style.mainHeading}>
-              Buy & Sell Crypto Easy <br />
-              With CryptoScan
-            </h1>
-            <div className={style.heroDottedLine}></div>
-            <p className={style.heroDescription}>
-              It is a long established fact that a reader will be distracted by
-              the readable content <br /> of a page when looking at its layout.
-            </p>
-            <Button
-              className={style.heroButton}
-              onClick={() => navigate('/coins')}
-            >
-              Start now
-              <img src={btnArrow} alt="Arrow" />
-            </Button>
-          </div>
-          <div className={style.heroImageContainer}>
-            <img src={heroImage} alt="Hero illustration" />
+    <>
+      {isLoading ? (
+        <Loading type={'Home'} />
+      ) : (
+        <div className={style.homeContainer}>
+          <div className={style.heroSection}>
+            <div className={style.heroTopContent}>
+              <div className={style.heroTextContainer}>
+                <p className={style.appVersion}> — Crypto Scan V 0.1.2</p>
+                <h1 className={style.mainHeading}>
+                  Buy & Sell Crypto Easy <br />
+                  With CryptoScan
+                </h1>
+                <div className={style.heroDottedLine}></div>
+                <p className={style.heroDescription}>
+                  It is a long established fact that a reader will be distracted
+                  by the readable content <br /> of a page when looking at its
+                  layout.
+                </p>
+                <Button
+                  className={style.heroButton}
+                  onClick={() => navigate('/coins')}
+                >
+                  Start now
+                  <img src={btnArrow} alt="Arrow" />
+                </Button>
+              </div>
+              <div className={style.heroImageContainer}>
+                <img src={heroImage} alt="Hero illustration" />
+              </div>
+            </div>
+            <div className={style.heroBottomContent}>
+              {coins.slice(0, 6).map((coin) => {
+                return <HomeCoin key={coin.id} {...coin}></HomeCoin>
+              })}
+            </div>
           </div>
         </div>
-        <div className={style.heroBottomContent}>
-          {coins.slice(0, 6).map((coin) => {
-            return <HomeCoin key={coin.id} {...coin}></HomeCoin>
-          })}
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   )
 }
 

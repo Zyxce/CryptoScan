@@ -3,6 +3,7 @@ import Coin from './Coin'
 import FeaturedCoins from './FeaturedCoins'
 import style from './Coins.module.css'
 import arrowTable from '../../Images/arrowTable.png'
+import Loading from '../Events/Loading'
 
 const Coins = (props) => {
   const { toggleSelectedCoinId } = props
@@ -12,7 +13,6 @@ const Coins = (props) => {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchData = async () => {
-    setIsLoading(true) // Устанавливаем isLoading в true перед началом запроса
     try {
       const res = await fetch(COINS_API_URL)
       const data = await res.json()
@@ -38,96 +38,102 @@ const Coins = (props) => {
   }
 
   return (
-    <div className={style.coinsContainer}>
-      <div className={style.coinsFeaturedContainer}>
-        <h1 className={style.coinsFeaturedHeader}>Featured Coins</h1>
-        <div className={style.coinsFeaturedBox}>
-          {coins.slice(0, 6).map((coin) => {
-            return (
-              <FeaturedCoins
-                key={coin.id}
-                {...coin}
-                toggleSelectedCoinId={toggleSelectedCoinId}
-              ></FeaturedCoins>
-            )
-          })}
-        </div>
-      </div>
-      <div className={style.coinsMidLine}></div>
-      <div className={style.coinsTable}>
-        <div className={style.coinsTableHeader}>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>Coin Icon</p>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>Coin Name</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.coinsTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>Price</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.coinsTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>24h Change</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.coinsTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>24h Volume</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.coinsTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>Current supply</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.coinsTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>Market Cap</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.coinsTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.coinsTableParameters}>
-            <p className={style.coinsTableParametersText}>Action</p>
-          </div>
-        </div>
-      </div>
-      {coins.length === 0 ? (
-        <h1>No coins available</h1> // Показать альтернативное сообщение, если нет данных
+    <>
+      {isLoading ? (
+        <Loading type={'Coins'} />
       ) : (
-        <div className={style.coinTableContainer}>
-          {coins.map((coin) => {
-            return (
-              <Coin
-                key={coin.id}
-                {...coin}
-                toggleSelectedCoinId={toggleSelectedCoinId}
-              ></Coin>
-            )
-          })}
+        <div className={style.coinsContainer}>
+          <div className={style.coinsFeaturedContainer}>
+            <h1 className={style.coinsFeaturedHeader}>Featured Coins</h1>
+            <div className={style.coinsFeaturedBox}>
+              {coins.slice(0, 6).map((coin) => {
+                return (
+                  <FeaturedCoins
+                    key={coin.id}
+                    {...coin}
+                    toggleSelectedCoinId={toggleSelectedCoinId}
+                  ></FeaturedCoins>
+                )
+              })}
+            </div>
+          </div>
+          <div className={style.coinsMidLine}></div>
+          <div className={style.coinsTable}>
+            <div className={style.coinsTableHeader}>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>Coin Icon</p>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>Coin Name</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.coinsTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>Price</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.coinsTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>24h Change</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.coinsTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>24h Volume</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.coinsTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>Current supply</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.coinsTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>Market Cap</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.coinsTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.coinsTableParameters}>
+                <p className={style.coinsTableParametersText}>Action</p>
+              </div>
+            </div>
+          </div>
+          {coins.length === 0 ? (
+            <h1>No coins available</h1> // Показать альтернативное сообщение, если нет данных
+          ) : (
+            <div className={style.coinTableContainer}>
+              {coins.map((coin) => {
+                return (
+                  <Coin
+                    key={coin.id}
+                    {...coin}
+                    toggleSelectedCoinId={toggleSelectedCoinId}
+                  ></Coin>
+                )
+              })}
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

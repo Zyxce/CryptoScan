@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import style from './Exchanges.module.css'
 import arrowTable from '../../Images/arrowTable.png'
 import Exchange from './Exchange'
+import Loading from '../Events/Loading'
 
 const Exchanges = () => {
   const EXCHANGES_API_URL = 'https://api.coinlore.net/api/exchanges/'
@@ -10,7 +11,6 @@ const Exchanges = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const fetchData = async () => {
-    setIsLoading(true)
     try {
       const res = await fetch(EXCHANGES_API_URL)
       const data = await res.json()
@@ -39,63 +39,68 @@ const Exchanges = () => {
   }
 
   return (
-    <div className={style.exchangesContainer}>
-      <h1 className={style.exchangesFeaturedHeader}>
-        Top Crypto Exchanges By 24 Hour Volume
-      </h1>
-      <div className={style.exchangesMidLine}></div>
-      <div className={style.exchangesTable}>
-        <div className={style.exchangesTableHeader}>
-          <div className={style.exchangesTableParameters}>
-            <p className={style.exchangesTableParametersText}>Exchange Icon</p>
-          </div>
-          <div className={style.exchangesTableParameters}>
-            <p className={style.exchangesTableParametersText}>Exchange Name</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.exchangesTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.exchangesTableParameters}>
-            <p className={style.exchangesTableParametersText}>24h Volume</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.exchangesTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.exchangesTableParameters}>
-            <p className={style.exchangesTableParametersText}>Markets</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.exchangesTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.exchangesTableParameters}>
-            <p className={style.exchangesTableParametersText}>Market Cap</p>
-            <img
-              src={arrowTable}
-              alt={'img'}
-              className={style.exchangesTableParametersImg}
-            ></img>
-          </div>
-          <div className={style.exchangesTableParameters}>
-            <p className={style.exchangesTableParametersText}>Action</p>
-          </div>
-        </div>
-      </div>
-      {exchanges.length === 0 ? (
-        <h1>No exchanges available</h1> // Показать альтернативное сообщение, если нет данных
+    <>
+      {isLoading ? (
+        <Loading type={'Exchanges'} />
       ) : (
-        <div className={style.exchangeTableContainer}>
-          {exchanges.map((exchange) => {
-            return <Exchange key={exchange.id} {...exchange}></Exchange>
-          })}
+        <div className={style.exchangesContainer}>
+          <h1 className={style.exchangesFeaturedHeader}>
+            Top Crypto Exchanges By 24 Hour Volume
+          </h1>
+          <div className={style.exchangesMidLine}></div>
+          <div className={style.exchangesTable}>
+            <div className={style.exchangesTableHeader}>
+              <div className={style.exchangesTableParameters}>
+                <p className={style.exchangesTableParametersText}>
+                  Exchange Icon
+                </p>
+              </div>
+              <div className={style.exchangesTableParameters}>
+                <p className={style.exchangesTableParametersText}>
+                  Exchange Name
+                </p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.exchangesTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.exchangesTableParameters}>
+                <p className={style.exchangesTableParametersText}>Volume</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.exchangesTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.exchangesTableParameters}>
+                <p className={style.exchangesTableParametersText}>Markets</p>
+                <img
+                  src={arrowTable}
+                  alt={'img'}
+                  className={style.exchangesTableParametersImg}
+                ></img>
+              </div>
+              <div className={style.exchangesTableParameters}>
+                <p className={style.exchangesTableParametersText}>Url</p>
+              </div>
+              <div className={style.exchangesTableParameters}>
+                <p className={style.exchangesTableParametersText}>Country</p>
+              </div>
+            </div>
+          </div>
+          {exchanges.length === 0 ? (
+            <h1>No exchanges available</h1> // Показать альтернативное сообщение, если нет данных
+          ) : (
+            <div className={style.exchangeTableContainer}>
+              {exchanges.map((exchange) => {
+                return <Exchange key={exchange.id} {...exchange}></Exchange>
+              })}
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   )
 }
 

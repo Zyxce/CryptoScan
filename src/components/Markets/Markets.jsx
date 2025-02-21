@@ -3,6 +3,7 @@ import Market from './Market'
 import MarketCoin from './MarketCoin'
 import DifferenceMarket from './DifferenceMarket'
 import style from './Markets.module.css'
+import Loading from '../Events/Loading'
 
 const Markets = ({ selectedCoinId }) => {
   const MARKETS_API_URL = `https://api.coinlore.net/api/coin/markets/?id=${selectedCoinId}`
@@ -80,56 +81,62 @@ const Markets = ({ selectedCoinId }) => {
   }
 
   return (
-    <div className={style.marketsContainer}>
-      <div className={style.coinStatisticsContainer}>
-        {coin.map((parameters) => (
-          <MarketCoin key={parameters.id} {...parameters}></MarketCoin>
-        ))}
-      </div>
-      <div className={style.topMarkets}>
-        <div className={style.topMarketsContainer}>
-          {lowestMarket && (
-            <div className={style.lowestMarket}>
-              <DifferenceMarket
-                {...lowestMarket}
-                headerMarket={'Lowest Market'}
-              />
-            </div>
-          )}
-          {highestMarket && (
-            <div className={style.highestMarket}>
-              <DifferenceMarket
-                {...highestMarket}
-                headerMarket={'Highest Market'}
-              />
-            </div>
-          )}
-        </div>
-        <div className={style.coinsMidLine}></div>
-        {differencePrice !== 0 && (
-          <div className={style.differencePriceContainer}>
-            <p className={style.differencePrice}>
-              Difference in Price: ${differencePrice}
-            </p>
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className={style.marketsContainer}>
+          <div className={style.coinStatisticsContainer}>
+            {coin.map((parameters) => (
+              <MarketCoin key={parameters.id} {...parameters}></MarketCoin>
+            ))}
           </div>
-        )}
-      </div>
+          <div className={style.topMarkets}>
+            <div className={style.topMarketsContainer}>
+              {lowestMarket && (
+                <div className={style.lowestMarket}>
+                  <DifferenceMarket
+                    {...lowestMarket}
+                    headerMarket={'Lowest Market'}
+                  />
+                </div>
+              )}
+              {highestMarket && (
+                <div className={style.highestMarket}>
+                  <DifferenceMarket
+                    {...highestMarket}
+                    headerMarket={'Highest Market'}
+                  />
+                </div>
+              )}
+            </div>
+            <div className={style.coinsMidLine}></div>
+            {differencePrice !== 0 && (
+              <div className={style.differencePriceContainer}>
+                <p className={style.differencePrice}>
+                  Difference in Price: ${differencePrice}
+                </p>
+              </div>
+            )}
+          </div>
 
-      <div className={style.otherMarkets}>
-        <h2>Markets Price Overview</h2>
-        <select value={sortOrder} onChange={handleSortChange}>
-          <option value="Price up">Price up</option>
-          <option value="Price low">Price low</option>
-        </select>
-        {isLoading ? (
-          <h1>Loading...</h1>
-        ) : (
-          sortedMarkets.map((market) => {
-            return <Market key={market.id} {...market} />
-          })
-        )}
-      </div>
-    </div>
+          <div className={style.otherMarkets}>
+            <h2>Markets Price Overview</h2>
+            <select value={sortOrder} onChange={handleSortChange}>
+              <option value="Price up">Price up</option>
+              <option value="Price low">Price low</option>
+            </select>
+            {isLoading ? (
+              <h1>Loading...</h1>
+            ) : (
+              sortedMarkets.map((market) => {
+                return <Market key={market.id} {...market} />
+              })
+            )}
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
