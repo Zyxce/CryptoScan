@@ -41,7 +41,6 @@ const Coin = (props) => {
     }
 
     checkImage(firstImageUrl).then((exists) => {
-      console.log(exists)
       if (exists) {
         setImageSrc(firstImageUrl)
       } else {

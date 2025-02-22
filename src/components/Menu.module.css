@@ -3,7 +3,7 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
-  padding: 10px 200px;
+  padding: 15px 200px;
 }
 .menuContainer .menuLogo {
   color: white;
@@ -14,7 +14,7 @@
   color: #1B70F1;
 }
 .menuContainer .logoImage {
-  width: 50px;
+  width: 40px;
   height: auto;
   margin-right: 15px;
 }

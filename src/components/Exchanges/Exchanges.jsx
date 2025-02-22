@@ -20,11 +20,26 @@ const Exchanges = () => {
       setExchanges(exchangesArray)
     } catch (error) {
       setError(error.message)
+    } finally {
+      setIsLoading(false)
     }
-    setIsLoading(false) // Устанавливаем isLoading в false после завершения запроса
   }
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(EXCHANGES_API_URL)
+        const data = await res.json()
+
+        // Проверка, является ли data объектом и преобразование в массив
+        const exchangesArray = Object.values(data) // Преобразуем объект в массив
+        setExchanges(exchangesArray)
+      } catch (error) {
+        setError(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData() // Первоначальный запрос
 
     const intervalId = setInterval(() => {

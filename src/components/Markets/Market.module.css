@@ -1,39 +1,19 @@
 .marketContainer {
-  border-bottom: 1px solid #ddd;
-  padding: 10px 0;
-  transition: background-color 0.3s, box-shadow 0.3s;
-  margin: 20px auto;
-  max-width: 500px;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  align-items: center;
+  margin: 20px 0px;
 }
-.marketContainer:hover {
-  cursor: pointer;
-  background-color: #f1f1f1;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+.marketContainer .marketIcon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
 }
-.marketContainer .marketTopContainer {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
-  color: #333;
+.marketContainer .marketTableText {
+  margin: auto 0;
+  color: #fff;
 }
-.marketContainer .marketTopContainer p {
-  margin: 0;
-}
-.marketContainer .marketBottomContainer {
-  display: flex;
-  flex-direction: column;
-}
-.marketContainer .marketBottomContainer p {
-  margin: 5px 0;
-  color: #555;
-}
-.marketContainer .marketBottomContainer p:first-child {
-  font-weight: bold;
-  font-size: 1.1em;
-}
-.marketContainer .marketBottomContainer p:last-child {
-  font-weight: normal;
+.marketContainer .marketTableUrl {
+  color: #1B70F1;
+  text-decoration: none;
 }/*# sourceMappingURL=Market.module.css.map */

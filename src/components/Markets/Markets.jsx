@@ -4,6 +4,8 @@ import MarketCoin from './MarketCoin'
 import DifferenceMarket from './DifferenceMarket'
 import style from './Markets.module.css'
 import Loading from '../Events/Loading'
+import Error from '../Events/Error'
+import arrowTable from '../../Images/arrowTable.png'
 
 const Markets = ({ selectedCoinId }) => {
   const MARKETS_API_URL = `https://api.coinlore.net/api/coin/markets/?id=${selectedCoinId}`
@@ -14,7 +16,9 @@ const Markets = ({ selectedCoinId }) => {
 
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
-  const [sortOrder, setSortOrder] = useState('Price up')
+
+  const [sortDirection, setSortDirection] = useState(true) // true - по возрастанию
+  const [sortField, setSortField] = useState('price_usd')
 
   const [highestMarket, setHighestMarket] = useState(null)
   const [lowestMarket, setLowestMarket] = useState(null)
@@ -22,19 +26,18 @@ const Markets = ({ selectedCoinId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setIsLoading(true)
       try {
-        //запрос маркетов
+        //запрос маркетов, проверка на успешный запрос, получение ответа JSON, проверка данных маркетов на наличие
         const resMarket = await fetch(MARKETS_API_URL)
+        if (!resMarket.ok) throw new Error('MARKETS_API_URL failed to fetch')
         const dataMarket = await resMarket.json()
-        //проверка данных маркетов на наличие
-        if (!dataMarket) throw new Error('No market data found')
+        if (!dataMarket) throw new Error('No MARKETS_API_URL data found')
         setMarkets(dataMarket)
-        //запрос монеты
+        //запрос монеты, проверка на успешный запрос, получение ответа JSON, проверка данных монеты на наличие
         const resСoin = await fetch(COIN_API_URL)
+        if (!resСoin.ok) throw new Error('COIN_API_URL failed to fetch')
         const dataCoin = await resСoin.json()
-        //проверка данных монеты на наличие
-        if (!dataCoin) throw new Error('No coin data found')
+        if (!dataCoin) throw new Error('No COIN_API_URL data found')
         setCoin(dataCoin)
 
         // Находим рынок с самой высокой ценой
@@ -59,25 +62,42 @@ const Markets = ({ selectedCoinId }) => {
         setLowestMarket(lowest)
       } catch (error) {
         setError(error.message)
+      } finally {
+        setIsLoading(false)
       }
-      setIsLoading(false)
     }
     fetchData()
-  }, [MARKETS_API_URL, COIN_API_URL])
 
-  const handleSortChange = (event) => {
-    setSortOrder(event.target.value)
-  }
+    const intervalId = setInterval(() => {
+      fetchData() // Периодическое обновление данных
+    }, 10000) // Обновляем каждые 10 секунд
+
+    return () => clearInterval(intervalId) // Очистка интервала при размонтировании компонента
+  }, [MARKETS_API_URL, COIN_API_URL])
 
   // Сортировка рынков в зависимости от выбранного порядка
   const sortedMarkets = [...markets].sort((a, b) => {
-    const priceA = parseFloat(a.price_usd)
-    const priceB = parseFloat(b.price_usd)
-    return sortOrder === 'Price up' ? priceA - priceB : priceB - priceA
+    const valueA = parseFloat(a[sortField])
+    const valueB = parseFloat(b[sortField])
+
+    if (sortDirection) {
+      return valueA - valueB // по возрастанию
+    } else {
+      return valueB - valueA // по убыванию
+    }
   })
 
+  const handleSort = (field) => {
+    if (sortField === field) {
+      setSortDirection((prev) => !prev)
+    } else {
+      setSortField(field)
+      setSortDirection(true)
+    }
+  }
+
   if (error) {
-    return <h1 style={{ color: 'red' }}>Error: {error}</h1>
+    return <Error error={error} />
   }
 
   return (
@@ -121,18 +141,54 @@ const Markets = ({ selectedCoinId }) => {
           </div>
 
           <div className={style.otherMarkets}>
-            <h2>Markets Price Overview</h2>
-            <select value={sortOrder} onChange={handleSortChange}>
-              <option value="Price up">Price up</option>
-              <option value="Price low">Price low</option>
-            </select>
-            {isLoading ? (
-              <h1>Loading...</h1>
-            ) : (
-              sortedMarkets.map((market) => {
-                return <Market key={market.id} {...market} />
-              })
-            )}
+            <h2 className={style.otherMarketsHeader}>Markets Price Overview</h2>
+            <div className={style.marketsMidLine}></div>
+            <div className={style.otherMarketsTable}>
+              <div className={style.otherMarketsTableHeader}>
+                {[
+                  { label: 'Exchange Name', field: 'name' },
+                  { label: 'Base Currency', field: 'base_currency' },
+                  { label: 'Price (USD)', field: 'price_usd' },
+                  { label: 'Price (Base/Quote)', field: 'price' },
+                  { label: 'Volume (USD)', field: 'volume_usd' },
+                  { label: 'Volume (Base/Quote)', field: 'volume' },
+                ].map(({ label, field }) => (
+                  <div
+                    className={style.otherMarketsTableParameters}
+                    onClick={() => handleSort(field)}
+                    key={field}
+                  >
+                    <p
+                      className={style.otherMarketsTableParametersText}
+                      style={
+                        sortField === field
+                          ? { textDecoration: 'underline' }
+                          : {}
+                      }
+                    >
+                      {label}
+                    </p>
+                    <img
+                      style={
+                        sortField === field
+                          ? sortDirection
+                            ? {}
+                            : { transform: 'rotate(180deg)' }
+                          : {}
+                      }
+                      src={arrowTable}
+                      alt={'img'}
+                      className={style.otherMarketsTableParametersImg}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={style.marketContainer}>
+              {sortedMarkets.map((market) => (
+                <Market key={market.id} {...market} />
+              ))}
+            </div>
           </div>
         </div>
       )}

@@ -1,31 +1,14 @@
 $primary-color: #007bff
 $secondary-color: #f44336
-$background-color: #f9f9f9
 $text-color: #333
 $border-radius: 8px
 $box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
 
 .marketsContainer
-  padding: 20px
+  padding: 20px 200px
   border-radius: $border-radius
   box-shadow: $box-shadow
   font-family: Arial, sans-serif
-
-  h1
-    color: $primary-color
-    text-align: center
-    margin-bottom: 20px
-
-  select
-    padding: 10px
-    border-radius: $border-radius
-    border: 1px solid $text-color
-    margin-bottom: 20px
-    cursor: pointer
-
-    &:focus
-      outline: none
-      border-color: $primary-color
 
   .topMarkets
     display: flex
@@ -35,69 +18,62 @@ $box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
     border: 3px solid #1E1F25
     border-radius: 24px
     width: 700px
-    margin: 0 auto
-    margin-top: 20px
+    margin: 20px auto
     padding: 25px
     position: relative
     box-shadow: 7px 5px 5px #101013
+
     .topMarketsContainer
       display: flex
-      flex-direction: co
+      flex-direction: row
       justify-content: space-around
       padding-bottom: 10px
-    .differencePriceContainer
-      padding-top: 10px
-      display: flex
-      justify-content: center
-      margin-bottom: auto
-      .differencePrice
 
+    .differencePriceContainer
+      text-align: center
+      margin: 20px 0
+      font-size: 1.2rem
+
+      .differencePrice
         color: #06B470
 
-  .topMarkets::before
-    content: ""
-    position: absolute
-    top: 0
-    left: 0
-    right: 0
-    bottom: 0
-    background-image: url("../../Images/BackGroundHero.png")
-    background-size: cover
-    background-position: center
-    opacity: 0.1
-    z-index: -1
-    border-radius: 24px
-
-  .differencePriceContainer
-    text-align: center
-    margin: 20px 0 // Расстояние сверху и снизу
-    font-size: 1.2rem // Размер шрифта для отображения разницы
-
   .otherMarkets
-    h2
-      color: $text-color
-      margin-bottom: 15px
+    .otherMarketsHeader
+      margin-top: 40px
+      font-size: 3rem
+      color: white
+      font-weight: 600px
+      line-height: 4rem
 
-    .loading
-      text-align: center
-      font-size: 1.5rem
-      color: $secondary-color
+    .otherMarketsTable
+      .otherMarketsTableHeader
+        display: grid
+        grid-template-columns: repeat(6, 1fr)
 
-    Market
-      margin-bottom: 10px
-      background-color: white
-      padding: 10px
-      border-radius: $border-radius
-      box-shadow: $box-shadow
+        .otherMarketsTableParameters
+          display: flex
+          justify-content: center
+          align-items: center
 
-      &:last-child
-        margin-bottom: 0
+          .otherMarketsTableParametersText
+            color: #808A9A
 
-.coinsMidLine::before
-  margin: 10px 0
+          .otherMarketsTableParametersImg
+            height: 10px
+            width: 10px
+            margin-left: 5px
+
+.marketsMidLine
+  position: relative
+  padding: 60px 0px
+  background: radial-gradient(rgba(85, 113, 254, 0.020), rgba(85, 113, 254, 0.015), rgba(85, 113, 254, 0.010) , rgba(85, 113, 254, 0.005), rgba(85, 113, 254, 0) 72%)
+.marketsMidLine::before
   content: ''
   position: absolute
   left: 0
   right: 0
   height: 3px
   background: linear-gradient(to right, transparent, #1E1F25, transparent)
+
+.marketContainer
+  background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%)

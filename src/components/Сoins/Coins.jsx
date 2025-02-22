@@ -19,8 +19,9 @@ const Coins = (props) => {
       setCoins(data.data)
     } catch (error) {
       setError(error.message)
+    } finally {
+      setIsLoading(false)
     }
-    setIsLoading(false) // Устанавливаем isLoading в false после завершения запроса
   }
 
   useEffect(() => {
