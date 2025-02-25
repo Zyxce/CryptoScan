@@ -2,43 +2,50 @@ import React, { useEffect, useState } from 'react'
 import style from './Market.module.css'
 
 const Market = (props) => {
-  const { name, base, quote, price, price_usd, volume, volume_usd, time } =
-    props
+  const { name, base, quote, price, price_usd, volume, volume_usd } = props
 
-  const [nameText, setNameText] = useState(name || 'N/A')
-  const [baseText, setBaseText] = useState(base || 'N/A')
-  const [quoteText, setQuoteText] = useState(quote || 'N/A')
-  const [priceText, setPriceText] = useState(price || 'N/A')
-  const [priceUsdText, setPriceUsdTextText] = useState(price_usd || 'N/A')
-  const [volumeText, setVolumeText] = useState(volume || 'N/A')
-  const [volumeUsdText, setVolumeUsdText] = useState(volume_usd || 'N/A')
+  const NOT_AVAILABLE = 'N/A'
+  const [trueData, setTrueData] = useState({
+    name: name || NOT_AVAILABLE,
+    base: base || NOT_AVAILABLE,
+    quote: quote || NOT_AVAILABLE,
+    price: price || NOT_AVAILABLE,
+    priceUsd: price_usd || NOT_AVAILABLE,
+    volume: volume || NOT_AVAILABLE,
+    volumeUsd: volume_usd || NOT_AVAILABLE,
+  })
 
   useEffect(() => {
-    //проверка на существование данных
-    const checkData = (inputData) => {
-      return inputData ? inputData : 'N/A'
-    }
-    setNameText(checkData(name))
-    setBaseText(checkData(base))
-    setQuoteText(checkData(quote))
-    setPriceText(checkData(price))
-    setPriceUsdTextText(checkData(price_usd))
-    setVolumeText(checkData(volume))
-    setVolumeUsdText(checkData(volume_usd))
+    // Оптимизированная проверка данных
+    setTrueData(() => ({
+      name: name || NOT_AVAILABLE,
+      base: base || NOT_AVAILABLE,
+      quote: quote || NOT_AVAILABLE,
+      price: price || NOT_AVAILABLE,
+      priceUsd: price_usd || NOT_AVAILABLE,
+      volume: volume || NOT_AVAILABLE,
+      volumeUsd: volume_usd || NOT_AVAILABLE,
+    }))
   }, [name, base, quote, price, price_usd, volume, volume_usd])
 
   return (
     <div className={style.marketContainer}>
-      <p className={style.marketTableUrl}>{nameText}</p>
-      <p className={style.marketTableText}>{`${baseText}/${quoteText}`}</p>
+      <p className={style.marketTableUrl}>{trueData.name}</p>
+      <p
+        className={style.marketTableText}
+      >{`${trueData.base}/${trueData.quote}`}</p>
       <p className={style.marketTableText}>
-        {priceUsdText === 'N/A' ? priceUsdText : `$${priceUsdText}`}
+        {trueData.priceUsd === NOT_AVAILABLE
+          ? trueData.priceUsd
+          : `$${trueData.priceUsd}`}
       </p>
-      <p className={style.marketTableText}>{priceText}</p>
+      <p className={style.marketTableText}>{trueData.price}</p>
       <p className={style.marketTableText}>
-        {volumeUsdText === 'N/A' ? volumeUsdText : `$${volumeUsdText}`}
+        {trueData.volumeUsd === NOT_AVAILABLE
+          ? trueData.volumeUsd
+          : `$${trueData.volumeUsd}`}
       </p>
-      <p className={style.marketTableText}>{volumeText}</p>
+      <p className={style.marketTableText}>{trueData.volume}</p>
     </div>
   )
 }

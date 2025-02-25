@@ -10,7 +10,7 @@ const MainLayout = () => {
       <div className={style.mainContent}>
         <Outlet />
       </div>
-      <Footer />
+      <Footer className={style.mainFooter} />
     </div>
   )
 }

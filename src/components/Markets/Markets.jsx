@@ -7,9 +7,10 @@ import Loading from '../Events/Loading'
 import Error from '../Events/Error'
 import arrowTable from '../../Images/arrowTable.png'
 
-const Markets = ({ selectedCoinId }) => {
-  const MARKETS_API_URL = `https://api.coinlore.net/api/coin/markets/?id=${selectedCoinId}`
-  const COIN_API_URL = `https://api.coinlore.net/api/ticker/?id=${selectedCoinId}`
+const Markets = ({ selectedCoinMarkets }) => {
+  const MARKETS_API_URL = `https://api.coinlore.net/api/coin/markets/?id=${selectedCoinMarkets[0]}`
+  const COIN_API_URL = `https://api.coinlore.net/api/ticker/?id=${selectedCoinMarkets[0]}`
+  const NOT_AVAILABLE = 'N/A'
 
   const [coin, setCoin] = useState([])
   const [markets, setMarkets] = useState([])
@@ -26,34 +27,39 @@ const Markets = ({ selectedCoinId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        //запрос маркетов, проверка на успешный запрос, получение ответа JSON, проверка данных маркетов на наличие
-        const resMarket = await fetch(MARKETS_API_URL)
-        if (!resMarket.ok) throw new Error('MARKETS_API_URL failed to fetch')
-        const dataMarket = await resMarket.json()
-        if (!dataMarket) throw new Error('No MARKETS_API_URL data found')
-        setMarkets(dataMarket)
-        //запрос монеты, проверка на успешный запрос, получение ответа JSON, проверка данных монеты на наличие
-        const resСoin = await fetch(COIN_API_URL)
-        if (!resСoin.ok) throw new Error('COIN_API_URL failed to fetch')
-        const dataCoin = await resСoin.json()
-        if (!dataCoin) throw new Error('No COIN_API_URL data found')
-        setCoin(dataCoin)
+      //запрос данных, проверка на успешный запрос, получение ответа JSON, проверка данных на наличие
+      const fetchResource = async (url) => {
+        const res = await fetch(url)
+        if (!res.ok) throw new Error(`${url} failed to fetch`)
+        const data = await res.json()
+        if (!data) throw new Error(`No data found for ${url}`)
+        return data
+      }
 
+      try {
+        const dataMarket = await fetchResource(MARKETS_API_URL)
+        setMarkets(dataMarket)
+        const dataCoin = await fetchResource(COIN_API_URL)
+        setCoin(dataCoin)
+        //защита маркета на null и undefined при сравнении, без него все будет NaN
+        const validMarkets = dataMarket.filter(
+          (market) =>
+            market.price_usd !== null && market.price_usd !== undefined
+        )
         // Находим рынок с самой высокой ценой
-        const highest = dataMarket.reduce((prev, current) => {
+        const highest = validMarkets.reduce((prev, current) => {
           return parseFloat(prev.price_usd) > parseFloat(current.price_usd)
             ? prev
             : current
         })
         // Находим рынок с самой низкой ценой
-        const lowest = dataMarket.reduce((prev, current) => {
+        const lowest = validMarkets.reduce((prev, current) => {
           return parseFloat(prev.price_usd) < parseFloat(current.price_usd)
             ? prev
             : current
         })
 
-        // Рассчитываем разницу цен
+        // разница цен
         const difference =
           parseFloat(highest.price_usd) - parseFloat(lowest.price_usd)
         setDifferencePrice(difference)
@@ -69,24 +75,40 @@ const Markets = ({ selectedCoinId }) => {
     fetchData()
 
     const intervalId = setInterval(() => {
-      fetchData() // Периодическое обновление данных
-    }, 10000) // Обновляем каждые 10 секунд
+      fetchData()
+    }, 10000) // обновление каждые 10 секунд
 
-    return () => clearInterval(intervalId) // Очистка интервала при размонтировании компонента
+    return () => clearInterval(intervalId)
   }, [MARKETS_API_URL, COIN_API_URL])
 
-  // Сортировка рынков в зависимости от выбранного порядка
+  // Сортировка рынков
   const sortedMarkets = [...markets].sort((a, b) => {
-    const valueA = parseFloat(a[sortField])
-    const valueB = parseFloat(b[sortField])
+    // Получаем значения для сортировки
+    const valueA =
+      a[sortField] !== undefined && a[sortField] !== null
+        ? a[sortField]
+        : NOT_AVAILABLE // Если undefined или null, то N/A
+    const valueB =
+      b[sortField] !== undefined && b[sortField] !== null
+        ? b[sortField]
+        : NOT_AVAILABLE
 
-    if (sortDirection) {
-      return valueA - valueB // по возрастанию
+    // Проверяем, являются ли значения числами
+    const isNumberA = !isNaN(parseFloat(valueA)) && isFinite(valueA)
+    const isNumberB = !isNaN(parseFloat(valueB)) && isFinite(valueB)
+
+    if (isNumberA && isNumberB) {
+      // Оба значения - числа
+      return sortDirection
+        ? parseFloat(valueA) - parseFloat(valueB)
+        : parseFloat(valueB) - parseFloat(valueA)
     } else {
-      return valueB - valueA // по убыванию
+      // Если хоть одно значение не число
+      return sortDirection
+        ? valueA.localeCompare(valueB)
+        : valueB.localeCompare(valueA)
     }
   })
-
   const handleSort = (field) => {
     if (sortField === field) {
       setSortDirection((prev) => !prev)
@@ -99,11 +121,10 @@ const Markets = ({ selectedCoinId }) => {
   if (error) {
     return <Error error={error} />
   }
-
   return (
     <>
       {isLoading ? (
-        <Loading />
+        <Loading type={`${selectedCoinMarkets[1]}`} />
       ) : (
         <div className={style.marketsContainer}>
           <div className={style.coinStatisticsContainer}>
@@ -116,6 +137,7 @@ const Markets = ({ selectedCoinId }) => {
               {lowestMarket && (
                 <div className={style.lowestMarket}>
                   <DifferenceMarket
+                    key={new Date()}
                     {...lowestMarket}
                     headerMarket={'Lowest Market'}
                   />
@@ -124,6 +146,7 @@ const Markets = ({ selectedCoinId }) => {
               {highestMarket && (
                 <div className={style.highestMarket}>
                   <DifferenceMarket
+                    key={new Date()}
                     {...highestMarket}
                     headerMarket={'Highest Market'}
                   />

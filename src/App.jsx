@@ -14,11 +14,13 @@ import Loading from './components/Events/Loading'
 import Error from './components/Events/Error'
 
 function App() {
-  const [selectedCoinId, setSelectedCoinId] = useState('80')
+  const [selectedCoinMarkets, setSelectedCoinMarkets] = useState([
+    '80',
+    'Etherium',
+  ])
 
-  function handleSelectedCoindId(newId) {
-    console.log(newId)
-    setSelectedCoinId(newId)
+  function handleSelectedCoindId(newId, newName) {
+    setSelectedCoinMarkets([newId, newName])
   }
   return (
     <BrowserRouter>
@@ -34,7 +36,7 @@ function App() {
             />
             <Route
               path="/CryptoScan/markets"
-              element={<Markets selectedCoinId={selectedCoinId} />}
+              element={<Markets selectedCoinMarkets={selectedCoinMarkets} />}
             />
             {/* test events */}
             <Route

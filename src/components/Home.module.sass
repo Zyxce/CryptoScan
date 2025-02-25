@@ -1,93 +1,91 @@
 $primary-color: #131517
 
-.homeContainer
+.heroSection
+  background-color: $primary-color
+  padding: 0 200px
   position: relative
+  height: 100%
 
-  .heroSection
-    background-color: $primary-color
-    padding: 0 200px
-    position: relative
+  overflow: hidden
 
-    overflow: hidden
+  &::before
+    content: ""
+    background-image: url("../Images/BackGroundHero.png")
+    background-size: cover
+    background-position: center
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    opacity: 0.08
+    z-index: 1
 
-    &::before
-      content: ""
-      background-image: url("../Images/BackGroundHero.png")
-      background-size: cover
-      background-position: center
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
-      opacity: 0.08
-      z-index: 1
+  .heroTopContent
+    display: flex // Используем flexbox для выравнивания элементов
+    align-items: start // Центрируем элементы по вертикали
+    justify-content: space-between
+    height: 100% // Устанавливаем высоту для выравнивания
 
-    .heroTopContent
-      display: flex // Используем flexbox для выравнивания элементов
-      align-items: start // Центрируем элементы по вертикали
-      justify-content: space-between
-      height: 100% // Устанавливаем высоту для выравнивания
+    .heroTextContainer
+      margin: 0
+      z-index: 2
+      text-align: start
+      margin-top: 180px
 
-      .heroTextContainer
+      .appVersion
+        color: #1B70F1
+        font-size: 1.5rem
+        line-height: 2.25rem
+        font-weight: 600
+
+      .mainHeading
+        color: #F7FAFF
+        font-size: 4rem
+        line-height: 5rem
         margin: 0
-        z-index: 2
-        text-align: start
-        margin-top: 180px
 
-        .appVersion
-          color: #1B70F1
-          font-size: 1.5rem
-          line-height: 2.25rem
-          font-weight: 600
+      .heroDottedLine
+        position: relative
+        padding: 15px 0px
+      .heroDottedLine::before
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        height: 2px
+        background: linear-gradient(to right, transparent, #9AC321CC, transparent)
 
-        .mainHeading
-          color: #F7FAFF
-          font-size: 4rem
-          line-height: 5rem
-          margin: 0
+      .heroDescription
+        font-size: 1.2rem
+        color: #ADB3BF
+        line-height: 2rem
 
-        .heroDottedLine
-          position: relative
-          padding: 15px 0px
-        .heroDottedLine::before
-          content: ''
-          position: absolute
-          left: 0
-          right: 0
-          height: 2px
-          background: linear-gradient(to right, transparent, #9AC321CC, transparent)
+      .heroButton
+        display: flex
+        align-items: center
+        margin-top: 20px
+        padding: 10px 50px
+        border: none
+        background-color: #1B70F1
+        color: white
+        font-size: 1.2rem
+        line-height: 2rem
+        border-radius: 5px
+        transition: background-color 0.3s
 
-        .heroDescription
-          font-size: 1.2rem
-          color: #ADB3BF
-          line-height: 2rem
+        &:hover
+          background-color: #024185
+        img
+          margin-left: 5px
+          padding-top: 1px
 
-        .heroButton
-          display: flex
-          align-items: center
-          margin-top: 20px
-          padding: 10px 50px
-          border: none
-          background-color: #1B70F1
-          color: white
-          font-size: 1.2rem
-          line-height: 2rem
-          border-radius: 5px
-          transition: background-color 0.3s
-
-          &:hover
-            background-color: #024185
-          img
-            margin-left: 5px
-            padding-top: 1px
-
-    .heroImageContainer
-      margin-left: 20px
-      background: radial-gradient(rgba(85, 113, 254, 0.178), rgba(85, 113, 254, 0.11), rgba(85, 113, 254, 0.062) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%)
-      img
-        width: 650px
-    .heroBottomContent
-      display: flex
-      justify-content: center
-      margin-bottom: 30px
+  .heroImageContainer
+    margin-left: 20px
+    background: radial-gradient(rgba(85, 113, 254, 0.178), rgba(85, 113, 254, 0.11), rgba(85, 113, 254, 0.062) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%)
+    img
+      width: 650px
+  .heroBottomContent
+    display: flex
+    justify-content: center
+    margin-bottom: 30px

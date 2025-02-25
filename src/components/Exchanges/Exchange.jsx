@@ -1,59 +1,65 @@
 import React, { useEffect, useState } from 'react'
 import style from './Exchange.module.css'
-import sadnessPeppa from '../../Images/sadnessPepe.png'
+import notFoundIcon from '../../Images/notFoundIcon.png'
 
 const Exchange = (props) => {
   const { name, name_id, volume_usd, active_pairs, url, country } = props
 
-  const [imageSrc, setImageSrc] = useState(sadnessPeppa)
-  const [countryText, setCountryText] = useState(country || 'N/A')
-  const [urlText, setUrlText] = useState(url || 'N/A')
-  const [pairsText, setPairsText] = useState(active_pairs || 'N/A')
-  const [volumeText, setVolumeText] = useState(volume_usd || 'N/A')
+  const [imageSrc, setImageSrc] = useState(notFoundIcon)
+
+  const NOT_AVAILABLE = 'N/A'
+  const [trueData, setTrueData] = useState({
+    name: name || NOT_AVAILABLE,
+    nameId: name_id || NOT_AVAILABLE,
+    volumeUsd: volume_usd || NOT_AVAILABLE,
+    activePairs: active_pairs || NOT_AVAILABLE,
+    url: url || NOT_AVAILABLE,
+    country: country || NOT_AVAILABLE,
+  })
 
   useEffect(() => {
-    const ImageUrl = `https://www.coinlore.com/img/exchanges/${name_id}.png`
+    const loadImage = async () => {
+      try {
+        const ImageUrl = `https://www.coinlore.com/img/exchanges/${name_id}.png`
 
-    const checkImage = (url) => {
-      return new Promise((resolve) => {
         const img = new Image()
-        img.src = url
-        img.onload = () => resolve(true) // если картинка загрузилась
-        img.onerror = () => resolve(false) // если ошибка
-      })
-    }
+        img.src = ImageUrl
 
-    checkImage(ImageUrl).then((exists) => {
-      if (exists) {
-        setImageSrc(ImageUrl)
-      } else {
-        setImageSrc(sadnessPeppa)
+        img.onload = () => setImageSrc(ImageUrl) // если картинка загрузилась заебись
+        img.onerror = () => setImageSrc(notFoundIcon)
+      } catch (error) {
+        console.error('Error loading images:', error) // не круто
       }
-    })
-    // Оптимизированная проверка данных
-    const checkData = (inputData) => {
-      return inputData ? inputData : 'N/A'
     }
+    loadImage()
 
-    setCountryText(checkData(country))
-    setVolumeText(checkData(volume_usd))
-    setPairsText(checkData(active_pairs))
-    setUrlText(checkData(url))
-  }, [name_id, country, volume_usd, active_pairs, url])
+    // Оптимизированная проверка данных
+
+    setTrueData(() => ({
+      name: name || NOT_AVAILABLE,
+      nameId: name_id || NOT_AVAILABLE,
+      volumeUsd: volume_usd || NOT_AVAILABLE,
+      activePairs: active_pairs || NOT_AVAILABLE,
+      url: url || NOT_AVAILABLE,
+      country: country || NOT_AVAILABLE,
+    }))
+  }, [name, name_id, country, volume_usd, active_pairs, url])
 
   return (
     <>
       <div className={style.exchangeContainer}>
         <img className={style.exchangeIcon} src={imageSrc} alt="icon"></img>
-        <p className={style.exchangeTableText}>{name}</p>
+        <p className={style.exchangeTableText}>{trueData.name}</p>
         <p className={style.exchangeTableText}>
-          {volumeText === 'N/A' ? volumeText : `$${volumeText}`}
+          {trueData.volumeUsd === NOT_AVAILABLE
+            ? trueData.volumeUsd
+            : `$${trueData.volumeUsd}`}
         </p>
-        <p className={style.exchangeTableText}>{pairsText}</p>
-        <a href={urlText} className={style.exchangeTableUrl}>
-          {urlText}
+        <p className={style.exchangeTableText}>{trueData.activePairs}</p>
+        <a href={trueData.url} className={style.exchangeTableUrl}>
+          {trueData.url}
         </a>
-        <p className={style.exchangeTableText}>{countryText}</p>
+        <p className={style.exchangeTableText}>{trueData.country}</p>
       </div>
     </>
   )

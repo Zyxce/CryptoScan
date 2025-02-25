@@ -25,18 +25,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
-.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters {
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters, .exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters .exchangesTableParametersText {
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters .exchangesTableParametersText, .exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort .exchangesTableParametersText {
   color: #808A9A;
 }
-.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters .exchangesTableParametersImg {
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters .exchangesTableParametersImg, .exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort .exchangesTableParametersImg {
   height: 10px;
   width: 10px;
   margin-left: 5px;
+}
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort:hover {
+  cursor: pointer;
 }
 .exchangesContainer .exchangeTableContainer {
   background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);

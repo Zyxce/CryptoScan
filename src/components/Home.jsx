@@ -21,7 +21,7 @@ const Home = () => {
       setCoins(data.data)
     } catch (error) {
       setError(error.message)
-    }
+    } //finally
     setIsLoading(false)
   }
 
@@ -44,38 +44,36 @@ const Home = () => {
       {isLoading ? (
         <Loading type={'Home'} />
       ) : (
-        <div className={style.homeContainer}>
-          <div className={style.heroSection}>
-            <div className={style.heroTopContent}>
-              <div className={style.heroTextContainer}>
-                <p className={style.appVersion}> — Crypto Scan V 0.3.0</p>
-                <h1 className={style.mainHeading}>
-                  Buy & Sell Crypto Easy <br />
-                  With CryptoScan
-                </h1>
-                <div className={style.heroDottedLine}></div>
-                <p className={style.heroDescription}>
-                  It is a long established fact that a reader will be distracted
-                  by the readable content <br /> of a page when looking at its
-                  layout.
-                </p>
-                <Button
-                  className={style.heroButton}
-                  onClick={() => navigate('/CryptoScan/coins')}
-                >
-                  Start now
-                  <img src={btnArrow} alt="Arrow" />
-                </Button>
-              </div>
-              <div className={style.heroImageContainer}>
-                <img src={heroImage} alt="Hero illustration" />
-              </div>
+        <div className={style.heroSection}>
+          <div className={style.heroTopContent}>
+            <div className={style.heroTextContainer}>
+              <p className={style.appVersion}> — Crypto Scan V 0.3.0</p>
+              <h1 className={style.mainHeading}>
+                Buy & Sell Crypto Easy <br />
+                With CryptoScan
+              </h1>
+              <div className={style.heroDottedLine}></div>
+              <p className={style.heroDescription}>
+                It is a long established fact that a reader will be distracted
+                by the readable content <br /> of a page when looking at its
+                layout.
+              </p>
+              <Button
+                className={style.heroButton}
+                onClick={() => navigate('/CryptoScan/coins')}
+              >
+                Start now
+                <img src={btnArrow} alt="Arrow" />
+              </Button>
             </div>
-            <div className={style.heroBottomContent}>
-              {coins.slice(0, 6).map((coin) => {
-                return <HomeCoin key={coin.id} {...coin}></HomeCoin>
-              })}
+            <div className={style.heroImageContainer}>
+              <img src={heroImage} alt="Hero illustration" />
             </div>
+          </div>
+          <div className={style.heroBottomContent}>
+            {coins.slice(0, 6).map((coin) => {
+              return <HomeCoin key={coin.id} {...coin}></HomeCoin>
+            })}
           </div>
         </div>
       )}

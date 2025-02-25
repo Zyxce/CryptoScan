@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import style from './Coin.module.css'
 import Button from '../Reusable/Button'
 import { useNavigate } from 'react-router-dom'
+import upGraph from '../../Images/upGraph.png'
+import downGraph from '../../Images/downGraph.png'
+import notFoundIcon from '../../Images/notFoundIcon.png'
+import style from './Coin.module.css'
 
 const Coin = (props) => {
-  const navigate = useNavigate()
-  const [imageSrc, setImageSrc] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
   const {
     id,
     symbol,
@@ -27,71 +27,100 @@ const Coin = (props) => {
     toggleSelectedCoinId,
   } = props
 
+  const navigate = useNavigate()
+
+  const [imageSrc, setImageSrc] = useState('')
+
+  const NOT_AVAILABLE = 'N/A'
+  const [trueData, setTrueData] = useState({
+    symbol: symbol || NOT_AVAILABLE,
+    name: name || NOT_AVAILABLE,
+    price: price_usd || NOT_AVAILABLE,
+    volume: volume24 || NOT_AVAILABLE,
+    csupply: csupply || NOT_AVAILABLE,
+    percentChange24h: percent_change_24h || NOT_AVAILABLE,
+    marketCap: market_cap_usd || NOT_AVAILABLE,
+  })
+
   useEffect(() => {
-    const firstImageUrl = `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/128/color/${symbol.toLowerCase()}.png`
-    const secondImageUrl = `https://www.coinlore.com/img/${nameid.toLowerCase()}.webp`
+    //Загрузка картинки с запасным вариантом и дефолтным в случае ошибки
+    const loadImage = async () => {
+      try {
+        const firstImageUrl = `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/128/color/${symbol.toLowerCase()}.png`
+        const secondImageUrl = `https://www.coinlore.com/img/${nameid.toLowerCase()}.webp`
 
-    const checkImage = (url) => {
-      return new Promise((resolve) => {
         const img = new Image()
-        img.src = url
-        img.onload = () => resolve(true) // если картинка загрузилась заебись
-        img.onerror = () => resolve(false) // не круто
-      })
-    }
+        img.src = firstImageUrl
 
-    checkImage(firstImageUrl).then((exists) => {
-      if (exists) {
-        setImageSrc(firstImageUrl)
-      } else {
-        setImageSrc(secondImageUrl)
+        img.onload = () => setImageSrc(firstImageUrl) // если картинка загрузилась заебись
+        img.onerror = () => {
+          const backupImg = new Image()
+          backupImg.src = secondImageUrl
+
+          backupImg.onload = () => setImageSrc(secondImageUrl) // если первая нет то вторая
+          backupImg.onerror = () => setImageSrc(notFoundIcon) // дефолтная картинка
+        }
+      } catch (error) {
+        console.error('Error loading images:', error) // не круто
       }
-    })
-  }, [nameid, symbol])
+    }
+    loadImage()
 
-  //переходит в маркет с нужным айди
-  function handleNewId() {
-    toggleSelectedCoinId(id)
-  }
+    // Оптимизированная проверка данных
 
+    setTrueData(() => ({
+      symbol: symbol || NOT_AVAILABLE,
+      name: name || NOT_AVAILABLE,
+      price: price_usd || NOT_AVAILABLE,
+      volume: volume24 || NOT_AVAILABLE,
+      csupply: csupply || NOT_AVAILABLE,
+      percentChange24h: percent_change_24h || NOT_AVAILABLE,
+      marketCap: market_cap_usd || NOT_AVAILABLE,
+    }))
+  }, [
+    nameid,
+    symbol,
+    name,
+    price_usd,
+    percent_change_24h,
+    market_cap_usd,
+    volume24,
+    csupply,
+  ])
+
+  //настройка цвета для текста процента и его графа
   const getPercentChangeColor = (percent_change) => {
     return percent_change >= 0 ? '#06B470' : '#EA3B5A'
   }
-  const getGraphColor = (percent_change) => {
-    return percent_change >= 0 ? 'upGraph' : 'downGraph'
-  }
-
   const percentColor = getPercentChangeColor(percent_change_24h)
-  const selectedGraph = getGraphColor(percent_change_24h)
-
-  const graph = require(`../../Images/${selectedGraph}.png`)
+  const graph = percent_change_24h >= 0 ? upGraph : downGraph
 
   return (
     <>
-      <div className={style.coinContainer} onClick={() => setIsOpen(!isOpen)}>
-        <img className={style.coinIcon} src={imageSrc} alt="icon"></img>
+      <div className={style.coinContainer}>
+        <img className={style.coinIcon} src={imageSrc} alt="icon" />
         <div className={style.coinNameContainer}>
-          <p className={style.coinSymbol}>{symbol}</p>
-          <p className={style.coinTableText}>{name}</p>
+          <p className={style.coinSymbol}>{trueData.symbol}</p>
+          <p className={style.coinTableText}>{trueData.name}</p>
         </div>
-        <p className={style.coinTableText}>{price_usd}$</p>
+        <p className={style.coinTableText}>${trueData.price}</p>
         <div className={style.coinPercentContainer}>
-          <img className={style.coinPercentImg} src={graph} alt="graph"></img>
+          <img className={style.coinPercentImg} src={graph} alt="graph" />
           <p style={{ color: percentColor }} className={style.coinTableText}>
-            {percent_change_24h}%
+            {trueData.percentChange24h}%
           </p>
         </div>
-        <p className={style.coinTableText}>{volume24}$</p>
-        <p className={style.coinTableText}>{csupply}$</p>
-        <p className={style.coinTableText}>{market_cap_usd}$</p>
+        <p className={style.coinTableText}>${trueData.volume}</p>
+        <p className={style.coinTableText}>${trueData.csupply}</p>
+        <p className={style.coinTableText}>${trueData.marketCap}</p>
         <Button
           className={style.coinTableBtn}
           onClick={() => {
-            handleNewId()
+            toggleSelectedCoinId(id, name)
             navigate('/CryptoScan/markets')
           }}
         >
-          <span>{symbol}</span> Market statistics
+          <span>{trueData.symbol}</span> Market statistics
         </Button>
       </div>
     </>

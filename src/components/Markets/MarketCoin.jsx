@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import style from './MarketCoin.module.css'
+import notFoundIcon from '../../Images/notFoundIcon.png'
+import upGraph from '../../Images/upGraph.png'
+import downGraph from '../../Images/downGraph.png'
 
 const MarketCoin = (props) => {
   const {
-    id,
     symbol,
     name,
     nameid,
@@ -21,37 +23,105 @@ const MarketCoin = (props) => {
     msupply,
   } = props
 
-  const [imageSrc, setImageSrc] = useState('')
+  const [imageSrc, setImageSrc] = useState(notFoundIcon)
+
+  const NOT_AVAILABLE = 'N/A'
+  const [trueData, setTrueData] = useState({
+    symbol: symbol || NOT_AVAILABLE,
+    name: name || NOT_AVAILABLE,
+    nameid: nameid || NOT_AVAILABLE,
+    price: price_usd || NOT_AVAILABLE,
+    priceBtc: price_btc || NOT_AVAILABLE,
+    rank: rank || NOT_AVAILABLE,
+    volume: volume24 || NOT_AVAILABLE,
+    volumeAlt: volume24a || NOT_AVAILABLE,
+    csupply: csupply || NOT_AVAILABLE,
+    tsupply: tsupply || NOT_AVAILABLE,
+    msupply: msupply || NOT_AVAILABLE,
+    percentChange1h: percent_change_1h || NOT_AVAILABLE,
+    percentChange24h: percent_change_24h || NOT_AVAILABLE,
+    percentChange7d: percent_change_7d || NOT_AVAILABLE,
+    marketCap: market_cap_usd || NOT_AVAILABLE,
+  })
 
   useEffect(() => {
-    const firstImageUrl = `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/128/color/${symbol.toLowerCase()}.png`
-    const secondImageUrl = `https://www.coinlore.com/img/${nameid.toLowerCase()}.webp`
+    //Загрузка картинки с запасным вариантом и дефолтным в случае ошибки
+    const loadImage = async () => {
+      try {
+        const firstImageUrl = `https://raw.githubusercontent.com/spothq/cryptocurrency-icons/refs/heads/master/128/color/${symbol.toLowerCase()}.png`
+        const secondImageUrl = `https://www.coinlore.com/img/${nameid.toLowerCase()}.webp`
 
-    const checkImage = (url) => {
-      return new Promise((resolve) => {
         const img = new Image()
-        img.src = url
-        img.onload = () => resolve(true) // если картинка загрузилась заебись
-        img.onerror = () => resolve(false) // не круто
-      })
-    }
+        img.src = firstImageUrl
 
-    checkImage(firstImageUrl).then((exists) => {
-      if (exists) {
-        setImageSrc(firstImageUrl)
-      } else {
-        setImageSrc(secondImageUrl)
+        img.onload = () => setImageSrc(firstImageUrl) // если картинка загрузилась заебись
+        img.onerror = () => {
+          const backupImg = new Image()
+          backupImg.src = secondImageUrl
+
+          backupImg.onload = () => setImageSrc(secondImageUrl) // если первая нет то вторая
+          backupImg.onerror = () => setImageSrc(notFoundIcon) // дефолтная картинка
+        }
+      } catch (error) {
+        console.error('Error loading images:', error) // не круто
       }
-    })
-  }, [nameid, symbol])
+    }
+    loadImage()
+
+    // Оптимизированная проверка данных
+
+    setTrueData(() => ({
+      symbol: symbol || NOT_AVAILABLE,
+      name: name || NOT_AVAILABLE,
+      nameid: nameid || NOT_AVAILABLE,
+      price: price_usd || NOT_AVAILABLE,
+      priceBtc: price_btc || NOT_AVAILABLE,
+      rank: rank || NOT_AVAILABLE,
+      volume: volume24 || NOT_AVAILABLE,
+      volumeAlt: volume24a || NOT_AVAILABLE,
+      csupply: csupply || NOT_AVAILABLE,
+      tsupply: tsupply || NOT_AVAILABLE,
+      msupply: msupply || NOT_AVAILABLE,
+      percentChange1h: percent_change_1h || NOT_AVAILABLE,
+      percentChange24h: percent_change_24h || NOT_AVAILABLE,
+      percentChange7d: percent_change_7d || NOT_AVAILABLE,
+      marketCap: market_cap_usd || NOT_AVAILABLE,
+    }))
+  }, [
+    symbol,
+    name,
+    nameid,
+    price_usd,
+    percent_change_1h,
+    percent_change_24h,
+    percent_change_7d,
+    rank,
+    price_btc,
+    market_cap_usd,
+    volume24,
+    volume24a,
+    csupply,
+    tsupply,
+    msupply,
+  ])
 
   //функция получения правильного цвета графы и текста процентов
   const getPercentChangeColor = (percent_change) => {
     return percent_change >= 0 ? '#06B470' : '#EA3B5A'
   }
   const getGraphColor = (percent_change) => {
-    return percent_change >= 0 ? 'upGraph' : 'downGraph'
+    return percent_change >= 0 ? upGraph : downGraph
   }
+
+  const percentColor1h = getPercentChangeColor(percent_change_1h)
+  const percentColor24h = getPercentChangeColor(percent_change_24h)
+  const percentColor7d = getPercentChangeColor(percent_change_7d)
+
+  const graph1h = getGraphColor(percent_change_1h)
+  const graph24h = getGraphColor(percent_change_24h)
+  const graph7d = getGraphColor(percent_change_7d)
+
+  //цвет ранга
   const getRankColor = (rankNumber) => {
     if (rankNumber === 1) {
       return '#FFD700'
@@ -63,59 +133,20 @@ const MarketCoin = (props) => {
       return '#1B70F1'
     }
   }
-  //проверка даты на правильность
-  const getData = (newData) => {
-    if (!newData) {
-      return <span style={{ color: 'red' }}>NotFound</span>
-    } else {
-      return newData
-    }
-  }
-
-  // для получения цвета текста процентов
-  const percentColor1h = getPercentChangeColor(percent_change_1h)
-  const percentColor24h = getPercentChangeColor(percent_change_24h)
-  const percentColor7d = getPercentChangeColor(percent_change_7d)
-  // для получения типа графы процентов
-  const selectedGraph1h = getGraphColor(percent_change_1h)
-  const selectedGraph24h = getGraphColor(percent_change_24h)
-  const selectedGraph7d = getGraphColor(percent_change_7d)
-  //запрос правильного типа графы процентов
-  const graph1h = require(`../../Images/${selectedGraph1h}.png`)
-  const graph24h = require(`../../Images/${selectedGraph24h}.png`)
-  const graph7d = require(`../../Images/${selectedGraph7d}.png`)
-  //цвет ранга
   const rankColor = getRankColor(rank)
-  //обьект с проверенной датой что она существует
-  const coinData = {
-    symbol: getData(symbol),
-    name: getData(name),
-    price_usd: getData(price_usd),
-    percent_change_1h: getData(percent_change_1h),
-    percent_change_24h: getData(percent_change_24h),
-    percent_change_7d: getData(percent_change_7d),
-    rank: getData(rank),
-    price_btc: getData(price_btc),
-    market_cap_usd: getData(market_cap_usd),
-    volume24: getData(volume24),
-    volume24a: getData(volume24a),
-    csupply: getData(csupply),
-    tsupply: getData(tsupply),
-    msupply: getData(msupply),
-  }
 
   return (
     <div className={style.coinContainer}>
       <div className={style.coinTopContainer}>
         <p className={style.coinHeroRank} style={{ color: rankColor }}>
-          #{coinData.rank}
+          #{trueData.rank}
         </p>
         <p className={style.coinHeroSymbol} style={{ color: rankColor }}>
-          {coinData.symbol}
+          {trueData.symbol}
         </p>
         <p className={style.coinHeroName}>{name}</p>
         <p className={style.coinHeroCap}>
-          Market Capitalization (USD): ${coinData.market_cap_usd}
+          Market Capitalization (USD): ${trueData.marketCap}
         </p>
       </div>
 
@@ -127,22 +158,22 @@ const MarketCoin = (props) => {
           <div className={style.coinMetricsContainer}>
             <h3 className={style.coinMetricsHeader}>Market metrics:</h3>
             <p className={style.coinMetricsText}>
-              Market Rank: {coinData.rank}
+              Market Rank: {trueData.rank}
             </p>
             <p className={style.coinMetricsText}>
-              Price (in USD): ${coinData.price_usd}
+              Price (in USD): ${trueData.price}
             </p>
             <p className={style.coinMetricsText}>
-              Price (in BTC): {coinData.price_btc} btc
+              Price (in BTC): {trueData.priceBtc} btc
             </p>
           </div>
           <div className={style.coinMetricsContainer}>
             <h3 className={style.coinMetricsHeader}>Supply metrics:</h3>
             <p className={style.coinMetricsText}>
-              Circulating: {coinData.csupply}
+              Circulating: {trueData.csupply}
             </p>
-            <p className={style.coinMetricsText}>Total: {coinData.tsupply}</p>
-            <p className={style.coinMetricsText}>Max: {coinData.msupply}</p>
+            <p className={style.coinMetricsText}>Total: {trueData.tsupply}</p>
+            <p className={style.coinMetricsText}>Max: {trueData.msupply}</p>
           </div>
         </div>
         <div className={style.coinMetricsRightContainer}>
@@ -151,29 +182,27 @@ const MarketCoin = (props) => {
             <p className={style.coinMetricsText}>
               Last 1h: <img src={graph1h} alt="graph"></img>
               <span style={{ color: percentColor1h }}>
-                {coinData.percent_change_1h}%
+                {trueData.percentChange1h}%
               </span>
             </p>
             <p className={style.coinMetricsText}>
               Last 24h: <img src={graph24h} alt="graph"></img>
               <span style={{ color: percentColor24h }}>
-                {coinData.percent_change_24h}%
+                {trueData.percentChange24h}%
               </span>
             </p>
             <p className={style.coinMetricsText}>
               Last 7d: <img src={graph7d} alt="graph"></img>
               <span style={{ color: percentColor7d }}>
-                {coinData.percent_change_7d}%
+                {trueData.percentChange7d}%
               </span>
             </p>
           </div>
           <div className={style.coinMetricsContainer}>
             <h3 className={style.coinMetricsHeader}>Trading Volume:</h3>
+            <p className={style.coinMetricsText}>Last 24h: {trueData.volume}</p>
             <p className={style.coinMetricsText}>
-              Last 24h: {coinData.volume24}
-            </p>
-            <p className={style.coinMetricsText}>
-              Previous: {coinData.volume24a}
+              Previous: {trueData.volumeAlt}
             </p>
           </div>
         </div>

@@ -55,6 +55,9 @@
   width: 10px;
   margin-left: 5px;
 }
+.marketsContainer .otherMarkets .otherMarketsTable .otherMarketsTableHeader .otherMarketsTableParameters:hover {
+  cursor: pointer;
+}
 
 .marketsMidLine {
   position: relative;
