@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/CryptoScan/static/css/main.a12cf245.css",
-    "main.js": "/CryptoScan/static/js/main.3e16d9eb.js",
+    "main.css": "/CryptoScan/static/css/main.0cc1abab.css",
+    "main.js": "/CryptoScan/static/js/main.55a045da.js",
     "static/media/BackGroundHero.png": "/CryptoScan/static/media/BackGroundHero.38cda1b6dcd7a5dbf0b4.png",
     "static/media/languageEnglish.jpg": "/CryptoScan/static/media/languageEnglish.caac25ac583c588a6cce.jpg",
     "static/media/HeroImage.png": "/CryptoScan/static/media/HeroImage.a55be090c11c35ecfacb.png",
     "static/media/cryingPepe.png": "/CryptoScan/static/media/cryingPepe.142e373f9d80b3c56310.png",
     "static/media/angryPepe.png": "/CryptoScan/static/media/angryPepe.4908b340a6d0cbfa1ef5.png",
     "static/media/happyPepe.png": "/CryptoScan/static/media/happyPepe.c8c1cc4fa315e1fcfac3.png",
-    "static/media/sadnessPepe.png": "/CryptoScan/static/media/sadnessPepe.ab8abdb3dd7a7ed1fe5c.png",
     "static/media/LogoMenu.png": "/CryptoScan/static/media/LogoMenu.e0c2b699455c09cc5d10.png",
+    "static/media/notFoundIcon.png": "/CryptoScan/static/media/notFoundIcon.d94fe800c07b05a7d61e.png",
     "index.html": "/CryptoScan/index.html",
-    "main.a12cf245.css.map": "/CryptoScan/static/css/main.a12cf245.css.map",
-    "main.3e16d9eb.js.map": "/CryptoScan/static/js/main.3e16d9eb.js.map"
+    "main.0cc1abab.css.map": "/CryptoScan/static/css/main.0cc1abab.css.map",
+    "main.55a045da.js.map": "/CryptoScan/static/js/main.55a045da.js.map"
   },
   "entrypoints": [
-    "static/css/main.a12cf245.css",
-    "static/js/main.3e16d9eb.js"
+    "static/css/main.0cc1abab.css",
+    "static/js/main.55a045da.js"
   ]
 }

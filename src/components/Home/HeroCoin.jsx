@@ -1,7 +1,7 @@
 import React from 'react'
-import style from './HomeCoin.module.css'
-import downGraph from '../Images/downGraph.png'
-import upGraph from '../Images/upGraph.png'
+import style from './HeroCoin.module.css'
+import downGraph from '../../Images/downGraph.png'
+import upGraph from '../../Images/upGraph.png'
 
 const HomeCoin = (props) => {
   const { symbol, percent_change_24h, price_usd, rank } = props

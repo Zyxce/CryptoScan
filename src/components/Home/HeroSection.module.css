@@ -1,0 +1,97 @@
+.heroSection {
+  background-color: #131517;
+  padding: 0 200px;
+  position: relative;
+  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+.heroSection::before {
+  content: "";
+  background-image: url("../../Images/BackGroundHero.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.08;
+  z-index: 1;
+}
+
+.heroTopContent {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  height: 100%;
+}
+.heroTopContent .heroTextContainer {
+  margin: 0;
+  z-index: 2;
+  text-align: start;
+  margin-top: 180px;
+}
+.heroTopContent .appVersion {
+  color: #1B70F1;
+  font-size: 1.5rem;
+  line-height: 2.25rem;
+  font-weight: 600;
+}
+.heroTopContent .mainHeading {
+  color: #F7FAFF;
+  font-size: 4rem;
+  line-height: 5rem;
+  margin: 0;
+}
+.heroTopContent .heroDottedLine {
+  position: relative;
+  padding: 15px 0px;
+}
+.heroTopContent .heroDottedLine::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(154, 195, 33, 0.8), transparent);
+}
+.heroTopContent .heroDescription {
+  font-size: 1.2rem;
+  color: #ADB3BF;
+  line-height: 2rem;
+}
+.heroTopContent .heroButton {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 50px;
+  border: none;
+  background-color: #1B70F1;
+  color: white;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.heroTopContent .heroButton:hover {
+  background-color: #024185;
+}
+.heroTopContent .heroButton img {
+  margin-left: 5px;
+  padding-top: 1px;
+}
+
+.heroImageContainer {
+  margin-left: 20px;
+  background: radial-gradient(rgba(85, 113, 254, 0.178), rgba(85, 113, 254, 0.11), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);
+}
+.heroImageContainer img {
+  width: 650px;
+}
+
+.heroBottomContent {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}/*# sourceMappingURL=HeroSection.module.css.map */

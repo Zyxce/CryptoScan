@@ -6,7 +6,7 @@ import './App.css'
 import Coins from './components/Сoins/Coins'
 import Markets from './components/Markets/Markets'
 import MainLayout from './Layouts/MainLayout'
-import Home from './components/Home'
+import Home from './components/Home/Home'
 import Exchanges from './components/Exchanges/Exchanges'
 
 import NotFound from './components//Events/NotFound'

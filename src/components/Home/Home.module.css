@@ -7,7 +7,7 @@
 }
 .heroSection::before {
   content: "";
-  background-image: url("../Images/BackGroundHero.png");
+  background-image: url("../../Images/BackGroundHero.png");
   background-size: cover;
   background-position: center;
   position: absolute;

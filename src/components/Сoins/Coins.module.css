@@ -1,5 +1,7 @@
 .coinsContainer {
   padding: 0 200px;
+  display: flex;
+  flex-direction: column;
 }
 .coinsContainer .coinsFeaturedContainer {
   margin-top: 120px;
@@ -31,7 +33,7 @@
 }
 .coinsContainer .coinsTable .coinsTableHeader {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(8, 1fr);
 }
 .coinsContainer .coinsTable .coinsTableHeader .coinsTableParameters, .coinsContainer .coinsTable .coinsTableHeader .coinsTableParametersSort {
   display: flex;
@@ -48,6 +50,46 @@
 }
 .coinsContainer .coinsTable .coinsTableHeader .coinsTableParametersSort:hover {
   cursor: pointer;
+}
+.coinsContainer .coinSelectorContainer {
+  display: flex;
+  margin: 0 auto;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorPrevious, .coinsContainer .coinSelectorContainer .coinsSelectorNext {
+  display: flex;
+  align-items: center;
+  padding: 7px 15px;
+  border: none;
+  background-color: #1B70F1;
+  color: white;
+  font-size: 1rem;
+  line-height: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorPrevious:hover, .coinsContainer .coinSelectorContainer .coinsSelectorNext:hover {
+  background-color: #024185;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorPrevious {
+  margin-right: 10px;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorPrevious img {
+  transform: rotate(-90deg);
+  margin-right: 5px;
+  padding-top: 1px;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorNext {
+  margin-left: 10px;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorNext img {
+  margin-left: 5px;
+  padding-top: 1px;
+}
+.coinsContainer .coinSelectorContainer .coinsSelectorInfo {
+  margin: auto 0;
+  color: white;
+  font-size: 1.3rem;
+  line-height: 1rem;
 }
 .coinsContainer .coinTableContainer {
   background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);

@@ -121,6 +121,7 @@ const Markets = ({ selectedCoinMarkets }) => {
   if (error) {
     return <Error error={error} />
   }
+
   return (
     <>
       {isLoading ? (
@@ -170,7 +171,7 @@ const Markets = ({ selectedCoinMarkets }) => {
               <div className={style.otherMarketsTableHeader}>
                 {[
                   { label: 'Exchange Name', field: 'name' },
-                  { label: 'Base Currency', field: 'base_currency' },
+                  { label: 'Base Currency', field: 'quote' },
                   { label: 'Price (USD)', field: 'price_usd' },
                   { label: 'Price (Base/Quote)', field: 'price' },
                   { label: 'Volume (USD)', field: 'volume_usd' },

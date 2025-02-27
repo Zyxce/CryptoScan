@@ -16,7 +16,7 @@ const Coin = (props) => {
     // percent_change_1h,
     percent_change_24h,
     // percent_change_7d,
-    // rank,
+    rank,
     // price_btc,
     market_cap_usd,
     volume24,

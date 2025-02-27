@@ -1,0 +1,103 @@
+
+.whyContainer
+    padding: 100px 200px
+    background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 58%)
+    position: relative
+    &::before
+        content: ""
+        background-image: url("../../Images/BackGroundHero.png")
+        background-size: cover
+        background-position: center
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        opacity: 0.08
+        z-index: -1
+    .whyContainerTop
+        .whyContainerTopHeader
+            color: #F7FAFF
+            font-size: 3rem
+            line-height: 4rem
+            margin: 0
+        span
+            color: #1B70F1
+        .whyContainerTopDescription
+            margin-top: 30px
+            font-size: 1.2rem
+            color: #ADB3BF
+            line-height: 2rem
+    .whyMidLine
+        position: relative
+        padding: 60px 0px
+    .whyMidLine::before
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        height: 3px
+        background: linear-gradient(to right, transparent, #1E1F25, transparent)
+    .whyContainerBottom
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        .whyContainerLeft
+            .whyContainerLeftList
+                width: 700px
+                .whyContainerLeftItem
+                    display: flex
+                    flex-direction: row
+                    align-items: center
+                    justify-content: space-between
+                    .whyContainerLeftLeft
+                        display: flex
+                        flex-direction: row
+                        align-items: center
+                        .whyContainerLeftNumber
+                            color: #272A34
+                            font-size: 3.4rem
+                            line-height: 3.5rem
+                            margin: 0
+                            font-family: "Source Sans Pro"
+                        .whyContainerLeftMid
+                            text-align: left
+                            margin-left: 20px
+                            .whyContainerLeftMidHeader
+                                color: #ADB3BF
+                                font-size: 1.6rem
+                                line-height: 2.2rem
+                                margin: 0
+                            .whyContainerLeftMidDescription
+                                margin-top: 12px
+                                color: #808A9A
+                                font-size: 1.2rem
+                                line-height: 1.8rem
+                                white-space: pre-line
+                    .whyContainerLeftRightDescription
+                        color: #FFFFFF
+                        font-size: 1.4rem
+                        line-height: 1.8rem
+                        transition: 0.3s
+                        padding: 5px 10px
+                        .whyContainerLeftRightImage
+                            margin-left: 5px
+                    .whyContainerLeftRightDescription:hover
+                        cursor: pointer
+                .whyContainerLeftLine
+                    padding: 20px 0px
+                    position: relative
+                .whyContainerLeftLine::before
+                    content: ''
+                    position: absolute
+                    left: 0
+                    right: 0
+                    height: 3px
+                    background: linear-gradient(to right, #1E1F25, transparent)
+
+        .whyContainerRight
+            display: flex
+            align-items: center
+            justify-content: center
+            .whyContainerRightImage
+                width: 560px
