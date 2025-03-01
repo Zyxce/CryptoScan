@@ -2,6 +2,7 @@ import React from 'react'
 import style from './CoinsSelector.module.css'
 import Button from '../Reusable/Button'
 import btnArrow from '../../Images/btnArrow.png'
+import { useTranslation } from 'react-i18next'
 
 const CoinsSelector = (props) => {
   const {
@@ -12,6 +13,7 @@ const CoinsSelector = (props) => {
     currentStart,
     prevStart,
   } = props
+  const { t } = useTranslation()
   return (
     <div className={style.coinSelectorContainer}>
       <div className={style.coinSelectorCenter}>
@@ -24,16 +26,19 @@ const CoinsSelector = (props) => {
             }}
           >
             <img src={btnArrow} alt="Arrow" />
-            Previous 100
+            {t('coinsSelector.btnPrevious')}
           </Button>
         ) : (
           <Button className={style.coinsSelectorPreviousOff}>
             <img src={btnArrow} alt="Arrow" />
-            Previous 100
+            {t('coinsSelector.btnPrevious')}
           </Button>
         )}
         <p className={style.coinsSelectorInfo}>
-          Top {prevStart + 1} - {currentStart} coins by Market Rank
+          {t('coinsSelector.info', {
+            prevStart: prevStart + 1,
+            currentStart: currentStart,
+          })}
         </p>
         {currentStart <= 999 ? (
           <Button
@@ -43,12 +48,12 @@ const CoinsSelector = (props) => {
               toggleStartNext()
             }}
           >
-            Next 100
+            {t('coinsSelector.btnNext')}
             <img src={btnArrow} alt="Arrow" />
           </Button>
         ) : (
           <Button className={style.coinsSelectorNextOff}>
-            Next 100
+            {t('coinsSelector.btnNext')}
             <img src={btnArrow} alt="Arrow" />
           </Button>
         )}

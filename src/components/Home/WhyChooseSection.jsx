@@ -3,18 +3,20 @@ import style from './WhyChooseSection.module.css'
 import whyImage from '../../Images/whyImage.png'
 import btnArrow from '../../Images/btnArrow.png'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 const WhyChooseSection = () => {
+  const { t } = useTranslation() // Подключаем перевод
   const navigate = useNavigate()
+
   return (
     <div className={style.whyContainer}>
       <div className={style.whyContainerTop}>
         <h2 className={style.whyContainerTopHeader}>
-          Why Choose <span>CryptoScan</span>
+          {t('whyChoose.header')} <span>CryptoScan</span>
         </h2>
         <p className={style.whyContainerTopDescription}>
-          When an unknown printer took a galley of type and scrambled it to make
-          a type specimen book.
+          {t('whyChoose.headerDescription')}
         </p>
       </div>
       <div className={style.whyMidLine}></div>
@@ -24,35 +26,31 @@ const WhyChooseSection = () => {
             {[
               {
                 listNumber: '01',
-                midHeader: 'Fast Service',
-                midDescription:
-                  'Lightning-fast transaction processing with no delays, \nkeeping you ahead of the market.',
+                midHeader: t('whyChoose.fastService'),
+                midDescription: t('whyChoose.fastServiceDescription'),
                 leftLine: <div className={style.whyContainerLeftLine}></div>,
               },
               {
                 listNumber: '02',
-                midHeader: 'User-Friendly Interface',
-                midDescription:
-                  'A simple and intuitive design that makes crypto \ntrading accessible to everyone.',
+                midHeader: t('whyChoose.userFriendlyInterface'),
+                midDescription: t('whyChoose.userFriendlyInterfaceDescription'),
                 leftLine: <div className={style.whyContainerLeftLine}></div>,
               },
               {
                 listNumber: '03',
-                midHeader: 'Extensive Database',
-                midDescription:
-                  'A vast database of cryptocurrencies, providing \nreal-time access to the latest market data.',
+                midHeader: t('whyChoose.extensiveDatabase'),
+                midDescription: t('whyChoose.extensiveDatabaseDescription'),
                 leftLine: <div className={style.whyContainerLeftLine}></div>,
               },
               {
                 listNumber: '04',
-                midHeader: 'Cross-Platform Support',
-                midDescription:
-                  'Seamlessly works across all devices—web, mobile apps, \nand tablets for maximum convenience.',
+                midHeader: t('whyChoose.crossPlatformSupport'),
+                midDescription: t('whyChoose.crossPlatformSupportDescription'),
                 leftLine: '',
               },
             ].map(({ listNumber, midHeader, midDescription, leftLine }) => (
-              <>
-                <li className={style.whyContainerLeftItem} key={listNumber}>
+              <React.Fragment key={listNumber}>
+                <li className={style.whyContainerLeftItem}>
                   <div className={style.whyContainerLeftLeft}>
                     <h3 className={style.whyContainerLeftNumber}>
                       {listNumber}
@@ -70,7 +68,7 @@ const WhyChooseSection = () => {
                     className={style.whyContainerLeftRightDescription}
                     onClick={() => navigate('/CryptoScan/coins')}
                   >
-                    Start Now
+                    {t('startNow')}
                     <img
                       className={style.whyContainerLeftRightImage}
                       src={btnArrow}
@@ -79,7 +77,7 @@ const WhyChooseSection = () => {
                   </p>
                 </li>
                 {leftLine}
-              </>
+              </React.Fragment>
             ))}
           </ul>
         </div>

@@ -40,6 +40,9 @@
   flex-direction: row;
   padding-left: 145px;
 }
+.menuContainer .languageContainer:hover {
+  cursor: pointer;
+}
 .menuContainer .languageContainer img {
   padding-top: 3px;
   margin: 0 auto;

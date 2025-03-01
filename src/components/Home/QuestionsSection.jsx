@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import questionsData from '../../Data/questionsData.json'
 import style from './QuestionsSection.module.css'
 import QuestionsAccardion from './QuestionsAccardion'
 
 const QuestionsSection = () => {
+  const { t } = useTranslation()
   const [openId, setOpenId] = useState(false)
 
   function handleAccardionClick(id) {
@@ -18,11 +20,10 @@ const QuestionsSection = () => {
     <div className={style.questionsContainer}>
       <div className={style.questionsContainerTop}>
         <h2 className={style.questionsHeader}>
-          Frequently Asked <span>Questions</span>
+          {t('faq.title')} <span>{t('faq.titleHighlight')}</span>
         </h2>
         <p className={style.questionsHeaderDescription}>
-          When an unknown printer took a galley of type and scrambled it to make
-          a type specimen book.
+          {t('faq.description')}
         </p>
       </div>
       <div className={style.questionsMidLine}></div>

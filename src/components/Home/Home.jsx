@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Loading from '../Events/Loading'
 import Error from '../Events/Error'
 import HeroSection from './HeroSection'
@@ -6,6 +7,7 @@ import WhyChooseSection from './WhyChooseSection'
 import QuestionsSection from './QuestionsSection'
 
 const Home = () => {
+  const { t } = useTranslation()
   const [isLoading, setIsLoading] = useState(true)
   const COINS_API_URL = 'https://api.coinlore.net/api/tickers/'
   const [coins, setCoins] = useState([])
@@ -34,7 +36,7 @@ const Home = () => {
   })
 
   if (isLoading) {
-    return <Loading type="Home" />
+    return <Loading type={t('home.loading')} />
   }
 
   if (error) {

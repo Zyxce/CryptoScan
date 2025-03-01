@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import style from './DifferenceMarket.module.css'
 
 const DifferenceMarket = (props) => {
+  const { t } = useTranslation()
   const {
     name,
     base,
@@ -38,17 +40,23 @@ const DifferenceMarket = (props) => {
       <h2 className={style.marketHeader}>{headerMarket}</h2>
       <div className={style.marketTextContainer}>
         <p className={style.marketText}>
-          Exchange: <span style={{ color: '#1B70F1' }}>{trueData.name}</span>
+          {t('differenceMarket.exchange')}:{' '}
+          <span style={{ color: '#1B70F1' }}>{trueData.name}</span>
         </p>
-        <p className={style.marketText}> Base Currency: {trueData.base}</p>
         <p className={style.marketText}>
-          Current Price (
+          {' '}
+          {t('differenceMarket.base')}: {trueData.base}
+        </p>
+        <p className={style.marketText}>
+          {t('differenceMarket.currentPrice')} (
           <span>
             {trueData.base}/{trueData.quote}
           </span>
           ): {trueData.price}
         </p>
-        <p className={style.marketText}>Price in USD: ${trueData.priceUsd}</p>
+        <p className={style.marketText}>
+          {t('differenceMarket.price')}: ${trueData.priceUsd}
+        </p>
       </div>
     </div>
   )

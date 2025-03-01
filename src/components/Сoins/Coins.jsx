@@ -1,14 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Coin from './Coin'
-import FeaturedCoins from './FeaturedCoins'
 import style from './Coins.module.css'
 import arrowTable from '../../Images/arrowTable.png'
 import Loading from '../Events/Loading'
 import Error from '../Events/Error'
 import CoinsSelector from './CoinsSelector'
+import CoinCard from '../Reusable/CoinCard'
 
 const Coins = (props) => {
   const { toggleSelectedCoinId } = props
+  const { t } = useTranslation()
 
   const [currentStart, setCurrentStart] = useState(100)
   const [prevStart, setPrevStart] = useState(0)
@@ -128,14 +130,14 @@ const Coins = (props) => {
   return (
     <>
       {isLoading ? (
-        <Loading type={'Coins'} />
+        <Loading type={t('coins.loading')} />
       ) : (
         <div className={style.coinsContainer}>
           <div className={style.coinsFeaturedContainer}>
-            <h1 className={style.coinsFeaturedHeader}>Featured Coins</h1>
+            <h1 className={style.coinsFeaturedHeader}>{t('coins.header')}</h1>
             <div className={style.coinsFeaturedBox}>
               {featuredCoins.slice(0, 6).map((featuredCoin) => (
-                <FeaturedCoins
+                <CoinCard
                   key={featuredCoin.id}
                   {...featuredCoin}
                   toggleSelectedCoinId={toggleSelectedCoinId}
@@ -157,15 +159,17 @@ const Coins = (props) => {
           <div className={style.coinsTable}>
             <div className={style.coinsTableHeader}>
               <div className={style.coinsTableParameters}>
-                <p className={style.coinsTableParametersText}>Coin Icon</p>
+                <p className={style.coinsTableParametersText}>
+                  {t('coins.tableIcon')}
+                </p>
               </div>
               {[
-                { label: 'Coin Name', field: 'name' },
-                { label: 'Price', field: 'price_usd' },
-                { label: '24h Change', field: 'percent_change_24h' },
-                { label: '24h Volume', field: 'volume24' },
-                { label: 'Current supply', field: 'csupply' },
-                { label: 'Market Cap', field: 'market_cap_usd' },
+                { label: t('coins.tableName'), field: 'name' },
+                { label: t('coins.tablePrice'), field: 'price_usd' },
+                { label: t('coins.tableChange'), field: 'percent_change_24h' },
+                { label: t('coins.tableVolume'), field: 'volume24' },
+                { label: t('coins.tableSupply'), field: 'csupply' },
+                { label: t('coins.tableCap'), field: 'market_cap_usd' },
               ].map(({ label, field }) => (
                 <div
                   className={style.coinsTableParametersSort}
@@ -195,7 +199,9 @@ const Coins = (props) => {
                 </div>
               ))}
               <div className={style.coinsTableParameters}>
-                <p className={style.coinsTableParametersText}>Action</p>
+                <p className={style.coinsTableParametersText}>
+                  {t('coins.tableAction')}
+                </p>
               </div>
             </div>
           </div>

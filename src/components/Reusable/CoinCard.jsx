@@ -1,31 +1,37 @@
+import React, { useEffect, useState } from 'react'
+import style from './reusableComponents.module.css'
 import { useNavigate } from 'react-router-dom'
-import style from './FeaturedCoins.module.css'
-import { useEffect, useState } from 'react'
 import upGraph from '../../Images/upGraph.png'
 import downGraph from '../../Images/downGraph.png'
 import notFoundIcon from '../../Images/notFoundIcon.png'
 
-const FeaturedCoins = (props) => {
+const CoinCard = (props) => {
   const {
     symbol,
     name,
     nameid,
+    percent_change_1h,
     percent_change_24h,
+    percent_change_7d,
     price_usd,
     toggleSelectedCoinId,
     id,
+    percentTime,
   } = props
 
   const navigate = useNavigate()
 
   const [imageSrc, setImageSrc] = useState(notFoundIcon)
+  const [currentPercent, setCurrentPercent] = useState('')
 
   const NOT_AVAILABLE = 'N/A'
   const [trueData, setTrueData] = useState({
     symbol: symbol || NOT_AVAILABLE,
     name: name || NOT_AVAILABLE,
     price: price_usd || NOT_AVAILABLE,
+    percentChange1h: percent_change_1h || NOT_AVAILABLE,
     percentChange24h: percent_change_24h || NOT_AVAILABLE,
+    percentChange7d: percent_change_7d || NOT_AVAILABLE,
   })
 
   useEffect(() => {
@@ -58,38 +64,61 @@ const FeaturedCoins = (props) => {
       symbol: symbol || NOT_AVAILABLE,
       name: name || NOT_AVAILABLE,
       price: price_usd || NOT_AVAILABLE,
+      percentChange1h: percent_change_1h || NOT_AVAILABLE,
       percentChange24h: percent_change_24h || NOT_AVAILABLE,
+      percentChange7d: percent_change_7d || NOT_AVAILABLE,
     }))
-  }, [nameid, symbol, name, percent_change_24h, price_usd])
 
-  //настройка цвета для текста процента и его графа
+    if (percentTime === 'percent_change_1h') {
+      setCurrentPercent(trueData.percentChange1h)
+    } else if (percentTime === 'percent_change_7d') {
+      setCurrentPercent(trueData.percentChange7d)
+    } else {
+      setCurrentPercent(trueData.percentChange24h)
+    }
+  }, [
+    symbol,
+    name,
+    nameid,
+    percent_change_1h,
+    percent_change_24h,
+    percent_change_7d,
+    price_usd,
+    percentTime,
+    trueData.percentChange1h,
+    trueData.percentChange7d,
+    trueData.percentChange24h,
+  ])
+
+  //настройка цвета для текста процента и его графа, настройка типа процента
   const getPercentChangeColor = (percent_change) => {
     return percent_change >= 0 ? '#06B470' : '#EA3B5A'
   }
-  const percentColor = getPercentChangeColor(percent_change_24h)
-  const graph = percent_change_24h >= 0 ? upGraph : downGraph
+  const percentColor = getPercentChangeColor(currentPercent)
+  const graph = currentPercent >= 0 ? upGraph : downGraph
+
   return (
     <div
-      className={style.featuredContainer}
+      className={style.coinCardContainer}
       onClick={() => {
         toggleSelectedCoinId(id, name)
         navigate('/CryptoScan/markets')
       }}
     >
-      <img className={style.featuredCoinIcon} src={imageSrc} alt="coin"></img>
-      <div className={style.featuredNameContainer}>
-        <p className={style.featuredSymbol}>{trueData.symbol}</p>
-        <p className={style.featuredName}>{trueData.name}</p>
+      <img className={style.coinCardIcon} src={imageSrc} alt="coin"></img>
+      <div className={style.coinCardNameContainer}>
+        <p className={style.coinCardSymbol}>{trueData.symbol}</p>
+        <p className={style.coinCardName}>{trueData.name}</p>
       </div>
-      <div className={style.featuredPercentContainer}>
-        <img className={style.featuredGraph} src={graph} alt="graph"></img>
-        <p className={style.featuredPercent} style={{ color: percentColor }}>
-          {trueData.percentChange24h} %
+      <div className={style.coinCardPercentContainer}>
+        <img className={style.coinCardGraph} src={graph} alt="graph"></img>
+        <p className={style.coinCardPercent} style={{ color: percentColor }}>
+          {currentPercent} %
         </p>
       </div>
-      <p className={style.featuredPrice}>{trueData.price} $</p>
+      <p className={style.coinCardPrice}>{trueData.price} $</p>
     </div>
   )
 }
 
-export default FeaturedCoins
+export default CoinCard

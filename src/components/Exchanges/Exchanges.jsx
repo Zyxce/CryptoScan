@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import style from './Exchanges.module.css'
 import arrowTable from '../../Images/arrowTable.png'
 import Exchange from './Exchange'
@@ -6,6 +7,7 @@ import Loading from '../Events/Loading'
 import Error from '../Events/Error'
 
 const Exchanges = () => {
+  const { t } = useTranslation()
   const EXCHANGES_API_URL = 'https://api.coinlore.net/api/exchanges/'
   const NOT_AVAILABLE = 'N/A'
 
@@ -85,24 +87,24 @@ const Exchanges = () => {
   return (
     <>
       {isLoading ? (
-        <Loading type={'Exchanges'} />
+        <Loading type={t('exchanges.loading')} />
       ) : (
         <div className={style.exchangesContainer}>
           <h1 className={style.exchangesFeaturedHeader}>
-            Top Crypto Exchanges By 24 Hour Volume
+            {t('exchanges.header')}
           </h1>
           <div className={style.exchangesMidLine}></div>
           <div className={style.exchangesTable}>
             <div className={style.exchangesTableHeader}>
               <div className={style.exchangesTableParameters}>
                 <p className={style.exchangesTableParametersText}>
-                  Exchange Icon
+                  {t('exchanges.tableIcon')}
                 </p>
               </div>
               {[
-                { label: 'Exchange Name', field: 'name' },
-                { label: 'Volume', field: 'volume_usd' },
-                { label: 'Markets', field: 'active_pairs' },
+                { label: t('exchanges.tableName'), field: 'name' },
+                { label: t('exchanges.tableVolume'), field: 'volume_usd' },
+                { label: t('exchanges.tableMarkets'), field: 'active_pairs' },
               ].map(({ label, field }) => (
                 <div
                   className={style.exchangesTableParametersSort}
@@ -132,10 +134,14 @@ const Exchanges = () => {
                 </div>
               ))}
               <div className={style.exchangesTableParameters}>
-                <p className={style.exchangesTableParametersText}>Url</p>
+                <p className={style.exchangesTableParametersText}>
+                  {t('exchanges.tableUrl')}
+                </p>
               </div>
               <div className={style.exchangesTableParameters}>
-                <p className={style.exchangesTableParametersText}>Country</p>
+                <p className={style.exchangesTableParametersText}>
+                  {t('exchanges.tableCountry')}
+                </p>
               </div>
             </div>
           </div>

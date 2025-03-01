@@ -22,3 +22,45 @@
 
     &:hover
         background-color: #0056b3
+
+.coinCardContainer
+    border: 2px solid #1E1F25
+    border-radius: 12px
+    padding: 30px
+    width: 150px
+    background-color: #131517
+
+    box-shadow: 7px 5px 5px #101013
+    &:hover
+        transition: 0.3s
+        cursor: pointer
+        background-color: #1E1F25
+    .coinCardIcon
+        height: 48px
+        width: 48px
+    .coinCardNameContainer
+        display: flex
+        justify-content: center
+        margin-top: 20px
+        .coinCardSymbol, .coinCardName
+            color: white
+            line-height: 1.2rem
+        .coinCardSymbol
+            font-size: 1.2rem
+            margin: auto 0
+        .coinCardName
+            margin-left: 10px
+            font-size: 1rem
+            border-left: 2px solid #fff
+            padding-left: 10px
+    .coinCardPercentContainer
+        display: flex
+        justify-content: center
+        margin-top: 10px
+        .coinCardPercent
+            margin-left: 5px
+    .coinCardPrice
+        margin-top: 10px
+        color: #fff
+        font-weight: bold
+        font-size: 1.5rem

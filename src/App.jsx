@@ -8,6 +8,7 @@ import Markets from './components/Markets/Markets'
 import MainLayout from './Layouts/MainLayout'
 import Home from './components/Home/Home'
 import Exchanges from './components/Exchanges/Exchanges'
+import TopMovers from './components/TopMovers/TopMovers'
 
 import NotFound from './components//Events/NotFound'
 import Loading from './components/Events/Loading'
@@ -37,6 +38,12 @@ function App() {
             <Route
               path="/CryptoScan/markets"
               element={<Markets selectedCoinMarkets={selectedCoinMarkets} />}
+            />
+            <Route
+              path="/CryptoScan/topmovers"
+              element={
+                <TopMovers toggleSelectedCoinId={handleSelectedCoindId} />
+              }
             />
             {/* test events */}
             <Route

@@ -1,0 +1,82 @@
+.topMoversSection {
+  padding: 100px 200px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+.topMoversSection::before {
+  content: "";
+  background-image: url("../../Images/BackGroundHero.png");
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -5;
+}
+.topMoversSection .topMidLine {
+  position: relative;
+  padding: 30px 0px;
+  height: 3px;
+  background: radial-gradient(rgba(85, 113, 254, 0.04), rgba(85, 113, 254, 0.03), rgba(85, 113, 254, 0.02), rgba(85, 113, 254, 0.01), rgba(85, 113, 254, 0) 72%);
+}
+.topMoversSection .topMidLine::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #1E1F25, transparent);
+}
+.topMoversSection .topMoversContainer {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+.topMoversSection .topMoversContainer .topMoversHeader {
+  margin: 0;
+  font-size: 3rem;
+  color: white;
+  font-weight: 600px;
+  line-height: 4rem;
+}
+.topMoversSection .topMoversContainer .topMoversHeader span {
+  color: #007bff;
+}
+.topMoversSection .topMoversContainer .topSelectorContainer {
+  display: flex;
+  justify-content: center;
+}
+.topMoversSection .topMoversContainer .topSelectorContainer .topSelectorBtn {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 50px;
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+  border: 1px solid #1E1F25;
+  color: white;
+  font-size: 1.2rem;
+  line-height: 2rem;
+  transition: background-color 0.3s;
+}
+.topMoversSection .topMoversContainer .topSelectorContainer .topSelectorBtn:hover {
+  background-color: #024185;
+}
+.topMoversSection .topMoversContainer .topSelectorContainer .topSelectorBtn:first-child {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+}
+.topMoversSection .topMoversContainer .topSelectorContainer .topSelectorBtn:last-child {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.topMoversSection .topMoversContainer .topMoversCoinCard {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}/*# sourceMappingURL=TopMovers.module.css.map */

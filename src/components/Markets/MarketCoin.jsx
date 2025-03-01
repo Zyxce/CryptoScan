@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import style from './MarketCoin.module.css'
 import notFoundIcon from '../../Images/notFoundIcon.png'
 import upGraph from '../../Images/upGraph.png'
 import downGraph from '../../Images/downGraph.png'
 
 const MarketCoin = (props) => {
+  const { t } = useTranslation()
   const {
     symbol,
     name,
@@ -146,7 +148,7 @@ const MarketCoin = (props) => {
         </p>
         <p className={style.coinHeroName}>{name}</p>
         <p className={style.coinHeroCap}>
-          Market Capitalization (USD): ${trueData.marketCap}
+          {t('marketCoin.capitalization')}: ${trueData.marketCap}
         </p>
       </div>
 
@@ -156,53 +158,69 @@ const MarketCoin = (props) => {
         </div>
         <div className={style.coinMetricsLeftContainer}>
           <div className={style.coinMetricsContainer}>
-            <h3 className={style.coinMetricsHeader}>Market metrics:</h3>
+            <h3 className={style.coinMetricsHeader}>
+              {t('marketCoin.marketMetrics')}:
+            </h3>
             <p className={style.coinMetricsText}>
-              Market Rank: {trueData.rank}
+              {t('marketCoin.marketRank')}: {trueData.rank}
             </p>
             <p className={style.coinMetricsText}>
-              Price (in USD): ${trueData.price}
+              {t('marketCoin.priceUsd')}: ${trueData.price}
             </p>
             <p className={style.coinMetricsText}>
-              Price (in BTC): {trueData.priceBtc} btc
+              {t('marketCoin.priceBtc')}: {trueData.priceBtc}
             </p>
           </div>
           <div className={style.coinMetricsContainer}>
-            <h3 className={style.coinMetricsHeader}>Supply metrics:</h3>
+            <h3 className={style.coinMetricsHeader}>
+              {t('marketCoin.supplyMetrics')}:
+            </h3>
             <p className={style.coinMetricsText}>
-              Circulating: {trueData.csupply}
+              {t('marketCoin.circulating')}: {trueData.csupply}
             </p>
-            <p className={style.coinMetricsText}>Total: {trueData.tsupply}</p>
-            <p className={style.coinMetricsText}>Max: {trueData.msupply}</p>
+            <p className={style.coinMetricsText}>
+              {t('marketCoin.total')}: {trueData.tsupply}
+            </p>
+            <p className={style.coinMetricsText}>
+              {t('marketCoin.max')}: {trueData.msupply}
+            </p>
           </div>
         </div>
         <div className={style.coinMetricsRightContainer}>
           <div className={style.coinMetricsContainer}>
-            <h3 className={style.coinMetricsHeader}>Percent change:</h3>
+            <h3 className={style.coinMetricsHeader}>
+              {' '}
+              {t('marketCoin.percentChange')}:
+            </h3>
             <p className={style.coinMetricsText}>
-              Last 1h: <img src={graph1h} alt="graph"></img>
+              {t('marketCoin.last1h')}: <img src={graph1h} alt="graph"></img>
               <span style={{ color: percentColor1h }}>
                 {trueData.percentChange1h}%
               </span>
             </p>
             <p className={style.coinMetricsText}>
-              Last 24h: <img src={graph24h} alt="graph"></img>
+              {t('marketCoin.last24h')}: <img src={graph24h} alt="graph"></img>
               <span style={{ color: percentColor24h }}>
                 {trueData.percentChange24h}%
               </span>
             </p>
             <p className={style.coinMetricsText}>
-              Last 7d: <img src={graph7d} alt="graph"></img>
+              {t('marketCoin.last7d')}: <img src={graph7d} alt="graph"></img>
               <span style={{ color: percentColor7d }}>
                 {trueData.percentChange7d}%
               </span>
             </p>
           </div>
           <div className={style.coinMetricsContainer}>
-            <h3 className={style.coinMetricsHeader}>Trading Volume:</h3>
-            <p className={style.coinMetricsText}>Last 24h: {trueData.volume}</p>
+            <h3 className={style.coinMetricsHeader}>
+              {t('marketCoin.tradingVolume')}:
+            </h3>
             <p className={style.coinMetricsText}>
-              Previous: {trueData.volumeAlt}
+              {' '}
+              {t('marketCoin.last24h')}: {trueData.volume}
+            </p>
+            <p className={style.coinMetricsText}>
+              {t('marketCoin.previous')}: {trueData.volumeAlt}
             </p>
           </div>
         </div>

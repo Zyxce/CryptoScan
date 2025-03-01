@@ -1,42 +1,42 @@
 [
   {
     "id": "01",
-    "question": "What is CryptoScan?",
-    "answer": "CryptoScan is a platform that provides real-time cryptocurrency data, market analysis, and secure trading solutions."
+    "question": "faq.question1",
+    "answer": "faq.answer1"
   },
   {
     "id": "02",
-    "question": "Is CryptoScan safe to use?",
-    "answer": "Yes, CryptoScan employs advanced encryption and security protocols to ensure the safety of your data and transactions."
+    "question": "faq.question2",
+    "answer": "faq.answer2"
   },
   {
     "id": "03",
-    "question": "How can I track cryptocurrency prices?",
-    "answer": "You can use CryptoScan’s live market tracking feature to monitor real-time price changes and trends for various cryptocurrencies."
+    "question": "faq.question3",
+    "answer": "faq.answer3"
   },
   {
     "id": "04",
-    "question": "Does CryptoScan support multiple devices?",
-    "answer": "Yes, CryptoScan is accessible on web, mobile, and tablet devices for seamless cross-platform use."
+    "question": "faq.question4",
+    "answer": "faq.answer4"
   },
   {
     "id": "05",
-    "question": "Are there any fees for using CryptoScan?",
-    "answer": "CryptoScan offers free access to basic features, with premium plans available for advanced analytics and trading tools."
+    "question": "faq.question5",
+    "answer": "faq.answer5"
   },
   {
     "id": "06",
-    "question": "How do I start trading with CryptoScan?",
-    "answer": "Simply create an account, complete the verification process, and connect your preferred crypto wallet to start trading."
+    "question": "faq.question6",
+    "answer": "faq.answer6"
   },
   {
     "id": "07",
-    "question": "Which cryptocurrencies are supported?",
-    "answer": "CryptoScan supports a wide range of cryptocurrencies, including Bitcoin, Ethereum, and many altcoins."
+    "question": "faq.question7",
+    "answer": "faq.answer7"
   },
   {
     "id": "08",
-    "question": "Can I get real-time alerts for price changes?",
-    "answer": "Yes, CryptoScan allows you to set up price alerts and notifications for your favorite cryptocurrencies."
+    "question": "faq.question8",
+    "answer": "faq.answer8"
   }
 ]

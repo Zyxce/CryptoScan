@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import Market from './Market'
 import MarketCoin from './MarketCoin'
 import DifferenceMarket from './DifferenceMarket'
@@ -8,6 +9,7 @@ import Error from '../Events/Error'
 import arrowTable from '../../Images/arrowTable.png'
 
 const Markets = ({ selectedCoinMarkets }) => {
+  const { t } = useTranslation()
   const MARKETS_API_URL = `https://api.coinlore.net/api/coin/markets/?id=${selectedCoinMarkets[0]}`
   const COIN_API_URL = `https://api.coinlore.net/api/ticker/?id=${selectedCoinMarkets[0]}`
   const NOT_AVAILABLE = 'N/A'
@@ -140,7 +142,7 @@ const Markets = ({ selectedCoinMarkets }) => {
                   <DifferenceMarket
                     key={new Date()}
                     {...lowestMarket}
-                    headerMarket={'Lowest Market'}
+                    headerMarket={t('markets.lowestMarket')}
                   />
                 </div>
               )}
@@ -149,7 +151,7 @@ const Markets = ({ selectedCoinMarkets }) => {
                   <DifferenceMarket
                     key={new Date()}
                     {...highestMarket}
-                    headerMarket={'Highest Market'}
+                    headerMarket={t('markets.highestMarket')}
                   />
                 </div>
               )}
@@ -158,24 +160,26 @@ const Markets = ({ selectedCoinMarkets }) => {
             {differencePrice !== 0 && (
               <div className={style.differencePriceContainer}>
                 <p className={style.differencePrice}>
-                  Difference in Price: ${differencePrice}
+                  {t('markets.differencePrice')}: ${differencePrice}
                 </p>
               </div>
             )}
           </div>
 
           <div className={style.otherMarkets}>
-            <h2 className={style.otherMarketsHeader}>Markets Price Overview</h2>
+            <h2 className={style.otherMarketsHeader}>
+              {t('markets.priceOverview')}
+            </h2>
             <div className={style.marketsMidLine}></div>
             <div className={style.otherMarketsTable}>
               <div className={style.otherMarketsTableHeader}>
                 {[
-                  { label: 'Exchange Name', field: 'name' },
-                  { label: 'Base Currency', field: 'quote' },
-                  { label: 'Price (USD)', field: 'price_usd' },
-                  { label: 'Price (Base/Quote)', field: 'price' },
-                  { label: 'Volume (USD)', field: 'volume_usd' },
-                  { label: 'Volume (Base/Quote)', field: 'volume' },
+                  { label: t('markets.tableName'), field: 'name' },
+                  { label: t('markets.tableBase'), field: 'quote' },
+                  { label: t('markets.tablePriceUsd'), field: 'price_usd' },
+                  { label: t('markets.tablePrice'), field: 'price' },
+                  { label: t('markets.tableVolumeUsd'), field: 'volume_usd' },
+                  { label: t('markets.tableVolume'), field: 'volume' },
                 ].map(({ label, field }) => (
                   <div
                     className={style.otherMarketsTableParameters}
