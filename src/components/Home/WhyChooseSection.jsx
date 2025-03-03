@@ -1,13 +1,18 @@
+import { useTranslation } from 'react-i18next'
 import React from 'react'
 import style from './WhyChooseSection.module.css'
 import whyImage from '../../Images/whyImage.png'
-import btnArrow from '../../Images/btnArrow.png'
-import { useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import { useMediaQuery } from 'react-responsive'
+// import btnArrow from '../../Images/btnArrow.png'
+// import { useNavigate } from 'react-router-dom'
 
 const WhyChooseSection = () => {
   const { t } = useTranslation() // Подключаем перевод
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
+  const isDesktop = useMediaQuery({ minWidth: 1441 })
+  const isLaptop = useMediaQuery({ minWidth: 1101, maxWidth: 1440 })
+  const isTablet = useMediaQuery({ minWidth: 511, maxWidth: 1100 })
+  const isMobile = useMediaQuery({ maxWidth: 510 })
 
   return (
     <div className={style.whyContainer}>
@@ -20,6 +25,15 @@ const WhyChooseSection = () => {
         </p>
       </div>
       <div className={style.whyMidLine}></div>
+      {!isDesktop && !isMobile && (
+        <div className={style.whyContainerTopImage}>
+          <img
+            className={style.whyContainerImage}
+            src={whyImage}
+            alt="whychoose"
+          ></img>
+        </div>
+      )}
       <div className={style.whyContainerBottom}>
         <div className={style.whyContainerLeft}>
           <ul className={style.whyContainerLeftList}>
@@ -64,7 +78,7 @@ const WhyChooseSection = () => {
                       </p>
                     </div>
                   </div>
-                  <p
+                  {/* <p
                     className={style.whyContainerLeftRightDescription}
                     onClick={() => navigate('/CryptoScan/coins')}
                   >
@@ -74,20 +88,22 @@ const WhyChooseSection = () => {
                       src={btnArrow}
                       alt="arrow"
                     ></img>
-                  </p>
+                  </p> */}
                 </li>
                 {leftLine}
               </React.Fragment>
             ))}
           </ul>
         </div>
-        <div className={style.whyContainerRight}>
-          <img
-            className={style.whyContainerRightImage}
-            src={whyImage}
-            alt="whychoose"
-          ></img>
-        </div>
+        {isDesktop && (
+          <div className={style.whyContainerRight}>
+            <img
+              className={style.whyContainerRightImage}
+              src={whyImage}
+              alt="whychoose"
+            ></img>
+          </div>
+        )}
       </div>
     </div>
   )
