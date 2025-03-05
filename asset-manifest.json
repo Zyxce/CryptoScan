@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/CryptoScan/static/css/main.7e5e5d3b.css",
-    "main.js": "/CryptoScan/static/js/main.9af82433.js",
+    "main.css": "/CryptoScan/static/css/main.e4c2fc4c.css",
+    "main.js": "/CryptoScan/static/js/main.f91bbfa9.js",
     "static/media/BackGroundHero.png": "/CryptoScan/static/media/BackGroundHero.38cda1b6dcd7a5dbf0b4.png",
     "static/media/languageEnglish.jpg": "/CryptoScan/static/media/languageEnglish.caac25ac583c588a6cce.jpg",
     "static/media/whyImage.png": "/CryptoScan/static/media/whyImage.f8ad6d29f12d8db2d51f.png",
@@ -12,11 +12,11 @@
     "static/media/LogoMenu.png": "/CryptoScan/static/media/LogoMenu.e0c2b699455c09cc5d10.png",
     "static/media/notFoundIcon.png": "/CryptoScan/static/media/notFoundIcon.d94fe800c07b05a7d61e.png",
     "index.html": "/CryptoScan/index.html",
-    "main.7e5e5d3b.css.map": "/CryptoScan/static/css/main.7e5e5d3b.css.map",
-    "main.9af82433.js.map": "/CryptoScan/static/js/main.9af82433.js.map"
+    "main.e4c2fc4c.css.map": "/CryptoScan/static/css/main.e4c2fc4c.css.map",
+    "main.f91bbfa9.js.map": "/CryptoScan/static/js/main.f91bbfa9.js.map"
   },
   "entrypoints": [
-    "static/css/main.7e5e5d3b.css",
-    "static/js/main.9af82433.js"
+    "static/css/main.e4c2fc4c.css",
+    "static/js/main.f91bbfa9.js"
   ]
 }
