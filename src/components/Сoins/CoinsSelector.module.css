@@ -68,4 +68,70 @@
   font-size: 1rem;
   line-height: 1rem;
   border-radius: 5px;
+}
+
+@media (min-width: 691px) and (max-width: 1100px) {
+  .coinSelectorContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  .coinSelectorContainer .coinsSelectorInfo {
+    width: 100%;
+    margin: 0 auto;
+    color: white;
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+  }
+  .coinSelectorContainer .coinSelectorCenter {
+    margin-top: 20px;
+  }
+  .coinSelectorContainer .coinSelectorCenter .coinsSelectorPrevious, .coinSelectorContainer .coinSelectorCenter .coinsSelectorNext, .coinSelectorContainer .coinSelectorCenter .coinsSelectorRefresh {
+    padding: 7px 12px;
+  }
+}
+@media (min-width: 511px) and (max-width: 690px) {
+  .coinSelectorContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  .coinSelectorContainer .coinsSelectorInfo {
+    max-width: 200px;
+    width: 100%;
+    margin: 0 auto;
+    color: white;
+    font-size: 1.7rem;
+    line-height: 1.8rem;
+  }
+  .coinSelectorContainer .coinSelectorCenter {
+    margin-top: 20px;
+  }
+  .coinSelectorContainer .coinSelectorCenter .coinsSelectorPrevious, .coinSelectorContainer .coinSelectorCenter .coinsSelectorNext, .coinSelectorContainer .coinSelectorCenter .coinsSelectorRefresh {
+    padding: 7px 12px;
+  }
+}
+@media (max-width: 510px) {
+  .coinSelectorContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
+  .coinSelectorContainer .coinsSelectorInfo {
+    max-width: 200px;
+    width: 100%;
+    margin: 0 auto;
+    color: white;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+  }
+  .coinSelectorContainer .coinSelectorCenter {
+    margin: 0;
+    margin-top: 20px;
+    justify-content: space-around;
+  }
+  .coinSelectorContainer .coinSelectorCenter .coinsSelectorPrevious, .coinSelectorContainer .coinSelectorCenter .coinsSelectorNext, .coinSelectorContainer .coinSelectorCenter .coinsSelectorRefresh {
+    padding: 7px 12px;
+    margin: 0;
+  }
 }/*# sourceMappingURL=CoinsSelector.module.css.map */

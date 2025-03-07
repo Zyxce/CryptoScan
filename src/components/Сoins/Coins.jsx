@@ -1,27 +1,34 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useMediaQuery } from 'react-responsive'
 import Coin from './Coin'
 import style from './Coins.module.css'
-import arrowTable from '../../Images/arrowTable.png'
 import Loading from '../Events/Loading'
 import Error from '../Events/Error'
 import CoinsSelector from './CoinsSelector'
-import CoinCard from '../Reusable/CoinCard'
+import TopMovers from './TopMovers'
+import TableHeader from '../Reusable/TableHeader'
+import Midline from '../Reusable/Midline'
 
 const Coins = (props) => {
   const { toggleSelectedCoinId } = props
   const { t } = useTranslation()
 
+  const isDesktop1601 = useMediaQuery({ minWidth: 1601 })
+  const isDesktop1441 = useMediaQuery({ minWidth: 1441, maxWidth: 1600 })
+  const isLaptop = useMediaQuery({ minWidth: 1101, maxWidth: 1440 })
+  const isTablet = useMediaQuery({ minWidth: 511, maxWidth: 1100 })
+  const isMobile = useMediaQuery({ maxWidth: 510 })
+
+  const isSmallScreen = isTablet || isMobile
+
+  const NOT_AVAILABLE = 'N/A'
+
   const [currentStart, setCurrentStart] = useState(100)
   const [prevStart, setPrevStart] = useState(0)
   const [fetchStart, setFetchStart] = useState(0)
 
-  const COINS_API_URL_FEATURED =
-    'https://api.coinlore.net/api/tickers/?start=0&limit=6'
-  const NOT_AVAILABLE = 'N/A'
-
   const [coins, setCoins] = useState([])
-  const [featuredCoins, setFeaturedCoins] = useState([])
 
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(true)
@@ -29,6 +36,69 @@ const Coins = (props) => {
 
   const [sortDirection, setSortDirection] = useState(false) // true - по возрастанию
   const [sortField, setSortField] = useState('market_cap_usd')
+
+  //массив с заголовками таблицы
+  const tableArray = [
+    {
+      label: t('coins.tableIcon'),
+      field: '',
+      isSorting: false,
+      visible: true,
+    },
+    {
+      label: t('coins.tableName'),
+      field: 'name',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('coins.tablePrice'),
+      field: 'price_usd',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('coins.tableChange24h'),
+      field: 'percent_change_24h',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('coins.tableChange7d'),
+      field: 'percent_change_7d',
+      isSorting: true,
+      visible: isDesktop1601,
+    },
+    {
+      label: t('coins.tableVolume'),
+      field: 'volume24',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('coins.tableSupply'),
+      field: 'csupply',
+      isSorting: true,
+      visible: isLaptop || isDesktop1441 || isDesktop1601,
+    },
+    {
+      label: t('coins.tableCap'),
+      field: 'market_cap_usd',
+      isSorting: true,
+      visible: isDesktop1601 || isDesktop1441,
+    },
+  ]
+  //обязательно иначе не будет работать Visible
+  const filteredTableArray = tableArray.filter((item) => item.visible)
+
+  let tableColumns = 0
+  if (isDesktop1601) {
+    tableColumns = 8
+  } else if (isDesktop1441) {
+    tableColumns = 7
+  } else if (isLaptop) {
+    tableColumns = 6
+  }
 
   const fetchResource = async (url) => {
     const res = await fetch(url)
@@ -39,19 +109,24 @@ const Coins = (props) => {
   }
 
   const fetchData = useCallback(async () => {
-    const COINS_API_URL = `https://api.coinlore.net/api/tickers/?start=${fetchStart}&limit=100`
     try {
-      const dataCoins = await fetchResource(COINS_API_URL)
-      setCoins(dataCoins.data)
-      const dataFeaturedCoins = await fetchResource(COINS_API_URL_FEATURED)
-      setFeaturedCoins(dataFeaturedCoins.data)
+      const fetchPromises = []
+      for (let i = 0; i < 10; i++) {
+        const fetchStart = i * 100
+        const COINS_API_URL = `https://api.coinlore.net/api/tickers/?start=${fetchStart}&limit=100`
+        fetchPromises.push(fetchResource(COINS_API_URL))
+      }
+      const responses = await Promise.all(fetchPromises)
+      const allCoins = responses.flatMap((response) => response.data)
+
+      setCoins(allCoins)
     } catch (error) {
       setError(error.message)
     } finally {
       setIsLoading(false)
       setIsRefreshing(false)
     }
-  }, [fetchStart])
+  }, [])
 
   useEffect(() => {
     fetchData() // Первоначальный запрос
@@ -126,111 +201,126 @@ const Coins = (props) => {
   if (error) {
     return <Error error={error} />
   }
+  if (isLoading) {
+    return <Loading type={t('coins.loading')} />
+  }
+
+  if (isSmallScreen) {
+    return (
+      <div className={style.coinsContainer}>
+        <div className={style.coinsFeaturedContainer}>
+          <TopMovers
+            toggleSelectedCoinId={toggleSelectedCoinId}
+            allCoinsArray={coins}
+          />
+        </div>
+        <CoinsSelector
+          toggleStartNext={handleStartNext}
+          toggleStartBack={handleStartBack}
+          toggleStartRefresh={handleStartRefresh}
+          toggleIsRefresh={setIsRefreshing}
+          currentStart={currentStart}
+          prevStart={prevStart}
+          sortField={sortField}
+          isSmallScreen={isSmallScreen}
+        />
+        <Midline size={'standart'} gradient={'small'} />
+        <div className={style.coinsTable}>
+          <TableHeader
+            tableArray={filteredTableArray}
+            sortField={sortField}
+            sortDirection={sortDirection}
+            toggleSort={handleSort}
+            tableColumns={tableColumns}
+            isSmallScreen={isSmallScreen}
+          />
+        </div>
+        <Midline size={'standart'} gradient={'small'} />
+        {isRefreshing ? (
+          <Loading type={`Top ${prevStart + 1} - ${currentStart} coins `} />
+        ) : (
+          <div className={style.coinTableContainer}>
+            {sortedCoins.slice(prevStart, currentStart).map((coin) => (
+              <Coin
+                key={coin.id}
+                {...coin}
+                toggleSelectedCoinId={toggleSelectedCoinId}
+              />
+            ))}
+          </div>
+        )}
+        <Midline size={'standart'} gradient={'small'} />
+        <CoinsSelector
+          toggleStartNext={handleStartNext}
+          toggleStartBack={handleStartBack}
+          toggleStartRefresh={handleStartRefresh}
+          toggleIsRefresh={setIsRefreshing}
+          currentStart={currentStart}
+          prevStart={prevStart}
+          sortField={sortField}
+          isSmallScreen={isSmallScreen}
+        />
+        <Midline size={'standart'} gradient={'small'} />
+      </div>
+    )
+  }
 
   return (
-    <>
-      {isLoading ? (
-        <Loading type={t('coins.loading')} />
+    <div className={style.coinsContainer}>
+      <div className={style.coinsFeaturedContainer}>
+        <TopMovers
+          toggleSelectedCoinId={toggleSelectedCoinId}
+          allCoinsArray={coins}
+        />
+      </div>
+      <Midline size={'standart'} gradient={'small'} />
+      <CoinsSelector
+        toggleStartNext={handleStartNext}
+        toggleStartBack={handleStartBack}
+        toggleStartRefresh={handleStartRefresh}
+        toggleIsRefresh={setIsRefreshing}
+        currentStart={currentStart}
+        prevStart={prevStart}
+        sortField={sortField}
+        isSmallScreen={isSmallScreen}
+      />
+      <Midline size={'standart'} gradient={'small'} />
+      <div className={style.coinsTable}>
+        <TableHeader
+          tableArray={filteredTableArray}
+          sortField={sortField}
+          sortDirection={sortDirection}
+          toggleSort={handleSort}
+          tableColumns={tableColumns}
+          isSmallScreen={isSmallScreen}
+        />
+      </div>
+      {isRefreshing ? (
+        <Loading type={`Top ${prevStart + 1} - ${currentStart} coins `} />
       ) : (
-        <div className={style.coinsContainer}>
-          <div className={style.coinsFeaturedContainer}>
-            <h1 className={style.coinsFeaturedHeader}>{t('coins.header')}</h1>
-            <div className={style.coinsFeaturedBox}>
-              {featuredCoins.slice(0, 6).map((featuredCoin) => (
-                <CoinCard
-                  key={featuredCoin.id}
-                  {...featuredCoin}
-                  toggleSelectedCoinId={toggleSelectedCoinId}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className={style.coinsMidLine}></div>
-          <CoinsSelector
-            toggleStartNext={handleStartNext}
-            toggleStartBack={handleStartBack}
-            toggleStartRefresh={handleStartRefresh}
-            toggleIsRefresh={setIsRefreshing}
-            currentStart={currentStart}
-            prevStart={prevStart}
-          />
-          <div className={style.coinsMidLine}></div>
-          <div className={style.coinsTable}>
-            <div className={style.coinsTableHeader}>
-              <div className={style.coinsTableParameters}>
-                <p className={style.coinsTableParametersText}>
-                  {t('coins.tableIcon')}
-                </p>
-              </div>
-              {[
-                { label: t('coins.tableName'), field: 'name' },
-                { label: t('coins.tablePrice'), field: 'price_usd' },
-                { label: t('coins.tableChange'), field: 'percent_change_24h' },
-                { label: t('coins.tableVolume'), field: 'volume24' },
-                { label: t('coins.tableSupply'), field: 'csupply' },
-                { label: t('coins.tableCap'), field: 'market_cap_usd' },
-              ].map(({ label, field }) => (
-                <div
-                  className={style.coinsTableParametersSort}
-                  onClick={() => handleSort(field)}
-                  key={field}
-                >
-                  <p
-                    className={style.coinsTableParametersText}
-                    style={
-                      sortField === field ? { textDecoration: 'underline' } : {}
-                    }
-                  >
-                    {label}
-                  </p>
-                  <img
-                    style={
-                      sortField === field
-                        ? sortDirection
-                          ? {}
-                          : { transform: 'rotate(180deg)' }
-                        : {}
-                    }
-                    src={arrowTable}
-                    alt={'img'}
-                    className={style.coinsTableParametersImg}
-                  />
-                </div>
-              ))}
-              <div className={style.coinsTableParameters}>
-                <p className={style.coinsTableParametersText}>
-                  {t('coins.tableAction')}
-                </p>
-              </div>
-            </div>
-          </div>
-          {isRefreshing ? (
-            <Loading type={`Top ${prevStart + 1} - ${currentStart} coins `} />
-          ) : (
-            <div className={style.coinTableContainer}>
-              {sortedCoins.map((coin) => (
-                <Coin
-                  key={coin.id}
-                  {...coin}
-                  toggleSelectedCoinId={toggleSelectedCoinId}
-                />
-              ))}
-            </div>
-          )}
-          <div className={style.coinsMidLine}></div>
-          <CoinsSelector
-            toggleStartNext={handleStartNext}
-            toggleStartBack={handleStartBack}
-            toggleStartRefresh={handleStartRefresh}
-            toggleIsRefresh={setIsRefreshing}
-            currentStart={currentStart}
-            prevStart={prevStart}
-          />
-          <div className={style.coinsMidLine}></div>
+        <div className={style.coinTableContainer}>
+          {sortedCoins.slice(prevStart, currentStart).map((coin) => (
+            <Coin
+              key={coin.id}
+              {...coin}
+              toggleSelectedCoinId={toggleSelectedCoinId}
+            />
+          ))}
         </div>
       )}
-    </>
+      <Midline size={'standart'} gradient={'small'} />
+      <CoinsSelector
+        toggleStartNext={handleStartNext}
+        toggleStartBack={handleStartBack}
+        toggleStartRefresh={handleStartRefresh}
+        toggleIsRefresh={setIsRefreshing}
+        currentStart={currentStart}
+        prevStart={prevStart}
+        sortField={sortField}
+        isSmallScreen={isSmallScreen}
+      />
+      <Midline size={'standart'} gradient={'small'} />
+    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 .exchangeContainer {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(6, 150px);
   align-items: center;
   margin: 20px 0px;
 }

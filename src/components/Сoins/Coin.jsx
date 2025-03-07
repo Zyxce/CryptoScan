@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../Reusable/Button'
-import { useNavigate } from 'react-router-dom'
+import { useMediaQuery } from 'react-responsive'
 import upGraph from '../../Images/upGraph.png'
 import downGraph from '../../Images/downGraph.png'
 import notFoundIcon from '../../Images/notFoundIcon.png'
-import style from './Coin.module.css'
+import TableParameter from '../Reusable/TableParameter'
+import { useTranslation } from 'react-i18next'
 
 const Coin = (props) => {
   const {
@@ -15,8 +15,8 @@ const Coin = (props) => {
     price_usd,
     // percent_change_1h,
     percent_change_24h,
-    // percent_change_7d,
-    rank,
+    percent_change_7d,
+    // rank,
     // price_btc,
     market_cap_usd,
     volume24,
@@ -27,7 +27,15 @@ const Coin = (props) => {
     toggleSelectedCoinId,
   } = props
 
-  const navigate = useNavigate()
+  const { t } = useTranslation()
+
+  const isDesktop1601 = useMediaQuery({ minWidth: 1601 })
+  const isDesktop1441 = useMediaQuery({ minWidth: 1441, maxWidth: 1600 })
+  const isLaptop = useMediaQuery({ minWidth: 1101, maxWidth: 1440 })
+  const isTablet = useMediaQuery({ minWidth: 511, maxWidth: 1100 })
+  const isMobile = useMediaQuery({ maxWidth: 510 })
+
+  const isSmallScreen = isTablet || isMobile
 
   const [imageSrc, setImageSrc] = useState('')
 
@@ -39,6 +47,7 @@ const Coin = (props) => {
     volume: volume24 || NOT_AVAILABLE,
     csupply: csupply || NOT_AVAILABLE,
     percentChange24h: percent_change_24h || NOT_AVAILABLE,
+    percentChange7d: percent_change_7d || NOT_AVAILABLE,
     marketCap: market_cap_usd || NOT_AVAILABLE,
   })
 
@@ -75,6 +84,7 @@ const Coin = (props) => {
       volume: volume24 || NOT_AVAILABLE,
       csupply: csupply || NOT_AVAILABLE,
       percentChange24h: percent_change_24h || NOT_AVAILABLE,
+      percentChange7d: percent_change_7d || NOT_AVAILABLE,
       marketCap: market_cap_usd || NOT_AVAILABLE,
     }))
   }, [
@@ -83,47 +93,138 @@ const Coin = (props) => {
     name,
     price_usd,
     percent_change_24h,
+    percent_change_7d,
     market_cap_usd,
     volume24,
     csupply,
   ])
 
-  //настройка цвета для текста процента и его графа
-  const getPercentChangeColor = (percent_change) => {
-    return percent_change >= 0 ? '#06B470' : '#EA3B5A'
+  //настройка цвета для текста процента и его графа, настройка типа процента
+  const getPercentData = (percentChange) => {
+    const color = percentChange >= 0 ? '#06B470' : '#EA3B5A'
+    const background =
+      percentChange >= 0
+        ? 'radial-gradient(rgba(76, 255, 70, 0.1), rgba(76, 255, 70, 0.075), rgba(76, 255, 70, 0.050), rgba(76, 255, 70, 0.025), rgba(76, 255, 70, 0) 72%)'
+        : 'radial-gradient(rgba(255, 70, 70, 0.1), rgba(255, 70, 70, 0.075), rgba(255, 70, 70, 0.050), rgba(255, 70, 70, 0.025), rgba(255, 70, 70, 0) 72%)'
+    const graph = percentChange >= 0 ? upGraph : downGraph
+
+    return { color, background, graph }
   }
-  const percentColor = getPercentChangeColor(percent_change_24h)
-  const graph = percent_change_24h >= 0 ? upGraph : downGraph
+  const percentData24 = getPercentData(percent_change_24h)
+  const percentData7 = getPercentData(percent_change_7d)
+
+  const tableArray = [
+    {
+      label: trueData.symbol,
+      labelDescription: '',
+      imageSrc: imageSrc,
+      type: 'imgtext',
+      visible: isSmallScreen,
+      divType: 'left',
+    },
+    {
+      label: 'icon',
+      labelDescription: '',
+      imageSrc: imageSrc,
+      type: 'img',
+      visible: true,
+    },
+    {
+      label: trueData.symbol,
+      labelDescription: trueData.name,
+      imageSrc: imageSrc,
+      type: 'symboltext',
+      visible: true,
+    },
+    {
+      label: `$${trueData.price}`,
+      labelDescription: isSmallScreen && t('coin.price'),
+      imageSrc: imageSrc,
+      type: 'text',
+      visible: true,
+      divType: 'top',
+    },
+    {
+      label: trueData.percentChange24h,
+      labelDescription: isSmallScreen && t('coin.24h'),
+      imageSrc: percentData24.graph,
+      type: 'percent',
+      visible: true,
+      divType: 'bottom',
+      percentParam: {
+        background: percentData24.background,
+        color: percentData24.color,
+        period: 'percent_change_24h',
+      },
+    },
+    {
+      label: trueData.percentChange7d,
+      labelDescription: isSmallScreen && t('coin.7d'),
+      imageSrc: percentData7.graph,
+      type: 'percent',
+      visible: (!isMobile && isDesktop1601) || (!isMobile && isSmallScreen),
+      divType: 'bottom',
+      percentParam: {
+        background: percentData7.background,
+        color: percentData7.color,
+        period: 'percent_change_7d',
+      },
+    },
+    {
+      label: `$${trueData.volume}`,
+      labelDescription: isSmallScreen && t('coin.volume'),
+      imageSrc: imageSrc,
+      type: 'text',
+      visible: !isMobile,
+      divType: 'top',
+    },
+    {
+      label: `$${trueData.csupply}`,
+      labelDescription: '',
+      imageSrc: imageSrc,
+      type: 'text',
+      visible: isLaptop || isDesktop1441 || isDesktop1601,
+      divType: '',
+    },
+    {
+      label: `$${trueData.marketCap}`,
+      labelDescription: '',
+      imageSrc: imageSrc,
+      type: 'text',
+      visible: isDesktop1601 || isDesktop1441,
+      divType: '',
+    },
+  ]
+
+  //Адаптив делает только видимым то что нужно
+  const filteredTableArray = tableArray.filter((item) => item.visible)
+
+  let tableColumns = 0
+  if (isDesktop1601) {
+    tableColumns = 8
+  } else if (isDesktop1441) {
+    tableColumns = 7
+  } else if (isLaptop) {
+    tableColumns = 6
+  }
+
+  const action = {
+    href: 'https://www.binance.com/ru',
+    nav: {
+      id: id,
+      name: name,
+      isNavigate: 1,
+    },
+  }
 
   return (
-    <>
-      <div className={style.coinContainer}>
-        <img className={style.coinIcon} src={imageSrc} alt="icon" />
-        <div className={style.coinNameContainer}>
-          <p className={style.coinSymbol}>{trueData.symbol}</p>
-          <p className={style.coinTableText}>{trueData.name}</p>
-        </div>
-        <p className={style.coinTableText}>${trueData.price}</p>
-        <div className={style.coinPercentContainer}>
-          <img className={style.coinPercentImg} src={graph} alt="graph" />
-          <p style={{ color: percentColor }} className={style.coinTableText}>
-            {trueData.percentChange24h}%
-          </p>
-        </div>
-        <p className={style.coinTableText}>${trueData.volume}</p>
-        <p className={style.coinTableText}>${trueData.csupply}</p>
-        <p className={style.coinTableText}>${trueData.marketCap}</p>
-        <Button
-          className={style.coinTableBtn}
-          onClick={() => {
-            toggleSelectedCoinId(id, name)
-            navigate('/CryptoScan/markets')
-          }}
-        >
-          <span>{trueData.symbol}</span> Market statistics
-        </Button>
-      </div>
-    </>
+    <TableParameter
+      tableArray={filteredTableArray}
+      tableColumns={tableColumns}
+      isSmallScreen={isSmallScreen}
+      action={action}
+      toggleSelectedCoinId={toggleSelectedCoinId}
+    />
   )
 }
 

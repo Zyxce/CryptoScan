@@ -18,7 +18,7 @@
   z-index: -5;
 }
 .coinsContainer .coinsFeaturedContainer {
-  margin-top: 120px;
+  margin-top: 0px;
 }
 .coinsContainer .coinsFeaturedContainer .coinsFeaturedHeader {
   font-size: 3rem;
@@ -107,4 +107,25 @@
 }
 .coinsContainer .coinTableContainer {
   background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .coinsContainer {
+    padding: 0px 100px;
+  }
+}
+@media (min-width: 691px) and (max-width: 1100px) {
+  .coinsContainer {
+    padding: 0px 50px;
+  }
+}
+@media (min-width: 511px) and (max-width: 690px) {
+  .coinsContainer {
+    padding: 0px 20px;
+  }
+}
+@media (max-width: 510px) {
+  .coinsContainer {
+    padding: 0px 20px;
+  }
 }/*# sourceMappingURL=Coins.module.css.map */

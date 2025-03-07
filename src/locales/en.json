@@ -56,7 +56,8 @@
     "tableIcon": "Coin Icon",
     "tableName": "Coin Name",
     "tablePrice": "Price",
-    "tableChange": "24h Change",
+    "tableChange24h": "24h Change",
+    "tableChange7d": "7d Change",
     "tableVolume": "24h Volume",
     "tableSupply": "Current supply",
     "tableCap": "Market Cap",
@@ -65,7 +66,20 @@
   "coinsSelector": {
     "btnPrevious": "Previous 100",
     "btnNext": "Next 100",
-    "info": "Top {{prevStart}} - {{currentStart}} coins by Market Rank"
+    "info": "Top {{prevStart}} - {{currentStart}} coins by",
+    "name": "name",
+    "price": "price",
+    "change24h": "24h change",
+    "change7d": "7d change",
+    "volume": "24h volume",
+    "csupply": "current supply",
+    "marketCap": "market capitalization"
+  },
+  "coin": {
+    "price": "Price: ",
+    "24h": "24h: ",
+    "7d": "7d: ",
+    "volume": "Volume: "
   },
   "markets": {
     "lowestMarket": "Lowest Market",
@@ -104,7 +118,7 @@
   },
   "exchanges": {
     "loading": "Exchanges",
-    "header": "Top Crypto Exchanges By 24 Hour Volume",
+    "header": "Exchanges Reviewed by Users",
     "tableIcon": "Exchange Icon",
     "tableName": "Exchange Name",
     "tableVolume": "Volume",
@@ -113,6 +127,9 @@
     "tableCountry": "Country"
   },
   "topMovers": {
+    "top": "Top",
+    "gainers": "Gainers",
+    "losers": "Losers",
     "loading": "TopMovers",
     "by1Hour": "By 1 Hour",
     "by24Hours": "By 24 Hours",
@@ -121,6 +138,14 @@
     "24h": "24h",
     "7d": "7d",
     "header": "Top Gainers & Losers"
+  },
+  "coinCard": {
+    "name": "Coin name: ",
+    "price": "Price: ",
+    "rank": "Market rank: ",
+    "1h": "1h :",
+    "24h": "24h :",
+    "7d": "7d :"
   },
   "notFound": {
     "ooops": "Ooops",
@@ -131,5 +156,9 @@
   },
   "error": {
     "text": "Error"
+  },
+  "tableHeader": {
+    "sortby": "Sort By",
+    "selectoption": "Select an option"
   }
 }
