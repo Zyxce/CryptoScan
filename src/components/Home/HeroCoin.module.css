@@ -38,9 +38,6 @@
   .coinContainer .coinBottomContainer .coinPercentContainer .coinPercent {
     margin-left: 5px;
   }
-  .coinContainer:last-child {
-    border-right: 1px solid #ADB3BF;
-  }
 }
 @media (min-width: 1441px) and (max-width: 1550px) {
   .coinContainer {
@@ -48,7 +45,7 @@
     flex-direction: column;
     padding: 5px 15px;
     border-left: 1px solid #ADB3BF;
-    width: 200px;
+    width: 160px;
     z-index: 10;
   }
   .coinContainer .coinTopContainer {
@@ -82,9 +79,6 @@
   .coinContainer .coinBottomContainer .coinPercentContainer .coinPercent {
     margin-left: 5px;
     font-size: 0.9rem;
-  }
-  .coinContainer:last-child {
-    border-right: 1px solid #ADB3BF;
   }
 }
 @media (min-width: 1101px) and (max-width: 1440px) {

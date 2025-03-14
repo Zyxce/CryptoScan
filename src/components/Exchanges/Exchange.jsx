@@ -144,12 +144,21 @@ const Exchange = (props) => {
     }))
   }, [name, name_id, country, volume_usd, active_pairs, url])
 
+  const action = {
+    href: 'https://www.binance.com/ru',
+    nav: {
+      id: '',
+      name: '',
+      isNavigate: false,
+    },
+  }
+
   return (
     <TableParameter
       tableArray={filteredTableArray}
       tableColumns={tableColumns}
       isSmallScreen={isSmallScreen}
-      onclick={trueData.url}
+      action={action}
     />
   )
 }

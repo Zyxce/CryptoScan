@@ -90,6 +90,10 @@
   margin-top: auto;
   margin-bottom: 50px;
 }
+.heroSection .swiperSlide {
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
 
 @media (min-width: 1551px) {
   .heroSection {

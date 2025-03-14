@@ -146,7 +146,7 @@ const CoinCard = (props) => {
     },
     {
       label: `$${trueData.price}`,
-      labelDescription: !isMobile && t('coinCard.price'),
+      labelDescription: t('coinCard.price'),
       imageSrc: imageSrc,
       type: 'text',
       visible: true,
@@ -162,7 +162,7 @@ const CoinCard = (props) => {
     },
     {
       label: trueData.percentChange24h,
-      labelDescription: !isMobile && PERCENT_DESCRIPTIONS[percentTime],
+      labelDescription: PERCENT_DESCRIPTIONS[percentTime],
       imageSrc: percentData.graph,
       type: 'percent',
       visible: true,

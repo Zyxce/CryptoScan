@@ -242,18 +242,36 @@ const TableParameter = (props) => {
   }
 
   //рендеринг для больших экранов
-  return (
-    <div
-      onClick={() => {
-        toggleSelectedCoinId(id, name)
-        navigate('/CryptoScan/markets')
-      }}
-      className={style.tableParameterContainer}
-      style={{ gridTemplateColumns: `repeat(${tableColumns}, minmax(0, 1fr))` }}
-    >
-      {tableArray.map(renderItem)}
-    </div>
-  )
+  if (!isNavigate) {
+    return (
+      <a href={href}>
+        <div
+          className={style.tableParameterContainer}
+          style={{
+            gridTemplateColumns: `repeat(${tableColumns}, minmax(0, 1fr))`,
+          }}
+        >
+          {tableArray.map(renderItem)}
+        </div>
+      </a>
+    )
+  }
+  if (isNavigate) {
+    return (
+      <div
+        onClick={() => {
+          toggleSelectedCoinId(id, name)
+          navigate('/CryptoScan/markets')
+        }}
+        className={style.tableParameterContainer}
+        style={{
+          gridTemplateColumns: `repeat(${tableColumns}, minmax(0, 1fr))`,
+        }}
+      >
+        {tableArray.map(renderItem)}
+      </div>
+    )
+  }
 }
 
 export default TableParameter

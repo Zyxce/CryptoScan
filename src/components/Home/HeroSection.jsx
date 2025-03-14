@@ -2,7 +2,10 @@ import { useNavigate } from 'react-router-dom'
 import { useMediaQuery } from 'react-responsive'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay } from 'swiper/modules'
 import style from './HeroSection.module.css'
+import 'swiper/css'
 import heroImage from '../../Images/HeroImage.png'
 import btnArrow from '../../Images/btnArrow.png'
 import Button from '../Reusable/Button'
@@ -23,7 +26,7 @@ const HeroSection = ({ coins }) => {
         {isDesktop && (
           <>
             <div className={style.heroTextContainer}>
-              <p className={style.appVersion}>— Crypto Scan V 1.1.0</p>
+              <p className={style.appVersion}>— Crypto Scan V 1.5.1</p>
               <h1 className={style.mainHeading}>{t('hero.header')}</h1>
               <div className={style.heroDottedLine}></div>
               <p className={style.heroDescription}>{t('hero.description')}</p>
@@ -64,8 +67,25 @@ const HeroSection = ({ coins }) => {
         )}
       </div>
       <div className={style.heroBottomContent}>
-        {isDesktop &&
-          coins.slice(0, 5).map((coin) => <HeroCoin key={coin.id} {...coin} />)}
+        {isDesktop && (
+          <Swiper
+            style={{ width: '1200px' }}
+            className="mySwiper"
+            spaceBetween={5}
+            slidesPerView={5}
+            autoplay={{
+              delay: 3000,
+              disableOnInteraction: false,
+            }}
+            modules={[Autoplay]}
+          >
+            {coins.slice(0, 25).map((coin) => (
+              <SwiperSlide key={coin.id}>
+                <HeroCoin {...coin} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
     </div>
   )
