@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+}
+
 .Button {
   color: white;
   transition: background-color 0.3s;

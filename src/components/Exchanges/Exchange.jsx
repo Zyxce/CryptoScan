@@ -74,7 +74,7 @@ const Exchange = (props) => {
     },
     {
       label: trueData.volumeUsd,
-      labelDescription: 'Volume: $',
+      labelDescription: isSmallScreen && 'Volume: $',
       imageSrc: imageSrc,
       type: 'text',
       visible: true,
@@ -82,7 +82,7 @@ const Exchange = (props) => {
     },
     {
       label: `${trueData.activePairs}`,
-      labelDescription: 'Markets: ',
+      labelDescription: isSmallScreen && 'Markets: ',
       imageSrc: imageSrc,
       type: 'text',
       visible: true,
@@ -145,7 +145,7 @@ const Exchange = (props) => {
   }, [name, name_id, country, volume_usd, active_pairs, url])
 
   const action = {
-    href: 'https://www.binance.com/ru',
+    href: trueData.url,
     nav: {
       id: '',
       name: '',

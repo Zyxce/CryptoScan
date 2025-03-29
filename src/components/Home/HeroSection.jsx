@@ -16,14 +16,15 @@ const HeroSection = ({ coins }) => {
   const navigate = useNavigate()
 
   // Адаптив
-  const isDesktop = useMediaQuery({ minWidth: 1101 })
+  const isDesktop = useMediaQuery({ minWidth: 1441 })
+  const isLaptop = useMediaQuery({ minWidth: 1101, maxWidth: 1440 })
   const isTablet = useMediaQuery({ minWidth: 511, maxWidth: 1100 })
   const isMobile = useMediaQuery({ maxWidth: 510 })
 
   return (
     <div className={style.heroSection}>
       <div className={style.heroTopContent}>
-        {isDesktop && (
+        {(isDesktop || isLaptop) && (
           <>
             <div className={style.heroTextContainer}>
               <p className={style.appVersion}>— Crypto Scan V 1.5.1</p>
@@ -80,8 +81,8 @@ const HeroSection = ({ coins }) => {
             modules={[Autoplay]}
           >
             {coins.slice(0, 25).map((coin) => (
-              <SwiperSlide key={coin.id}>
-                <HeroCoin {...coin} />
+              <SwiperSlide>
+                <HeroCoin key={coin.id} {...coin} />
               </SwiperSlide>
             ))}
           </Swiper>

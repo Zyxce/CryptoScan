@@ -7,7 +7,7 @@
     "home": "Главная",
     "coins": "Монеты",
     "exchanges": "Биржи",
-    "topMovers": "Топы"
+    "news": "Новости"
   },
   "hero": {
     "header": "Покупайте и продавайте криптовалюту легко\nс CryptoScan",
@@ -82,8 +82,8 @@
     "volume": "Объем: "
   },
   "markets": {
-    "lowestMarket": "Самая низкая цена",
-    "highestMarket": "Самая высокая цена",
+    "lowestMarket": "Самый низкий рынок",
+    "highestMarket": "Самый высокий рынок",
     "differencePrice": "Разница в цене",
     "priceOverview": "Обзор цен на рынках",
     "tableName": "Название биржи",
@@ -91,13 +91,17 @@
     "tablePriceUsd": "Цена (USD)",
     "tablePrice": "Цена (Базовая/Котируемая)",
     "tableVolumeUsd": "Объем (USD)",
-    "tableVolume": "Объем (Базовая/Котируемая)"
+    "tableVolume": "Объем (Базовая/Котируемая)",
+    "showMarkets": "Показать рынки",
+    "close": "Закрыть"
   },
   "differenceMarket": {
     "exchange": "Биржа",
     "base": "Базовая валюта",
     "currentPrice": "Текущая цена",
-    "price": "Цена в USD"
+    "price": "Цена в USD",
+    "showMarkets": "Показать рынки",
+    "close": "Закрыть"
   },
   "marketCoin": {
     "capitalization": "Рыночная капитализация (USD)",
@@ -114,7 +118,14 @@
     "last24h": "Последние 24ч",
     "last7d": "Последние 7д",
     "tradingVolume": "Объем торгов",
-    "previous": "Предыдущий"
+    "previous": "Предыдущий",
+    "volume24h": "Объем 24ч",
+    "volumeAlt": "Альтернативный объем",
+    "csupply": "Текущее предложение",
+    "msupply": "Максимальное предложение",
+    "tsupply": "Общее предложение",
+    "close": "Закрыть",
+    "showMore": "Показать больше"
   },
   "exchanges": {
     "loading": "Биржи",
@@ -133,6 +144,19 @@
     "loading": "Топы",
     "by1Hour": "За 1 час",
     "by24Hours": "За 24 часа",
+    "by7Days": "За 7 дней",
+    "1h": "1ч",
+    "24h": "24ч",
+    "7d": "7д",
+    "header": "Топ роста и падения"
+  },
+  "news": {
+    "unknownauthor": "Автор неизвестен",
+    "minsread": "Мин. чтения",
+    "readmore": "Читать далее",
+    "news": "Новости",
+    "currentnewson": "Актуальные новости о",
+    "totalresults": "Всего результатов: ",
     "by7Days": "За 7 дней",
     "1h": "1ч",
     "24h": "24ч",

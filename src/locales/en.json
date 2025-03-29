@@ -7,7 +7,7 @@
     "home": "Home",
     "coins": "Coins",
     "exchanges": "Exchanges",
-    "topMovers": "Top Movers"
+    "news": "News"
   },
   "hero": {
     "header": "Buy & Sell Crypto Easy\nWith CryptoScan",
@@ -97,7 +97,9 @@
     "exchange": "Exchange",
     "base": "Base Currency",
     "currentPrice": "Current Price",
-    "price": "Price in USD"
+    "price": "Price in USD",
+    "showMarkets": "Show Markets",
+    "close": "Close"
   },
   "marketCoin": {
     "capitalization": "Market Capitalization (USD)",
@@ -114,7 +116,14 @@
     "last24h": "Last 24h",
     "last7d": "Last 7d",
     "tradingVolume": "Trading Volume",
-    "previous": "Previous"
+    "previous": "Previous",
+    "volume24h": "Volume 24h",
+    "volumeAlt": "Volume Alt",
+    "csupply": "Current Supply",
+    "msupply": "Max Supply",
+    "tsupply": "Total Supply",
+    "close": "Close",
+    "showMore": "Show More"
   },
   "exchanges": {
     "loading": "Exchanges",
@@ -138,6 +147,19 @@
     "24h": "24h",
     "7d": "7d",
     "header": "Top Gainers & Losers"
+  },
+  "news": {
+    "unknownauthor": "Unknown Author",
+    "minsread": "Mins Read",
+    "readmore": "Read More",
+    "news": "News",
+    "currentnewson": "Current News On",
+    "totalresults": "Total Results: ",
+    "by7Days": "За 7 дней",
+    "1h": "1ч",
+    "24h": "24ч",
+    "7d": "7д",
+    "header": "Топ роста и падения"
   },
   "coinCard": {
     "name": "Coin name: ",

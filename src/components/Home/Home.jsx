@@ -13,19 +13,18 @@ const Home = () => {
   const [coins, setCoins] = useState([])
   const [error, setError] = useState('')
 
-  const fetchData = async () => {
-    try {
-      const res = await fetch(COINS_API_URL)
-      const data = await res.json()
-      setCoins(data.data)
-    } catch (error) {
-      setError(error.message)
-    } finally {
-      setIsLoading(false)
-    }
-  }
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch(COINS_API_URL)
+        const data = await res.json()
+        setCoins(data.data)
+      } catch (error) {
+        setError(error.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
     fetchData()
 
     const intervalId = setInterval(() => {
@@ -33,7 +32,7 @@ const Home = () => {
     }, 10000)
 
     return () => clearInterval(intervalId)
-  })
+  }, [])
 
   if (isLoading) {
     return <Loading type={t('home.loading')} />

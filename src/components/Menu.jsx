@@ -41,8 +41,8 @@ const Menu = () => {
             <Link className={style.navItem} to="/CryptoScan/exchanges">
               {t('nav.exchanges')}
             </Link>
-            <Link className={style.navItem} to="/CryptoScan/topmovers">
-              {t('nav.topMovers')}
+            <Link className={style.navItem} to="/CryptoScan/news">
+              {t('nav.news')}
             </Link>
           </nav>
           <div className={style.languageContainer} onClick={toggleLanguage}>
@@ -94,8 +94,8 @@ const Menu = () => {
             <Link className={style.navItem} to="/CryptoScan/exchanges">
               {t('nav.exchanges')}
             </Link>
-            <Link className={style.navItem} to="/CryptoScan/topmovers">
-              {t('nav.topMovers')}
+            <Link className={style.navItem} to="/CryptoScan/news">
+              {t('nav.news')}
             </Link>
           </nav>
         </>

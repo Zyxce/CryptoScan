@@ -18,8 +18,8 @@ const Footer = () => {
         <Link className={style.footerLink} to="/CryptoScan/exchanges">
           {t('nav.exchanges')}
         </Link>
-        <Link className={style.footerLink} to="/CryptoScan/topmovers">
-          {t('nav.topMovers')}
+        <Link className={style.footerLink} to="/CryptoScan/news">
+          {t('nav.news')}
         </Link>
       </div>
       <div className={style.copyRight}>

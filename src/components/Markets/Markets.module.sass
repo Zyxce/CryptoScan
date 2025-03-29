@@ -23,46 +23,6 @@ $box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
     opacity: 0.03
     z-index: -5
 
-  .topMarkets
-    display: flex
-    flex-direction: column
-    justify-content: space-around
-    margin-bottom: 30px
-    border: 3px solid #1E1F25
-    border-radius: 24px
-    width: 700px
-    margin: 20px auto
-    padding: 25px
-    position: relative
-    box-shadow: 7px 5px 5px #101013
-    &::before
-      content: ""
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      bottom: 0
-      background-image: url("../../Images/BackGroundHero.png")
-      background-size: cover
-      background-position: center
-      opacity: 0.1
-      z-index: -1
-      border-radius: 24px
-
-    .topMarketsContainer
-      display: flex
-      flex-direction: row
-      justify-content: space-around
-      padding-bottom: 10px
-
-    .differencePriceContainer
-      text-align: center
-      margin: 20px 0
-      font-size: 1.2rem
-
-      .differencePrice
-        color: #06B470
-
   .otherMarkets
     .otherMarketsHeader
       margin-top: 40px
@@ -106,3 +66,78 @@ $box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1)
 
 .marketContainer
   background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%)
+
+@media (min-width: 1441px) and (max-width: 1550px)
+@media (min-width: 1101px) and (max-width: 1440px)
+  .marketsContainer
+    padding: 20px 100px
+    &::before
+
+    .otherMarkets
+      .otherMarketsHeader
+        font-size: 2.4rem
+        line-height: 3.2rem
+      .otherMarketsTable
+        .otherMarketsTableHeader
+          .otherMarketsTableParameters
+            .otherMarketsTableParametersText
+            .otherMarketsTableParametersImg
+
+  .marketsMidLine
+    &::before
+
+  .marketContainer
+@media (min-width: 691px) and (max-width: 1100px)
+  .marketsContainer
+    padding: 20px 50px
+    &::before
+    .otherMarkets
+      .otherMarketsHeader
+        font-size: 2.2rem
+        line-height: 2.4rem
+      .otherMarketsTable
+        .otherMarketsTableHeader
+          .otherMarketsTableParameters
+            .otherMarketsTableParametersText
+            .otherMarketsTableParametersImg
+
+  .marketsMidLine
+    &::before
+
+  .marketContainer
+@media (min-width: 511px) and (max-width: 690px)
+  .marketsContainer
+    padding: 20px 50px
+    &::before
+    .otherMarkets
+      .otherMarketsHeader
+        font-size: 2rem
+        line-height: 2.4rem
+      .otherMarketsTable
+        .otherMarketsTableHeader
+          .otherMarketsTableParameters
+            .otherMarketsTableParametersText
+            .otherMarketsTableParametersImg
+
+  .marketsMidLine
+    &::before
+
+  .marketContainer
+@media (max-width: 510px)
+  .marketsContainer
+    padding: 20px 20px
+    &::before
+    .otherMarkets
+      .otherMarketsHeader
+        font-size: 2rem
+        line-height: 2.4rem
+      .otherMarketsTable
+        .otherMarketsTableHeader
+          .otherMarketsTableParameters
+            .otherMarketsTableParametersText
+            .otherMarketsTableParametersImg
+
+  .marketsMidLine
+    &::before
+
+  .marketContainer

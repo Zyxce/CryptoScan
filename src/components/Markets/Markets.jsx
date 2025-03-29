@@ -2,14 +2,24 @@ import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Market from './Market'
 import MarketCoin from './MarketCoin'
-import DifferenceMarket from './DifferenceMarket'
+import TopDifferenceMarkets from './TopDifferenceMarkets'
 import style from './Markets.module.css'
 import Loading from '../Events/Loading'
 import Error from '../Events/Error'
-import arrowTable from '../../Images/arrowTable.png'
+import TableHeader from '../Reusable/TableHeader'
+import { useMediaQuery } from 'react-responsive'
 
 const Markets = ({ selectedCoinMarkets }) => {
   const { t } = useTranslation()
+
+  const isDesktop = useMediaQuery({ minWidth: 1441 })
+  const isLaptop = useMediaQuery({ minWidth: 1101, maxWidth: 1440 })
+  const isTablet = useMediaQuery({ minWidth: 511, maxWidth: 1100 })
+  const isMobile = useMediaQuery({ maxWidth: 510 })
+  const isMobileBig = useMediaQuery({ maxWidth: 690 })
+
+  const isSmallScreen = isTablet || isMobile
+
   const MARKETS_API_URL = `https://api.coinlore.net/api/coin/markets/?id=${selectedCoinMarkets[0]}`
   const COIN_API_URL = `https://api.coinlore.net/api/ticker/?id=${selectedCoinMarkets[0]}`
   const NOT_AVAILABLE = 'N/A'
@@ -26,6 +36,55 @@ const Markets = ({ selectedCoinMarkets }) => {
   const [highestMarket, setHighestMarket] = useState(null)
   const [lowestMarket, setLowestMarket] = useState(null)
   const [differencePrice, setDifferencePrice] = useState(0)
+
+  //массив с заголовками таблицы
+  const tableArray = [
+    {
+      label: t('markets.tableName'),
+      field: 'name',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('markets.tableBase'),
+      field: 'quote',
+      isSorting: false,
+      visible: true,
+    },
+    {
+      label: t('markets.tablePriceUsd'),
+      field: 'price_usd',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('markets.tablePrice'),
+      field: 'price',
+      isSorting: true,
+      visible: true,
+    },
+    {
+      label: t('markets.tableVolumeUsd'),
+      field: 'volume_usd',
+      isSorting: false,
+      visible: true,
+    },
+    {
+      label: t('markets.tableVolume'),
+      field: 'volume',
+      isSorting: false,
+      visible: isDesktop,
+    },
+  ]
+  //обязательно иначе не будет работать Visible
+  const filteredTableArray = tableArray.filter((item) => item.visible)
+
+  let tableColumns = 0
+  if (isDesktop) {
+    tableColumns = 6
+  } else if (isLaptop) {
+    tableColumns = 5
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -132,85 +191,33 @@ const Markets = ({ selectedCoinMarkets }) => {
         <div className={style.marketsContainer}>
           <div className={style.coinStatisticsContainer}>
             {coin.map((parameters) => (
-              <MarketCoin key={parameters.id} {...parameters}></MarketCoin>
+              <MarketCoin
+                key={parameters.id}
+                {...parameters}
+                isMobileBig={isMobileBig}
+              ></MarketCoin>
             ))}
           </div>
-          <div className={style.topMarkets}>
-            <div className={style.topMarketsContainer}>
-              {lowestMarket && (
-                <div className={style.lowestMarket}>
-                  <DifferenceMarket
-                    key={new Date()}
-                    {...lowestMarket}
-                    headerMarket={t('markets.lowestMarket')}
-                  />
-                </div>
-              )}
-              {highestMarket && (
-                <div className={style.highestMarket}>
-                  <DifferenceMarket
-                    key={new Date()}
-                    {...highestMarket}
-                    headerMarket={t('markets.highestMarket')}
-                  />
-                </div>
-              )}
-            </div>
-            <div className={style.coinsMidLine}></div>
-            {differencePrice !== 0 && (
-              <div className={style.differencePriceContainer}>
-                <p className={style.differencePrice}>
-                  {t('markets.differencePrice')}: ${differencePrice}
-                </p>
-              </div>
-            )}
-          </div>
-
+          <TopDifferenceMarkets
+            highestMarket={highestMarket}
+            lowestMarket={lowestMarket}
+            differencePrice={differencePrice}
+            isMobileBig={isMobileBig}
+          />
           <div className={style.otherMarkets}>
             <h2 className={style.otherMarketsHeader}>
               {t('markets.priceOverview')}
             </h2>
             <div className={style.marketsMidLine}></div>
             <div className={style.otherMarketsTable}>
-              <div className={style.otherMarketsTableHeader}>
-                {[
-                  { label: t('markets.tableName'), field: 'name' },
-                  { label: t('markets.tableBase'), field: 'quote' },
-                  { label: t('markets.tablePriceUsd'), field: 'price_usd' },
-                  { label: t('markets.tablePrice'), field: 'price' },
-                  { label: t('markets.tableVolumeUsd'), field: 'volume_usd' },
-                  { label: t('markets.tableVolume'), field: 'volume' },
-                ].map(({ label, field }) => (
-                  <div
-                    className={style.otherMarketsTableParameters}
-                    onClick={() => handleSort(field)}
-                    key={field}
-                  >
-                    <p
-                      className={style.otherMarketsTableParametersText}
-                      style={
-                        sortField === field
-                          ? { textDecoration: 'underline' }
-                          : {}
-                      }
-                    >
-                      {label}
-                    </p>
-                    <img
-                      style={
-                        sortField === field
-                          ? sortDirection
-                            ? {}
-                            : { transform: 'rotate(180deg)' }
-                          : {}
-                      }
-                      src={arrowTable}
-                      alt={'img'}
-                      className={style.otherMarketsTableParametersImg}
-                    />
-                  </div>
-                ))}
-              </div>
+              <TableHeader
+                tableArray={filteredTableArray}
+                sortField={sortField}
+                sortDirection={sortDirection}
+                toggleSort={handleSort}
+                tableColumns={tableColumns}
+                isSmallScreen={isSmallScreen}
+              />
             </div>
             <div className={style.marketContainer}>
               {sortedMarkets.map((market) => (

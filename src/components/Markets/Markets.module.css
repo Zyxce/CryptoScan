@@ -18,47 +18,6 @@
   opacity: 0.03;
   z-index: -5;
 }
-.marketsContainer .topMarkets {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  margin-bottom: 30px;
-  border: 3px solid #1E1F25;
-  border-radius: 24px;
-  width: 700px;
-  margin: 20px auto;
-  padding: 25px;
-  position: relative;
-  box-shadow: 7px 5px 5px #101013;
-}
-.marketsContainer .topMarkets::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../../Images/BackGroundHero.png");
-  background-size: cover;
-  background-position: center;
-  opacity: 0.1;
-  z-index: -1;
-  border-radius: 24px;
-}
-.marketsContainer .topMarkets .topMarketsContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 10px;
-}
-.marketsContainer .topMarkets .differencePriceContainer {
-  text-align: center;
-  margin: 20px 0;
-  font-size: 1.2rem;
-}
-.marketsContainer .topMarkets .differencePriceContainer .differencePrice {
-  color: #06B470;
-}
 .marketsContainer .otherMarkets .otherMarketsHeader {
   margin-top: 40px;
   font-size: 3rem;
@@ -104,4 +63,41 @@
 
 .marketContainer {
   background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .marketsContainer {
+    padding: 20px 100px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+  }
+}
+@media (min-width: 691px) and (max-width: 1100px) {
+  .marketsContainer {
+    padding: 20px 50px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+  }
+}
+@media (min-width: 511px) and (max-width: 690px) {
+  .marketsContainer {
+    padding: 20px 50px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}
+@media (max-width: 510px) {
+  .marketsContainer {
+    padding: 20px 20px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
 }/*# sourceMappingURL=Markets.module.css.map */

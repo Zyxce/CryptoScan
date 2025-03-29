@@ -9,6 +9,7 @@ import MainLayout from './Layouts/MainLayout'
 import Home from './components/Home/Home'
 import Exchanges from './components/Exchanges/Exchanges'
 import NotFound from './components//Events/NotFound'
+import News from './components/News/News'
 import Loading from './components/Events/Loading'
 import Error from './components/Events/Error'
 
@@ -37,12 +38,7 @@ function App() {
               path="/CryptoScan/markets"
               element={<Markets selectedCoinMarkets={selectedCoinMarkets} />}
             />
-            {/* <Route
-              path="/CryptoScan/topmovers"
-              element={
-                <TopMovers toggleSelectedCoinId={handleSelectedCoindId} />
-              }
-            /> */}
+            <Route path="/CryptoScan/news" element={<News />} />
             {/* test events */}
             <Route
               path="/CryptoScan/event/loading"
