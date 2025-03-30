@@ -20,7 +20,7 @@ const News = () => {
   yesterday.setDate(today.getDate() - 1)
   const yesterdayFormatted = yesterday.toISOString().split('T')[0]
 
-  const NEWS_API_URL = `https://newsapi.org/v2/everything?q=${question}&language=${language}&from=${yesterdayFormatted}&to=${todayFormatted}&sortBy=${sortBy}&apiKey=${API_KEY}`
+  const NEWS_API_URL = 'http://localhost:3001/api/news'
 
   const [news, setNews] = useState<NewsApiResponse | null>(null)
   const [error, setError] = useState<unknown>(null)
