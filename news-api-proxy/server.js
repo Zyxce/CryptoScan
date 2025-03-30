@@ -2,34 +2,45 @@ require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
 const axios = require('axios')
+
 const app = express()
 
-app.use(cors())
+app.use(
+  cors({
+    origin: '*', // Временно разрешить всем для теста
+    methods: 'GET',
+  })
+)
 
 app.get('/api/news', async (req, res) => {
   try {
-    const { q, from, to, sortBy } = req.query
+    const { q = 'crypto' } = req.query
+
+    if (!process.env.NEWS_API_KEY) {
+      throw new Error('API key missing')
+    }
 
     const response = await axios.get('https://newsapi.org/v2/everything', {
       params: {
-        q: q || 'crypto',
-        from: from || new Date(Date.now() - 864e5).toISOString().split('T')[0], // yesterday
-        to: to || new Date().toISOString().split('T')[0], // today
-        sortBy: sortBy || 'publishedAt',
+        q: String(q),
+        pageSize: 10,
         apiKey: process.env.NEWS_API_KEY,
         language: 'en',
+        sortBy: 'publishedAt',
       },
+      timeout: 10000,
     })
 
     res.json(response.data)
   } catch (error) {
+    console.error('Server Error:', error.message)
     res.status(500).json({
-      error: error.message,
-      details: error.response?.data,
+      error: error.response?.data?.message || 'News service unavailable',
     })
   }
 })
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port ${process.env.PORT}`)
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server ready on port ${PORT}`)
 })

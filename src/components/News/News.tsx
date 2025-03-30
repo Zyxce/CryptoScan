@@ -8,19 +8,11 @@ import { NewsApiResponse } from '../../types'
 
 const News = () => {
   const { t } = useTranslation()
-  const question = 'crypto'
-  const language = 'en'
-  const sortBy = 'popularity'
-  const API_KEY = '131d568f01684970a25737e342974649'
 
   const today = new Date()
   const todayFormatted = today.toISOString().split('T')[0]
 
-  const yesterday = new Date(today)
-  yesterday.setDate(today.getDate() - 1)
-  const yesterdayFormatted = yesterday.toISOString().split('T')[0]
-
-  const NEWS_API_URL = 'http://localhost:3001/api/news'
+  const NEWS_API_URL = 'https://cryptoscan.onrender.com/api/news?q=crypto'
 
   const [news, setNews] = useState<NewsApiResponse | null>(null)
   const [error, setError] = useState<unknown>(null)
