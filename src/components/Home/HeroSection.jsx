@@ -27,7 +27,7 @@ const HeroSection = ({ coins }) => {
         {(isDesktop || isLaptop) && (
           <>
             <div className={style.heroTextContainer}>
-              <p className={style.appVersion}>— Crypto Scan V 1.5.1</p>
+              <p className={style.appVersion}>— Crypto Scan V 1.5.2</p>
               <h1 className={style.mainHeading}>{t('hero.header')}</h1>
               <div className={style.heroDottedLine}></div>
               <p className={style.heroDescription}>{t('hero.description')}</p>
