@@ -4,7 +4,6 @@ declare module 'express' {
   interface Request {
     user?: any
     query: {
-      [key: string]: string | undefined
       q?: string
       from?: string
       to?: string

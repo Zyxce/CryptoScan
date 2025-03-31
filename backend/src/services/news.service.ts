@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { Request, Response, NextFunction, Router } from 'express'
+import { Request, Response, NextFunction, Router } from 'express'
 import config from '../config'
 import { NewsAPIResponse } from 'types/news'
 

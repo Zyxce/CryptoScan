@@ -1,5 +1,12 @@
 import dotenv from 'dotenv'
-
+declare const process: {
+  env: {
+    PORT?: string
+    NEWS_API_KEY?: string
+    CORS_ORIGIN?: string
+    NODE_ENV?: string
+  }
+}
 dotenv.config()
 
 export default {

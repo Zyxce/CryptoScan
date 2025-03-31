@@ -1,5 +1,13 @@
-import type { Request, Response, NextFunction, Router } from 'express'
-
+import type { Request, Response, NextFunction } from 'express'
+import { Router } from 'express'
+declare const process: {
+  env: {
+    PORT?: string
+    NEWS_API_KEY?: string
+    CORS_ORIGIN?: string
+    NODE_ENV?: string
+  }
+}
 const errorMiddleware = (
   err: Error,
   req: Request,
