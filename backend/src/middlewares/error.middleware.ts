@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from 'express'
+import type { Request, Response, NextFunction, Router } from 'express'
 
 const errorMiddleware = (
   err: Error,

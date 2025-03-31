@@ -3,6 +3,7 @@ import cors from 'cors'
 import config from './config'
 import newsRouter from './routes/news.route'
 import errorMiddleware from './middlewares/error.middleware'
+import type { Request, Response, NextFunction, Router } from 'express'
 
 const app = express()
 

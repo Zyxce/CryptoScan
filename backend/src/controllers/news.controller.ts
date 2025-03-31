@@ -1,4 +1,4 @@
-import { Request, Response } from 'express'
+import type { Request, Response, NextFunction, Router } from 'express'
 import { NewsService } from '../services/news.service'
 
 export const getNews = async (req: Request, res: Response) => {
