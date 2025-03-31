@@ -1,0 +1,128 @@
+.accardionContainer {
+  -webkit-clip-path: inset(0 round 6px);
+          clip-path: inset(0 round 6px);
+  border: 1px solid transparent;
+  -o-border-image: linear-gradient(to right, rgba(49, 49, 49, 0.3843137255), rgba(65, 65, 65, 0.6588235294), rgba(49, 49, 49, 0.3843137255)) 1;
+     border-image: linear-gradient(to right, rgba(49, 49, 49, 0.3843137255), rgba(65, 65, 65, 0.6588235294), rgba(49, 49, 49, 0.3843137255)) 1;
+  margin: 0 auto;
+  width: 500px;
+  padding: 20px 20px 10px 10px;
+  text-align: start;
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+.accardionContainer .accardionTopContainer {
+  display: flex;
+  flex-direction: row;
+  padding: 0 0 10px 0;
+}
+.accardionContainer .accardionTopContainer .accardionText, .accardionContainer .accardionTopContainer .accardionChar {
+  font-size: 1.4rem;
+}
+.accardionContainer .accardionTopContainer .accardionText {
+  margin: auto 0;
+  margin-left: 15px;
+  color: white;
+}
+.accardionContainer .accardionTopContainer .accardionChar {
+  margin: auto 0;
+  font-weight: bold;
+  margin-left: auto;
+  color: #a7a6a6;
+}
+.accardionContainer .accardionTopContainer .accardionSpan {
+  color: #a7a6a6;
+  font-size: 1.8rem;
+}
+.accardionContainer .accardionAnswer {
+  margin: 10px 30px 25px 30px;
+  font-size: 1.2rem;
+  color: #808A9A;
+}
+
+.accardionContainer:hover {
+  cursor: pointer;
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .accardionContainer {
+    width: 450px;
+  }
+  .accardionContainer .accardionTopContainer .accardionText {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .accardionContainer .accardionTopContainer .accardionChar {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .accardionContainer .accardionTopContainer .accardionSpan {
+    font-size: 1.4rem;
+  }
+  .accardionContainer .accardionAnswer {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 691px) and (max-width: 1100px) {
+  .accardionContainer {
+    width: 300px;
+    padding: 15px 15px 5px 10px;
+  }
+  .accardionContainer .accardionTopContainer .accardionText {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    padding-right: 10px;
+  }
+  .accardionContainer .accardionTopContainer .accardionChar {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .accardionContainer .accardionTopContainer .accardionSpan {
+    font-size: 1.4rem;
+  }
+  .accardionContainer .accardionAnswer {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 511px) and (max-width: 690px) {
+  .accardionContainer {
+    width: 300px;
+    padding: 15px 15px 5px 10px;
+  }
+  .accardionContainer .accardionTopContainer .accardionText {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    padding-right: 10px;
+  }
+  .accardionContainer .accardionTopContainer .accardionChar {
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+  }
+  .accardionContainer .accardionTopContainer .accardionSpan {
+    font-size: 1.4rem;
+  }
+  .accardionContainer .accardionAnswer {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 510px) {
+  .accardionContainer {
+    width: 200px;
+    padding: 15px 15px 5px 10px;
+  }
+  .accardionContainer .accardionTopContainer .accardionText {
+    font-size: 1rem;
+    line-height: 1.2rem;
+    padding-right: 10px;
+  }
+  .accardionContainer .accardionTopContainer .accardionChar {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+  }
+  .accardionContainer .accardionTopContainer .accardionSpan {
+    font-size: 1.2rem;
+  }
+  .accardionContainer .accardionAnswer {
+    font-size: 1rem;
+  }
+}/*# sourceMappingURL=QuestionsAccardion.module.css.map */

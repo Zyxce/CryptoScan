@@ -1,0 +1,19 @@
+.exchangeContainer {
+  display: grid;
+  grid-template-columns: repeat(6, 150px);
+  align-items: center;
+  margin: 20px 0px;
+}
+.exchangeContainer .exchangeIcon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto;
+}
+.exchangeContainer .exchangeTableText {
+  margin: auto 0;
+  color: #fff;
+}
+.exchangeContainer .exchangeTableUrl {
+  color: #1B70F1;
+  text-decoration: none;
+}/*# sourceMappingURL=Exchange.module.css.map */

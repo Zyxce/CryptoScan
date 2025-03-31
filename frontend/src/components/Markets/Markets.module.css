@@ -1,0 +1,103 @@
+.marketsContainer {
+  padding: 20px 200px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+.marketsContainer::before {
+  content: "";
+  background-image: url("../../Images/BackGroundHero.png");
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -5;
+}
+.marketsContainer .otherMarkets .otherMarketsHeader {
+  margin-top: 40px;
+  font-size: 3rem;
+  color: white;
+  font-weight: 600px;
+  line-height: 4rem;
+}
+.marketsContainer .otherMarkets .otherMarketsTable .otherMarketsTableHeader {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+.marketsContainer .otherMarkets .otherMarketsTable .otherMarketsTableHeader .otherMarketsTableParameters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.marketsContainer .otherMarkets .otherMarketsTable .otherMarketsTableHeader .otherMarketsTableParameters .otherMarketsTableParametersText {
+  color: #808A9A;
+}
+.marketsContainer .otherMarkets .otherMarketsTable .otherMarketsTableHeader .otherMarketsTableParameters .otherMarketsTableParametersImg {
+  height: 10px;
+  width: 10px;
+  margin-left: 5px;
+}
+.marketsContainer .otherMarkets .otherMarketsTable .otherMarketsTableHeader .otherMarketsTableParameters:hover {
+  cursor: pointer;
+}
+
+.marketsMidLine {
+  position: relative;
+  padding: 60px 0px;
+  background: radial-gradient(rgba(85, 113, 254, 0.02), rgba(85, 113, 254, 0.015), rgba(85, 113, 254, 0.01), rgba(85, 113, 254, 0.005), rgba(85, 113, 254, 0) 72%);
+}
+
+.marketsMidLine::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #1E1F25, transparent);
+}
+
+.marketContainer {
+  background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .marketsContainer {
+    padding: 20px 100px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+  }
+}
+@media (min-width: 691px) and (max-width: 1100px) {
+  .marketsContainer {
+    padding: 20px 50px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2.2rem;
+    line-height: 2.4rem;
+  }
+}
+@media (min-width: 511px) and (max-width: 690px) {
+  .marketsContainer {
+    padding: 20px 50px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}
+@media (max-width: 510px) {
+  .marketsContainer {
+    padding: 20px 20px;
+  }
+  .marketsContainer .otherMarkets .otherMarketsHeader {
+    font-size: 2rem;
+    line-height: 2.4rem;
+  }
+}/*# sourceMappingURL=Markets.module.css.map */

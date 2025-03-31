@@ -1,0 +1,120 @@
+.exchangesContainer {
+  padding: 0 200px;
+  overflow: hidden;
+  position: relative;
+}
+.exchangesContainer::before {
+  content: "";
+  background-image: url("../../Images/BackGroundHero.png");
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -5;
+}
+.exchangesContainer .exchangesFeaturedHeader {
+  margin-top: 120px;
+  font-size: 3rem;
+  color: white;
+  font-weight: 600px;
+  line-height: 4rem;
+}
+.exchangesContainer .exchangesMidLine {
+  position: relative;
+  padding: 60px 0px;
+  background: radial-gradient(rgba(85, 113, 254, 0.02), rgba(85, 113, 254, 0.015), rgba(85, 113, 254, 0.01), rgba(85, 113, 254, 0.005), rgba(85, 113, 254, 0) 72%);
+}
+.exchangesContainer .exchangesMidLine::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, #1E1F25, transparent);
+}
+.exchangesContainer .exchangesTable .exchangesTableHeader {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters, .exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters .exchangesTableParametersText, .exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort .exchangesTableParametersText {
+  color: #808A9A;
+}
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParameters .exchangesTableParametersImg, .exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort .exchangesTableParametersImg {
+  height: 10px;
+  width: 10px;
+  margin-left: 5px;
+}
+.exchangesContainer .exchangesTable .exchangesTableHeader .exchangesTableParametersSort:hover {
+  cursor: pointer;
+}
+.exchangesContainer .exchangeTableContainer {
+  background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048), rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 72%);
+}
+
+@media (min-width: 1441px) and (max-width: 1550px) {
+  .exchangesContainer {
+    padding: 0 200px;
+  }
+}
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .exchangesContainer {
+    padding: 0 100px;
+  }
+  .exchangesContainer .exchangesFeaturedHeader {
+    margin-top: 90px;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+  }
+}
+@media (min-width: 691px) and (max-width: 1100px) {
+  .exchangesContainer {
+    padding: 0 50px;
+  }
+  .exchangesContainer .exchangesFeaturedHeader {
+    margin-top: 60px;
+    font-size: 2.2rem;
+    line-height: 2.6rem;
+  }
+  .exchangesContainer .exchangesMidLine {
+    padding: 30px 0px;
+  }
+}
+@media (min-width: 511px) and (max-width: 690px) {
+  .exchangesContainer {
+    padding: 0 50px;
+  }
+  .exchangesContainer .exchangesFeaturedHeader {
+    font-size: 2rem;
+    line-height: 2.6rem;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  .exchangesContainer .exchangesMidLine {
+    padding: 30px 0px;
+  }
+}
+@media (max-width: 510px) {
+  .exchangesContainer {
+    padding: 0 20px;
+  }
+  .exchangesContainer .exchangesFeaturedHeader {
+    font-size: 2rem;
+    line-height: 2.6rem;
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  .exchangesContainer .exchangesMidLine {
+    padding: 30px 0px;
+  }
+}/*# sourceMappingURL=Exchanges.module.css.map */

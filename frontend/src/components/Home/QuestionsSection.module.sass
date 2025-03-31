@@ -1,0 +1,194 @@
+.questionsContainer
+    padding: 50px 200px
+    display: flex
+    flex-direction: column
+    position: relative
+    background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 58%)
+    &::before
+        content: ""
+        background-image: url("../../Images/BackGroundHero.png")
+        background-size: cover
+        background-position: center
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        opacity: 0.08
+        z-index: -1
+    .questionsContainerTop
+        .questionsHeader
+            color: #F7FAFF
+            font-size: 3rem
+            line-height: 4rem
+            margin: 0
+            span
+                color: #1B70F1
+        .questionsHeaderDescription
+            margin-top: 30px
+            font-size: 1.2rem
+            color: #ADB3BF
+            line-height: 2rem
+    .questionsMidLine
+        position: relative
+        padding: 60px 0px
+    .questionsMidLine::before
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        height: 3px
+        background: linear-gradient(to right, transparent, #1E1F25, transparent)
+    .questionsContainerBottom
+        display: flex
+        flex-direction: row
+        position: relative
+        height: 430px
+        .questionsContainerLeft
+            position: absolute
+            left: 50px
+            width: calc(50%)
+        .questionsContainerRight
+            position: absolute
+            right: 50px
+            width: calc(50%)
+
+@media (min-width: 1551px) and (max-width: 1700px)
+    .questionsContainer
+        .questionsContainerTop
+            .questionsHeader
+                span
+            .questionsHeaderDescription
+        .questionsMidLine
+            ::before
+        .questionsContainerBottom
+            .questionsContainerLeft
+                position: absolute
+                left: 20px
+                width: calc(50%)
+            .questionsContainerRight
+                position: absolute
+                right: 20px
+                width: calc(50%)
+
+@media (min-width: 1441px) and (max-width: 1550px)
+    .questionsContainer
+        .questionsContainerTop
+            .questionsHeader
+                span
+            .questionsHeaderDescription
+        .questionsMidLine
+            ::before
+        .questionsContainerBottom
+            .questionsContainerLeft
+                position: absolute
+                left: -10px
+                width: calc(50%)
+            .questionsContainerRight
+                position: absolute
+                right: -10px
+                width: calc(50%)
+
+@media (min-width: 1101px) and (max-width: 1440px)
+    .questionsContainer
+        padding: 50px 100px
+        .questionsContainerTop
+            .questionsHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .questionsHeaderDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .questionsMidLine
+            padding: 30px 0px
+            ::before
+        .questionsContainerBottom
+            display: flex
+            justify-content: center
+            position: relative
+            height: 600px
+            .questionsContainerLeft
+                position: absolute
+                width: calc(50%)
+                left: 50% // Сдвигаем элемент на 50% вправо от родителя
+                transform: translateX(-50%)
+            .questionsContainerRight
+
+@media (min-width: 691px) and (max-width: 1100px)
+    .questionsContainer
+        padding: 50px 50px
+        .questionsContainerTop
+            .questionsHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .questionsHeaderDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .questionsMidLine
+            padding: 30px 0px
+            ::before
+        .questionsContainerBottom
+            display: flex
+            justify-content: center
+            position: relative
+            height: 700px
+            .questionsContainerLeft
+                position: absolute
+                width: calc(50%)
+                left: 50% // Сдвигаем элемент на 50% вправо от родителя
+                transform: translateX(-50%)
+            .questionsContainerRight
+
+@media (min-width: 511px) and (max-width: 690px)
+    .questionsContainer
+        padding: 50px 50px
+        .questionsContainerTop
+            .questionsHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .questionsHeaderDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .questionsMidLine
+            padding: 30px 0px
+            ::before
+        .questionsContainerBottom
+            display: flex
+            justify-content: center
+            position: relative
+            height: 700px
+            .questionsContainerLeft
+                position: absolute
+                width: calc(50%)
+                left: 40% // Сдвигаем элемент на 50% вправо от родителя
+                transform: translateX(-50%)
+            .questionsContainerRight
+
+@media (max-width: 510px)
+    .questionsContainer
+        padding: 50px 20px
+        .questionsContainerTop
+            .questionsHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .questionsHeaderDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .questionsMidLine
+            padding: 30px 0px
+            ::before
+        .questionsContainerBottom
+            display: flex
+            justify-content: center
+            position: relative
+            height: 780px
+            .questionsContainerLeft
+                position: absolute
+                width: calc(50%)
+                left: 35% // Сдвигаем элемент на 50% вправо от родителя
+                transform: translateX(-50%)
+            .questionsContainerRight

@@ -1,0 +1,339 @@
+.coinContainer {
+  position: relative;
+  border: 3px solid #1E1F25;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  width: 700px;
+  margin: 0 auto;
+  box-shadow: 7px 5px 5px #101013;
+  margin-top: 70px;
+}
+.coinContainer .coinTopContainer {
+  display: flex;
+  align-items: center;
+}
+.coinContainer .coinTopContainer p:not(:last-child) {
+  color: white;
+  font-size: 1.5rem;
+}
+.coinContainer .coinTopContainer .coinHeroSymbol {
+  margin-left: 10px;
+  padding-right: 5px;
+  border-right: 2px solid white;
+}
+.coinContainer .coinTopContainer .coinHeroName {
+  margin-left: 5px;
+}
+.coinContainer .coinTopContainer .coinHeroCap {
+  margin-left: auto;
+  font-size: 0.85rem;
+  color: white;
+}
+.coinContainer .coinBottomContainer {
+  display: flex;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+.coinContainer .coinBottomContainer .coinImgContainer {
+  width: 252px;
+  height: 252px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(rgba(85, 113, 254, 0.18), rgba(85, 113, 254, 0.15), rgba(85, 113, 254, 0.12), rgba(85, 113, 254, 0.09), rgba(85, 113, 254, 0) 72%);
+}
+.coinContainer .coinBottomContainer .coinImgContainer .coinImage {
+  width: 126px;
+  height: 126px;
+}
+.coinContainer .coinBottomContainer .coinMetricsLeftContainer, .coinContainer .coinBottomContainer .coinMetricsRightContainer {
+  display: grid;
+  grid-auto-rows: 1fr 1fr;
+}
+.coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer, .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer {
+  text-align: left;
+  margin-top: 10px;
+}
+.coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsHeader, .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsHeader {
+  margin-bottom: 10px;
+  color: white;
+}
+.coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsText, .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsText {
+  margin-top: 5px;
+  color: #acb8ca;
+  font-size: 0.8rem;
+  line-height: 1.2rem;
+}
+.coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsText img, .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsText img {
+  height: 14px;
+  width: 14px;
+  margin-left: 5px;
+}
+.coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsText span, .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsText span {
+  margin-left: 5px;
+}
+
+.coinContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../Images/BackGroundHero.png");
+  background-size: cover;
+  background-position: center;
+  opacity: 0.1;
+  z-index: -1;
+  border-radius: 24px;
+}
+
+@media (min-width: 1101px) and (max-width: 1440px) {
+  .coinContainer {
+    width: 600px;
+  }
+  .coinContainer .coinTopContainer p:not(:last-child) {
+    font-size: 1.4rem;
+  }
+  .coinContainer .coinTopContainer .coinHeroCap {
+    font-size: 0.8rem;
+  }
+  .coinContainer .coinBottomContainer .coinImgContainer {
+    width: 222px;
+    height: 222px;
+  }
+  .coinContainer .coinBottomContainer .coinImgContainer .coinImage {
+    width: 111px;
+    height: 111px;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsHeader {
+    font-size: 1rem;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsText {
+    font-size: 0.8rem;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsHeader {
+    font-size: 1rem;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsText {
+    font-size: 0.8rem;
+  }
+}
+@media (min-width: 691px) and (max-width: 1100px) {
+  .coinContainer {
+    width: 550px;
+  }
+  .coinContainer .coinTopContainer p:not(:last-child) {
+    font-size: 1.4rem;
+  }
+  .coinContainer .coinTopContainer .coinHeroCap {
+    font-size: 0.8rem;
+  }
+  .coinContainer .coinBottomContainer .coinImgContainer {
+    width: 150px;
+    height: 150px;
+  }
+  .coinContainer .coinBottomContainer .coinImgContainer .coinImage {
+    width: 75px;
+    height: 75px;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsHeader {
+    font-size: 0.9rem;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsLeftContainer .coinMetricsContainer .coinMetricsText {
+    font-size: 0.8rem;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsHeader {
+    font-size: 0.9rem;
+  }
+  .coinContainer .coinBottomContainer .coinMetricsRightContainer .coinMetricsContainer .coinMetricsText {
+    font-size: 0.8rem;
+  }
+}
+@media (max-width: 690px) {
+  /* Enhanced Mobile Styles */
+  .coinContainerMobile {
+    position: relative;
+    border-radius: 20px;
+    padding: 18px;
+    width: 88%;
+    margin: 16px auto;
+    background: rgba(23, 24, 28, 0.95);
+    -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .coinContainerMobile .coinHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .coinContainerMobile .coinBadge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: white;
+    position: relative;
+    z-index: 2;
+  }
+  .coinContainerMobile .coinBadge .coinRank {
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+    line-height: 1.6rem;
+  }
+  .coinContainerMobile .coinBadge .coinSymbol {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-right: 2px solid white;
+    padding-right: 5px;
+    line-height: 1.6rem;
+  }
+  .coinContainerMobile .coinBadge .coinHeroName {
+    line-height: 1.6rem;
+  }
+  .coinContainerMobile .coinImageWrapper {
+    position: relative;
+    z-index: 1;
+    margin: 0 auto 16px;
+    width: 80px;
+    height: 80px;
+  }
+  .coinContainerMobile .coinImageWrapper .coinImage {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: contain;
+       object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  }
+  .coinContainerMobile .coinImageWrapper::before {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(rgba(85, 113, 254, 0.18), rgba(85, 113, 254, 0.15), rgba(85, 113, 254, 0.12), rgba(85, 113, 254, 0.09), rgba(85, 113, 254, 0) 72%);
+  }
+  .coinContainerMobile .priceSection {
+    text-align: center;
+    margin-bottom: 22px;
+  }
+  .coinContainerMobile .priceSection .priceMain {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: linear-gradient(45deg, #fff, #a0b3ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .coinContainerMobile .priceSection .priceChangeGroup {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .coinContainerMobile .priceSection .priceChangeGroup .priceChangeContainer {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+  }
+  .coinContainerMobile .priceSection .priceChangeGroup .priceChangeContainer .priceChangeDescription {
+    padding: 4px 0;
+    font-size: 0.8rem;
+    color: white;
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .coinContainerMobile .priceSection .priceChangeGroup .priceChangeContainer .priceChangeItem {
+    display: flex;
+    align-items: center;
+    padding: 4px 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    font-size: 0.9rem;
+  }
+  .coinContainerMobile .priceSection .priceChangeGroup .priceChangeContainer .priceChangeItem img {
+    margin-right: 5px;
+  }
+  .coinContainerMobile .metricsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 8px;
+  }
+  .coinContainerMobile .metricsGrid .metricCard {
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  .coinContainerMobile .metricsGrid .metricCard .metricLabel {
+    font-size: 0.75rem;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .coinContainerMobile .metricsGrid .metricCard .metricValue {
+    font-size: 0.95rem;
+    font-weight: 500;
+    align-items: center;
+    gap: 6px;
+    color: #acb8ca;
+  }
+  /* Dynamic Color Helpers */
+  .positive {
+    color: #00d395 !important;
+    background: rgba(0, 211, 149, 0.08);
+  }
+  .negative {
+    color: #ff4d79 !important;
+    background: rgba(255, 77, 121, 0.08);
+  }
+  /* Interactive Elements */
+  .toggleButton {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: rgba(85, 113, 254, 0.15);
+    border: none;
+    border-radius: 8px;
+    color: #5571fe;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .toggleButton:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+  /* Micro-Interactions */
+  .toggleButton:hover {
+    background: rgba(85, 113, 254, 0.25);
+  }
+  /* Ultra-Compact View */
+  .coinContainerMobile {
+    width: 94%;
+    padding: 14px;
+  }
+  .metricsGrid {
+    grid-template-columns: 1fr;
+  }
+  .priceMain {
+    font-size: 1.8rem;
+  }
+  .coinImageWrapper {
+    width: 68px;
+    height: 68px;
+  }
+}/*# sourceMappingURL=MarketCoin.module.css.map */

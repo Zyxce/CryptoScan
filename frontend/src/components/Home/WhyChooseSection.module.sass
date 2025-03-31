@@ -1,0 +1,293 @@
+
+.whyContainer
+    padding: 100px 200px
+    background: radial-gradient(rgba(85, 113, 254, 0.082), rgba(85, 113, 254, 0.062), rgba(85, 113, 254, 0.048) , rgba(85, 113, 254, 0.032), rgba(85, 113, 254, 0) 58%)
+    position: relative
+    &::before
+        content: ""
+        background-image: url("../../Images/BackGroundHero.png")
+        background-size: cover
+        background-position: center
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        opacity: 0.08
+        z-index: -1
+    .whyContainerTop
+        .whyContainerTopHeader
+            color: #F7FAFF
+            font-size: 3rem
+            line-height: 4rem
+            margin: 0
+        span
+            color: #1B70F1
+        .whyContainerTopDescription
+            margin-top: 30px
+            font-size: 1.2rem
+            color: #ADB3BF
+            line-height: 2rem
+    .whyMidLine
+        position: relative
+        padding: 60px 0px
+    .whyMidLine::before
+        content: ''
+        position: absolute
+        left: 0
+        right: 0
+        height: 3px
+        background: linear-gradient(to right, transparent, #1E1F25, transparent)
+    .whyContainerBottom
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        .whyContainerLeft
+            .whyContainerLeftList
+                width: 100%
+                .whyContainerLeftItem
+                    display: flex
+                    flex-direction: column
+                    justify-content: space-between
+                    .whyContainerLeftLeft
+                        display: flex
+                        flex-direction: row
+                        align-items: center
+                        .whyContainerLeftNumber
+                            color: #272A34
+                            font-size: 3.4rem
+                            line-height: 3.5rem
+                            margin: 0
+                            font-family: "Source Sans Pro"
+                        .whyContainerLeftMid
+                            text-align: left
+                            margin-left: 20px
+                            .whyContainerLeftMidHeader
+                                color: #ADB3BF
+                                font-size: 1.6rem
+                                line-height: 2.2rem
+                                margin: 0
+                            .whyContainerLeftMidDescription
+                                margin-top: 12px
+                                color: #808A9A
+                                font-size: 1.2rem
+                                line-height: 1.6rem
+                                white-space: pre-line
+                    .whyContainerLeftRightDescription
+                        align-self: end
+                        margin-top: 20px
+                        margin-right: 20px
+                        color: #FFFFFF
+                        font-size: 1.2rem
+                        line-height: 1.8rem
+                        transition: 0.3s
+                        padding: 5px 10px
+                        white-space: nowrap
+                        .whyContainerLeftRightImage
+                            margin-left: 5px
+                    .whyContainerLeftRightDescription:hover
+                        cursor: pointer
+                .whyContainerLeftLine
+                    padding: 20px 0px
+                    position: relative
+                .whyContainerLeftLine::before
+                    content: ''
+                    position: absolute
+                    left: 0
+                    right: 0
+                    height: 3px
+                    background: linear-gradient(to right, #1E1F25, transparent)
+
+        .whyContainerRight
+            display: flex
+            align-items: center
+            justify-content: center
+            .whyContainerRightImage
+                width: 100%
+
+@media (min-width: 1441px) and (max-width: 1550px)
+    .whyContainer
+        padding: 70px 100px
+        .whyContainerTop
+            .whyContainerTopHeader
+                span
+            .whyContainerTopDescription
+        .whyMidLine
+            ::before
+        .whyContainerBottom
+            .whyContainerLeft
+                .whyContainerLeftList
+                    .whyContainerLeftItem
+                        .whyContainerLeftLeft
+                            .whyContainerLeftNumber
+                                font-size: 3.1rem
+                                line-height: 3.2rem
+                            .whyContainerLeftMid
+                                .whyContainerLeftMidHeader
+                                    font-size: 1.4rem
+                                    line-height: 1.8rem
+                                .whyContainerLeftMidDescription
+                                    font-sirem
+                    .whyContainerLeftRightDescription
+                        .whyContainerLeftRightImage
+                    .whyContainerLeftLine
+                        ::before
+                .whyContainerRight
+                    .whyContainerRightImage
+
+@media (min-width: 1101px) and (max-width: 1440px)
+    .whyContainer
+        padding: 50px 100px
+        display: flex
+        flex-direction: column
+        .whyContainerTop
+            .whyContainerTopHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .whyContainerTopDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .whyMidLine
+            padding: 30px 0
+            ::before
+        .whyContainerTopImage
+            .whyContainerImage
+                width: 400px
+        .whyContainerBottom
+            margin: 0 auto
+            margin-top: 40px
+            .whyContainerLeft
+                .whyContainerLeftList
+                    .whyContainerLeftItem
+                        .whyContainerLeftLeft
+                            .whyContainerLeftNumber
+                                font-size: 3.1rem
+                                line-height: 3.2rem
+                            .whyContainerLeftMid
+                                .whyContainerLeftMidHeader
+                                    font-size: 1.4rem
+                                    line-height: 1.8rem
+                                .whyContainerLeftMidDescription
+                                    font-size: 1rem
+                                    line-height: 1.5rem
+                    .whyContainerLeftRightDescription
+                        .whyContainerLeftRightImage
+                    .whyContainerLeftLine
+                        ::before
+
+@media (min-width: 691px) and (max-width: 1100px)
+    .whyContainer
+        padding: 25px 50px
+        .whyContainerTop
+            .whyContainerTopHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .whyContainerTopDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .whyMidLine
+            padding: 30px 0
+            ::before
+        .whyContainerTopImage
+            .whyContainerImage
+                width: 400px
+        .whyContainerBottom
+            margin-top: 40px
+            .whyContainerLeft
+
+                .whyContainerLeftList
+                    .whyContainerLeftItem
+                        .whyContainerLeftLeft
+                            .whyContainerLeftNumber
+                                font-size: 3.1rem
+                                line-height: 3.2rem
+                            .whyContainerLeftMid
+                                .whyContainerLeftMidHeader
+                                    font-size: 1.4rem
+                                    line-height: 1.8rem
+                                .whyContainerLeftMidDescription
+                                    font-size: 1rem
+                                    line-height: 1.5rem
+                    .whyContainerLeftRightDescription
+                        .whyContainerLeftRightImage
+                    .whyContainerLeftLine
+                        ::before
+
+@media (min-width: 511px) and (max-width: 690px)
+    .whyContainer
+        padding: 25px 50px
+        .whyContainerTop
+            .whyContainerTopHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .whyContainerTopDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .whyMidLine
+            padding: 30px 0
+            ::before
+        .whyContainerTopImage
+            .whyContainerImage
+                width: 400px
+        .whyContainerBottom
+            margin-top: 40px
+            .whyContainerLeft
+
+                .whyContainerLeftList
+                    .whyContainerLeftItem
+                        .whyContainerLeftLeft
+                            .whyContainerLeftNumber
+                                font-size: 3.1rem
+                                line-height: 3.2rem
+                            .whyContainerLeftMid
+                                .whyContainerLeftMidHeader
+                                    font-size: 1.4rem
+                                    line-height: 1.8rem
+                                .whyContainerLeftMidDescription
+                                    font-size: 1rem
+                                    line-height: 1.5rem
+                    .whyContainerLeftRightDescription
+                        .whyContainerLeftRightImage
+                    .whyContainerLeftLine
+                        ::before
+
+@media (max-width: 510px)
+    .whyContainer
+        padding: 15px 20px
+        .whyContainerTop
+            .whyContainerTopHeader
+                font-size: 2.4rem
+                line-height: 3rem
+                span
+            .whyContainerTopDescription
+                font-size: 1rem
+                line-height: 1.5rem
+        .whyMidLine
+            padding: 30px 0
+            ::before
+        .whyContainerTopImage
+            .whyContainerImage
+                width: 400px
+        .whyContainerBottom
+            .whyContainerLeft
+
+                .whyContainerLeftList
+                    .whyContainerLeftItem
+                        .whyContainerLeftLeft
+                            .whyContainerLeftNumber
+                                font-size: 3.1rem
+                                line-height: 3.2rem
+                            .whyContainerLeftMid
+                                .whyContainerLeftMidHeader
+                                    font-size: 1.4rem
+                                    line-height: 1.8rem
+                                .whyContainerLeftMidDescription
+                                    font-size: 1rem
+                                    line-height: 1.5rem
+                    .whyContainerLeftRightDescription
+                        .whyContainerLeftRightImage
+                    .whyContainerLeftLine
+                        ::before
