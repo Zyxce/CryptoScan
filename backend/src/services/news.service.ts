@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { Request, Response, NextFunction, Router } from 'express'
 import config from '../config'
-import { NewsAPIResponse } from 'types/news'
+import { NewsAPIResponse } from '../types/news'
 
 export class NewsService {
   static async getNews(req: Request) {
