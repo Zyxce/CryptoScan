@@ -25,7 +25,13 @@ export class NewsService {
 
     const response = await axios.get<NewsAPIResponse>(
       'https://newsapi.org/v2/everything',
-      { params, timeout: 10000 }
+      {
+        params,
+        headers: {
+          'X-Api-Key': config.NEWS_API_KEY,
+        },
+        timeout: 10000,
+      }
     )
 
     if (response.data.status !== 'ok') {
