@@ -30,7 +30,7 @@ export class NewsService {
     params.append('pageSize', (Number(pageSize) || 10).toString())
     params.append('language', 'en')
 
-    const proxyUrl = `http://your-render-proxy.onrender.com/https://newsapi.org/v2/everything?${params.toString()}`
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?${params.toString()}`
 
     const response = await axios.get<NewsAPIResponse>(proxyUrl, {
       headers: {
