@@ -19,7 +19,7 @@ const News = () => {
   // const PROXY_URL = 'https://cryptoscan.onrender.com'
   // const NEWS_API_URL = `${PROXY_URL}?${params}`
   //const NEWS_API_URL = `http://localhost:3001/api/news?q=crypto`
-  const NEWS_API_URL = `https://CryptoScan.onrender.com/api/news?q=crypto`
+  const NEWS_API_URL = `https://cryptoscan.onrender.com/api/news?q=crypto`
 
   const [news, setNews] = useState<NewsApiResponse | null>(null)
   const [error, setError] = useState<unknown>(null)
