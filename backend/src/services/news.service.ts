@@ -1,41 +1,47 @@
 import axios from 'axios'
-import { Request, Response, NextFunction, Router } from 'express'
+import { Request } from 'express'
 import config from '../config'
 import { NewsAPIResponse } from '../types/news'
 //
 export class NewsService {
-  static async getNews(req: Request) {
+  static async getNews(req: Request): Promise<NewsAPIResponse> {
     const { q, from, to, sortBy, pageSize } = req.query
 
-    const params = {
-      q: q?.toString() || 'crypto',
-      from:
-        from?.toString() ||
-        new Date(Date.now() - 864e5).toISOString().split('T')[0],
-      to: to?.toString() || new Date().toISOString().split('T')[0],
-      sortBy: ['relevancy', 'popularity', 'publishedAt'].includes(
+    // Создаем URLSearchParams и добавляем параметры по одному
+    const params = new URLSearchParams()
+    params.append('q', q?.toString() || 'crypto')
+    params.append(
+      'from',
+      from?.toString() ||
+        new Date(Date.now() - 864e5).toISOString().split('T')[0]
+    )
+    params.append(
+      'to',
+      to?.toString() || new Date().toISOString().split('T')[0]
+    )
+    params.append(
+      'sortBy',
+      ['relevancy', 'popularity', 'publishedAt'].includes(
         sortBy?.toString() || ''
       )
-        ? sortBy?.toString()
-        : 'publishedAt',
-      pageSize: Number(pageSize) || 10,
-      apiKey: config.NEWS_API_KEY,
-      language: 'en',
-    }
-
-    const response = await axios.get<NewsAPIResponse>(
-      'https://newsapi.org/v2/everything',
-      {
-        params,
-        headers: {
-          'X-Api-Key': config.NEWS_API_KEY,
-        },
-        timeout: 10000,
-      }
+        ? sortBy?.toString() || 'publishedAt'
+        : 'publishedAt'
     )
+    params.append('pageSize', (Number(pageSize) || 10).toString())
+    params.append('language', 'en')
+
+    const proxyUrl = `https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?${params.toString()}`
+
+    const response = await axios.get<NewsAPIResponse>(proxyUrl, {
+      headers: {
+        'X-Api-Key': config.NEWS_API_KEY,
+        Accept: 'application/json',
+      },
+      timeout: 10000,
+    })
 
     if (response.data.status !== 'ok') {
-      throw new Error(response.data.status)
+      throw new Error(`NewsAPI error: ${response.data.status}`)
     }
 
     return response.data
