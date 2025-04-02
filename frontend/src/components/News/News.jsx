@@ -4,30 +4,26 @@ import Loading from '../Events/Loading'
 import ErrorComponent from '../Events/Error'
 import NewsContainer from './NewsContainer'
 import style from './News.module.css'
-
-// Тип для полного ответа API
-type CoinGeckoNewsResponse = {
-  data: {
-    id: number
-    title: string
-    description: string
-    url: string
-    created_at: number
-    thumb_2x: string
-    author: string
-    news_site: string
-  }[]
-  count: number
-  page: number
-}
+import { NewsApiResponse } from '../../types'
 
 const News = () => {
   const { t } = useTranslation()
-  const [news, setNews] = useState<CoinGeckoNewsResponse['data'] | null>(null)
-  const [error, setError] = useState<unknown>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  const NEWS_API_URL = `https://api.coingecko.com/api/v3/news?category=cryptocurrency&page=1&per_page=10`
+  const params = new URLSearchParams({
+    q: 'crypto',
+    language: 'en',
+    sortBy: 'publishedAt',
+    pageSize: '10',
+  })
+
+  // const PROXY_URL = 'https://cryptoscan.onrender.com'
+  // const NEWS_API_URL = `${PROXY_URL}?${params}`
+  //const NEWS_API_URL = `http://localhost:3001/api/news?q=crypto`
+  const NEWS_API_URL = `https://cryptoscan.onrender.com/api/news?q=crypto`
+
+  const [news, setNews] = (useState < NewsApiResponse) | (null > null)
+  const [error, setError] = useState < unknown > null
+  const [isLoading, setIsLoading] = useState < boolean > true
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,18 +38,16 @@ const News = () => {
           )
         }
 
-        const response: CoinGeckoNewsResponse = await res.json()
-        console.log('API Response:', response) // Для отладки
+        const data: NewsApiResponse = await res.json()
 
-        // Валидация структуры
-        if (!response.data || !Array.isArray(response.data)) {
+        // Валидация структуры ответа
+        if (!data.articles || !Array.isArray(data.articles)) {
           throw new Error('Invalid news data structure')
         }
 
-        setNews(response.data)
+        setNews(data)
       } catch (err) {
         setError(err)
-        console.error('Fetch error:', err)
       } finally {
         setIsLoading(false)
       }
@@ -62,7 +56,7 @@ const News = () => {
   }, [NEWS_API_URL])
 
   // Форматирование даты
-  const todayFormatted = new Date().toLocaleDateString()
+  const todayFormatted = new Date().toISOString().split('T')[0]
 
   if (error) return <ErrorComponent error={error} />
   if (isLoading) return <Loading type={'News'} />
@@ -73,23 +67,14 @@ const News = () => {
         {t('news.currentnewson')} <span>{todayFormatted}</span>
       </h2>
 
-      {news && news.length > 0 ? (
+      {news && news.articles.length > 0 ? (
         <>
           <h3 className={style.newsResults}>
-            {t('news.totalresults')} {news.length}
+            {t('news.totalresults')} {news.totalResults}
           </h3>
           <ul className={style.newsList}>
-            {news.map((article) => (
-              <NewsContainer
-                key={article.id}
-                title={article.title}
-                url={article.url}
-                description={article.description}
-                thumbnail={article.thumb_2x}
-                publishedAt={new Date(article.created_at * 1000).toISOString()}
-                author={article.author}
-                source={article.news_site}
-              />
+            {news.articles.map((article, index) => (
+              <NewsContainer key={`${article.url}-${index}`} {...article} />
             ))}
           </ul>
         </>

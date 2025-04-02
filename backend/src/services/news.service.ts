@@ -7,7 +7,6 @@ export class NewsService {
   static async getNews(req: Request): Promise<NewsAPIResponse> {
     const { q, from, to, sortBy, pageSize } = req.query
 
-    // Создаем URLSearchParams и добавляем параметры по одному
     const params = new URLSearchParams()
     params.append('q', q?.toString() || 'crypto')
     params.append(

@@ -1,85 +1,42 @@
-import React, { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import defaultNewsIcon from '../../Images/newsDefault.png'
-import style from './NewsContainer.module.css'
-import { Article } from '../../types'
+import React from 'react'
+import style from './News.module.css'
+
+type Article = {
+  title: string
+  url: string
+  description: string
+  thumbnail: string
+  publishedAt: string
+  author: string
+  source: string
+}
 
 const NewsContainer: React.FC<Article> = ({
   title,
-  description,
   url,
-  urlToImage,
+  description,
+  thumbnail,
+  publishedAt,
   author,
-  content,
+  source,
 }) => {
-  const { t } = useTranslation()
-
-  const [imageSrc, setImageSrc] = useState(urlToImage || defaultNewsIcon)
-
-  const formatAuthor = (author: string | null) => {
-    if (!author) return t('news.unknownauthor')
-
-    const formatted = author.split(' ').slice(0, 2).join(' ').replace(/,$/, '')
-
-    return formatted
-  }
-  const calculateReadTime = (content: string | null) => {
-    if (!content) return 0
-    const charsMatch = content.match(/\[\+(\d+)\s?chars\]$/)
-    const charsCount = charsMatch ? parseInt(charsMatch[1]) : content.length
-    return Math.ceil(5 + charsCount / 1000)
-  }
-
-  useEffect(() => {
-    if (!urlToImage) {
-      setImageSrc(defaultNewsIcon)
-      return
-    }
-
-    const img = new Image()
-    img.src = urlToImage
-
-    img.onload = () => {
-      setImageSrc(urlToImage)
-    }
-
-    img.onerror = () => {
-      setImageSrc(defaultNewsIcon)
-    }
-
-    return () => {
-      img.onload = null
-      img.onerror = null
-    }
-  }, [urlToImage])
-
   return (
-    <li className={style.newsItem}>
-      <img
-        className={style.newsImage}
-        src={imageSrc}
-        alt={title}
-        style={{ maxWidth: '375px' }}
-      />
-      <div className={style.newsTextContainer}>
-        <div className={style.newsParameters}>
-          <p className={style.newsParametersText} title={author || ''}>
-            {formatAuthor(author)}
-          </p>
-          <p className={style.newsParametersText}>
-            {calculateReadTime(content)} {t('news.minsread')}
-          </p>
+    <li className="news-item">
+      <img src={thumbnail} alt={title} className={style.thumbnail} />
+      <div className={style.content}>
+        <h3 className={style.title}>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            {title}
+          </a>
+        </h3>
+        <p className={style.description}>{description}</p>
+        <div className={style.meta}>
+          {author && <span className={style.author}>By {author}</span>}
+          {source && <span className={style.source}>Source: {source}</span>}
+          <time className={style.time}>
+            {new Date(publishedAt).toLocaleDateString()}
+          </time>
         </div>
-        <h3 className={style.newsHeader}>{title}</h3>
-        <p className={style.newsDescription}>{description}</p>
-        <a
-          className={style.newsLink}
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {t('news.readmore')}
-        </a>
       </div>
     </li>
   )

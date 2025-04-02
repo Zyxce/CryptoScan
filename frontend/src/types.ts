@@ -4,15 +4,14 @@ export interface Source {
   name: string
 }
 
-export interface Article {
-  source: Source
-  author: string | null
+export type Article = {
   title: string
-  description: string | null
   url: string
-  urlToImage: string | null
+  description: string
+  thumbnail: string // Changed from potentially different property name
   publishedAt: string
-  content: string | null
+  author: string
+  source: string
 }
 
 export interface NewsApiResponse {
