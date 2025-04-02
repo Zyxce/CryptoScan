@@ -1,33 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import testNewsData from '../../Data/testNewsData.json'
 import Loading from '../Events/Loading'
 import ErrorComponent from '../Events/Error'
 import NewsContainer from './NewsContainer'
 import style from './News.module.css'
-
-// Тип для полного ответа API
-type CoinGeckoNewsResponse = {
-  data: {
-    id: number
-    title: string
-    description: string
-    url: string
-    created_at: number
-    thumb_2x: string
-    author: string
-    news_site: string
-  }[]
-  count: number
-  page: number
-}
+import { ICoinGeckoNewsResponse } from '../../types'
 
 const News = () => {
   const { t } = useTranslation()
-  const [news, setNews] = useState<CoinGeckoNewsResponse['data'] | null>(null)
+  const NEWS_API_URL = `https://api.coingecko.com/api/v3/news?category=cryptocurrency&page=1&per_page=10`
+
+  const [news, setNews] = useState<ICoinGeckoNewsResponse | null>(null)
   const [error, setError] = useState<unknown>(null)
   const [isLoading, setIsLoading] = useState<boolean>(true)
-
-  const NEWS_API_URL = `https://api.coingecko.com/api/v3/news?category=cryptocurrency&page=1&per_page=10`
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,18 +28,15 @@ const News = () => {
           )
         }
 
-        const response: CoinGeckoNewsResponse = await res.json()
-        console.log('API Response:', response) // Для отладки
+        const data: ICoinGeckoNewsResponse = await res.json()
 
-        // Валидация структуры
-        if (!response.data || !Array.isArray(response.data)) {
+        if (!data.data || !Array.isArray(data.data)) {
           throw new Error('Invalid news data structure')
         }
 
-        setNews(response.data)
+        setNews(data)
       } catch (err) {
         setError(err)
-        console.error('Fetch error:', err)
       } finally {
         setIsLoading(false)
       }
@@ -61,8 +44,7 @@ const News = () => {
     fetchData()
   }, [NEWS_API_URL])
 
-  // Форматирование даты
-  const todayFormatted = new Date().toLocaleDateString()
+  const todayFormatted = new Date().toISOString().split('T')[0]
 
   if (error) return <ErrorComponent error={error} />
   if (isLoading) return <Loading type={'News'} />
@@ -73,13 +55,13 @@ const News = () => {
         {t('news.currentnewson')} <span>{todayFormatted}</span>
       </h2>
 
-      {news && news.length > 0 ? (
+      {news && news.data.length > 0 ? (
         <>
           <h3 className={style.newsResults}>
-            {t('news.totalresults')} {news.length}
+            {t('news.totalresults')} {news.count}
           </h3>
           <ul className={style.newsList}>
-            {news.map((article) => (
+            {news.data.map((article) => (
               <NewsContainer
                 key={article.id}
                 title={article.title}

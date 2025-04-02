@@ -1,17 +1,27 @@
 //НОВОСТИ ИНТЕРФЕЙС
-export interface Source {
-  id: string | null
-  name: string
-}
-
 export type Article = {
+  key: number
   title: string
   url: string
-  description: string
-  thumbnail: string // Changed from potentially different property name
+  thumbnail: string | null
   publishedAt: string
   author: string
   source: string
+  description: string
+}
+export interface ICoinGeckoNewsResponse {
+  data: {
+    id: number
+    title: string
+    description: string
+    url: string
+    created_at: number
+    thumb_2x: string
+    author: string
+    news_site: string
+  }[]
+  count: number
+  page: number
 }
 
 export interface NewsApiResponse {

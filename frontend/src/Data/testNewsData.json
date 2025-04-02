@@ -1,0 +1,45 @@
+{
+  "data": [
+    {
+      "id": 2611669,
+      "title": "HBAR Foundation joins OnlyFans founder startup to bid on TikTok",
+      "description": "Zoop, the social app created by OnlyFans founder Tim Stokely...",
+      "locale": "en",
+      "author": "Cointelegraph by Turner Wright",
+      "url": "https://cointelegraph.com/news/hbar-foundation-onlyfans-founder-tik-tok",
+      "crawled_at": 1743620360,
+      "created_at": 1743620360,
+      "updated_at": 1743620360,
+      "news_site": "Cointelegraph",
+      "thumb_2x": null
+    },
+    {
+      "id": 2611656,
+      "title": "Fidelity Launches Crypto IRAs",
+      "description": "Boston-based Fidelity Investments...",
+      "locale": "en",
+      "author": "Bitcoin.com",
+      "url": "https://news.bitcoin.com/fidelity-launches-crypto-iras/",
+      "crawled_at": 1743619873,
+      "created_at": 1743619873,
+      "updated_at": 1743619873,
+      "news_site": "Bitcoin.com",
+      "thumb_2x": "https://assets.coingecko.com/articles/images/2611656/large/fidelity-launches-crypto-iras.jpg"
+    },
+    {
+      "id": 2611561,
+      "title": "No Crypto Talks Between Eric And President Trump, Son Confirms",
+      "description": "Eric Trump, son of President Donald Trump...",
+      "locale": "en",
+      "author": "Jake Simmons",
+      "url": "https://bitcoinist.com/no-crypto-talks-between-eric-president-trump/",
+      "crawled_at": 1743618633,
+      "created_at": 1743618633,
+      "updated_at": 1743618633,
+      "news_site": "Bitcoinist",
+      "thumb_2x": "https://assets.coingecko.com/articles/images/2611561/large/Screenshot.png"
+    }
+  ],
+  "count": 20,
+  "page": 1
+}
